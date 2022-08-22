@@ -116,7 +116,7 @@ return [
     'choose_image'          => '选择图片',
     'more'                  => '更多',
     'deny'                  => '无权访问',
-    'administrator'         => '管理员',
+    'administrator'         => '用户',
     'roles'                 => '角色',
     'permissions'           => '权限',
     'slug'                  => '标识',
@@ -220,7 +220,7 @@ return [
     'menu_titles' => [
         'index'         => '主页',
         'admin'         => '系统',
-        'users'         => '管理员',
+        'users'         => '用户',
         'roles'         => '角色',
         'permission'    => '权限',
         'menu'          => '菜单',

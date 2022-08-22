@@ -19,7 +19,7 @@
             </a>
         </li>
     @else
-        @if($item['id'] !== 2)
+        @if(1)
             @php
                 $active = $builder->isActive($item);
             @endphp
