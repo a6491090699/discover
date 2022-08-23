@@ -258,7 +258,8 @@ return [
 
         // Permission table and model.
         'permissions_table' => 'admin_permissions',
-        'permissions_model' => Dcat\Admin\Models\Permission::class,
+        'permissions_model' => App\Models\Permission::class,
+        // 'permissions_model' => Dcat\Admin\Models\Permission::class,
 
         // Menu table and model.
         'menu_table' => 'admin_menu',

@@ -12,6 +12,8 @@
  * // +----------------------------------------------------------------------
  */
 
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProductController;
 use App\Models\AdminUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -33,16 +35,14 @@ use Illuminate\Validation\ValidationException;
 //    return $request->user();
 //});
 Route::post('login', function (Request $request) {
-    if($a = auth()->attempt($request->only(['password','username']))){
-        $user =  AdminUser::where('username',$request->username)->first();
+    if ($a = auth()->attempt($request->only(['password', 'username']))) {
+        $user =  AdminUser::where('username', $request->username)->first();
         $token = $user->createToken($user->id);
         return $token->plainTextToken;
-
     }
-    
 });
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    $user= $request->user();
+    $user = $request->user();
     // dd($user->allPermissions()->toarray());
     $user->allPermissions()->first(function ($permission) use ($request) {
         return $permission->shouldPassThrough($request);
@@ -51,11 +51,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->post('/logout', function (Request $request) {
-        // Revoke all tokens...
-        $user = $request->user();
+    // Revoke all tokens...
+    $user = $request->user();
 
-        $user->tokens()->delete();
-        return ['success','成功'];
+    $user->tokens()->delete();
+    return ['success', '成功'];
 });
 
 
@@ -68,7 +68,7 @@ Route::post('/sanctum/token', function (Request $request) {
 
     $user = AdminUser::where('username', $request->username)->first();
 
-    if (! $user || ! Hash::check($request->password, $user->password)) {
+    if (!$user || !Hash::check($request->password, $user->password)) {
         throw ValidationException::withMessages([
             'email' => ['The provided credentials are incorrect.'],
         ]);
@@ -76,6 +76,15 @@ Route::post('/sanctum/token', function (Request $request) {
 
     return $user->createToken($request->device_name)->plainTextToken;
 });
-// Route::middleware('auth:sanctum')->group(['prefix'=>'auth','middleware'=>'auth:sanctum'],function(){
-//     Route::get('me' , )
-// });
+
+//授权接口
+Route::middleware(['auth:sanctum','api.permission'])->group(function () {
+    Route::resource('companies', "CompanyController");
+    Route::resource('products', "ProductController");
+});
+
+//用户公共接口 无需授权
+Route::middleware(['auth:sanctum'])->group(function () {
+    //菜单列表
+    Route::get('menu' , 'PubController@menu');
+});

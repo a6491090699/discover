@@ -21,9 +21,9 @@ class Permission
         $user = $request->user();
         
         if (! $user->allPermissions()->first(function ($permission) use ($request) {
-            return $permission->shouldPassThrough($request);
+            return $permission->shouldPassThroughApi($request);
         })) {
-            abort(403);
+            return response('Authentication failed' , 403);
         }
 
         return $next($request);
