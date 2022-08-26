@@ -35,7 +35,7 @@ class SupplierController extends AdminController
             $grid->column('link')->emp();
             $grid->column('name')->emp();
 
-            $grid->column('pay_method')->using(SupplierModel::PAY_METHOD);
+            $grid->column('status')->using(SupplierModel::STATUS_LIST);
             $grid->column('phone')->emp();
             $grid->column('other')->emp();
             $grid->column('created_at');
@@ -71,11 +71,23 @@ class SupplierController extends AdminController
     protected function form()
     {
         return Form::make(new Supplier(), function (Form $form) {
-            $form->text('link')->required();
             $form->text('name')->required();
-            $form->select('pay_method')->options(SupplierModel::PAY_METHOD)->default(0)->required();
+            $form->text('short_title')->required();
+            $form->text('link')->required();
+            $form->hidden('pay_method')->default(0);
             $form->text('phone')->rules('phone:CN,mobile')->required();
             $form->text('other')->saveAsString();
+            $form->text('sn')->value(create_uniqid_sn('supplier'))->readonly()->required();
+            $form->select('type')->options(SupplierModel::TYPE_LIST)->required();
+            $form->select('status')->options(SupplierModel::STATUS_LIST)->required();
+            $form->text('address')->required();
+            $form->text('contact_department');
+            $form->text('contact_tel')->required();
+            $form->text('contact_email')->required();
+            $form->text('bank_title')->required();
+            $form->text('bank_name')->required();
+            $form->text('bank_account')->required();
+            $form->text('bank_top')->required();
         });
     }
 }

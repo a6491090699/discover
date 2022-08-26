@@ -21,10 +21,12 @@ use App\Admin\Extensions\Form\Order\OrderController;
 use App\Admin\Repositories\PurchaseOrder;
 use App\Models\ProductModel;
 use App\Models\PurchaseOrderModel;
+use App\Models\SupplierModel;
 use App\Repositories\SupplierRepository;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Illuminate\Support\Fluent;
+use Overtrue\Pinyin\Pinyin;
 
 class PurchaseOrderController extends OrderController
 {
@@ -85,7 +87,7 @@ class PurchaseOrderController extends OrderController
     protected function setForm(Form &$form): void
     {
         $form->row(function (Form\Row $row) {
-            $row->width(6)->text('order_no', '单号')->default(build_order_no('CG'))->required()->readOnly();
+            $row->width(6)->text('order_no', '单号')->readOnly();
             $row->width(6)->text('created_at', '业务日期')->default(now())->required()->readOnly();
         });
         $form->row(function (Form\Row $row) {
@@ -99,8 +101,22 @@ class PurchaseOrderController extends OrderController
             $supplier = SupplierRepository::pluck();
             $row->width(6)->select('supplier_id', '供应商')->options($supplier)->default(head($supplier->keys()->toArray()))->required();
         });
+
+        $form->row(function (Form\Row $row) {
+            $row->width(6)->select('type','采购类型')->options(PurchaseOrderModel::TYPE_LIST)->required();
+            $row->width(6)->select('pay_method','支付方式')->options(PurchaseOrderModel::PAY_METHOD_LIST)->required();
+        });
+        $form->row(function (Form\Row $row) {
+            $row->width(6)->text('sign_man','签订人')->required();
+            $row->width(6)->datetime('sign_at','签订时间')->required();
+        });
+
         $form->row(function (Form\Row $row) {
             $row->width(6)->text('other', '备注')->saveAsString();
+        });
+        $form->saving(function(Form $form){
+            $supplier =  SupplierModel::find($form->supplier_id);
+            $form->order_no = create_order_sn('buy',$supplier->short_title, $supplier->sign_at);
         });
     }
 
@@ -112,8 +128,8 @@ class PurchaseOrderController extends OrderController
                 $table->ipt('unit', '单位')->rem(3)->default('-')->disable();
                 $table->ipt('type', '类型')->rem(5)->default('-')->disable();
                 $table->select('sku_id', '属性选择')->options()->required();
-                $table->tableDecimal('percent', '含绒量')->default(0);
-                $table->select('standard', '检验标准')->options(PurchaseOrderModel::STANDARD)->default(0);
+                // $table->tableDecimal('percent', '含绒量')->default(0);
+                // $table->select('standard', '检验标准')->options(PurchaseOrderModel::STANDARD)->default(0);
                 $table->num('should_num', '采购数量')->required();
                 $table->tableDecimal('price', '采购价格')->default(0.00)->required();
             })->useTable()->width(12)->enableHorizontal();

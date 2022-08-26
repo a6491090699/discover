@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Repositories\Department;
 use App\Models\Company;
 use App\Models\Department as ModelsDepartment;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -82,18 +83,22 @@ class DepartmentController extends AdminController
     protected function form()
     {
         return Form::make(new Department(), function (Form $form) {
-
             $form->display('id');
 
             $form->text('title');
 
             $form->select('company_id')->options(Company::pluck('title','id'));
-
             $form->select('parent_id')->options(function (){
                 return ModelsDepartment::selectOptions();
             })->saving(function ($v) {
                 return (int) $v;
             });
+
+            // $form->select('parent_id')->options(function (){
+            //     return ModelsDepartment::selectOptions();
+            // })->saving(function ($v) {
+            //     return (int) $v;
+            // });
 
             $form->display('created_at');
             $form->display('updated_at');

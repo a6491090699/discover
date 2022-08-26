@@ -2,13 +2,13 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Repositories\Company;
+use App\Admin\Repositories\StoreCompany;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
 
-class CompanyController extends AdminController
+class StoreCompanyController extends AdminController
 {
     /**
      * Make a grid builder.
@@ -17,14 +17,15 @@ class CompanyController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Company(), function (Grid $grid) {
+        return Grid::make(new StoreCompany(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('title');
-            $grid->column('hostname');
+            $grid->column('address');
+            $grid->column('charge_man');
             $grid->column('tel');
-            $grid->column('tax_number');
+            $grid->column('tax_code');
             $grid->column('bank');
-            $grid->column('bank_count');
+            $grid->column('bank_account');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
         
@@ -44,14 +45,15 @@ class CompanyController extends AdminController
      */
     protected function detail($id)
     {
-        return Show::make($id, new Company(), function (Show $show) {
+        return Show::make($id, new StoreCompany(), function (Show $show) {
             $show->field('id');
             $show->field('title');
-            $show->field('hostname');
+            $show->field('address');
+            $show->field('charge_man');
             $show->field('tel');
-            $show->field('tax_number');
+            $show->field('tax_code');
             $show->field('bank');
-            $show->field('bank_count');
+            $show->field('bank_account');
             $show->field('created_at');
             $show->field('updated_at');
         });
@@ -64,15 +66,16 @@ class CompanyController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new Company(), function (Form $form) {
+        return Form::make(new StoreCompany(), function (Form $form) {
             $form->display('id');
-            $form->text('title')->required();
-            $form->text('short_title')->required();
-            $form->text('hostname')->required();
-            $form->text('tel')->required();
-            $form->text('tax_number')->required();
-            $form->text('bank')->required();
-            $form->text('bank_count')->required();
+            $form->text('title');
+            $form->text('short_title');
+            $form->text('address');
+            $form->text('charge_man');
+            $form->text('tel');
+            $form->text('tax_code');
+            $form->text('bank');
+            $form->text('bank_account');
         
             $form->display('created_at');
             $form->display('updated_at');

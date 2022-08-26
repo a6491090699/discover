@@ -60,6 +60,13 @@ class CustomerModel extends BaseModel
     const PAY_CASH = 0;
     const PAY_WECHAT = 1;
     const PAY_ZFB = 2;
+    const STATUS_OPEN = 1;
+    const STATUS_CLOSE = 2;
+    
+    const STATUS_LIST = [
+        self::STATUS_OPEN   => '启用',
+        self::STATUS_CLOSE    => '禁用',
+    ];
 
     const PAY = [
         self::PAY_CASH   => '现金',
@@ -78,8 +85,10 @@ class CustomerModel extends BaseModel
     /**
      * @return HasMany
      */
-    public function address(): HasMany
+    public function addressAll(): HasMany
     {
         return $this->hasMany(CustomerAddressModel::class, 'customer_id');
     }
+
+    
 }

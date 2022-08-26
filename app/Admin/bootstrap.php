@@ -44,7 +44,7 @@ Grid::resolving(function (Grid $grid) {
     $grid->model()->orderBy("id", "desc");
     $grid->disableViewButton();
     $grid->showQuickEditButton();
-    $grid->enableDialogCreate();
+    // $grid->enableDialogCreate();
     $grid->disableBatchDelete();
     $grid->actions(function (\Dcat\Admin\Grid\Displayers\Actions $actions) {
         $actions->disableView();

@@ -19,6 +19,8 @@ use App\Admin\Repositories\Attr;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Controllers\AdminController;
+use Dcat\Admin\Widgets\Tab;
+use Illuminate\Contracts\Support\Renderable;
 
 class AttrController extends AdminController
 {
@@ -34,7 +36,7 @@ class AttrController extends AdminController
             $grid->column('name');
             $grid->column('value', '属性值')
                 ->display('查看')
-                ->expand(AttrValue::class);
+                ->modal(AttrValue::class);
             $grid->column('created_at');
         });
     }

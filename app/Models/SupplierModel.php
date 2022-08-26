@@ -54,10 +54,24 @@ class SupplierModel extends BaseModel
     const PAY_METHOD_CASH = 0;
     const PAY_METHOD_ZFB = 1;
     const PAY_METHOD_WECHAT = 2;
+    const STATUS_OPEN = 1;
+    const STATUS_CLOSE = 2;
+    const TYPE_MAOYI = 1;
+    const TYPE_FACTORY = 2;
 
     const PAY_METHOD = [
         self::PAY_METHOD_CASH   => '现金',
         self::PAY_METHOD_ZFB    => '支付宝',
         self::PAY_METHOD_WECHAT => '微信',
+    ];
+
+    const STATUS_LIST = [
+        self::STATUS_OPEN   => '启用',
+        self::STATUS_CLOSE    => '禁用',
+    ];
+
+    const TYPE_LIST = [
+        self::TYPE_MAOYI   => '贸易商',
+        self::TYPE_FACTORY    => '工厂',
     ];
 }

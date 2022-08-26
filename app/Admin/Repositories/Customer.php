@@ -65,4 +65,5 @@ class Customer extends EloquentRepository
         })->OrderBy('id', 'desc')->get();
         return $this;
     }
+
 }

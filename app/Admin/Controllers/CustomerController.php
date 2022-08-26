@@ -35,7 +35,7 @@ class CustomerController extends AdminController
             $grid->column('link')->emp();
             $grid->column('name')->emp();
             $grid->column('other')->emp();
-            $grid->column('pay_method')->using(CustomerModel::PAY);
+            $grid->column('status')->using(CustomerModel::STATUS_LIST);
             $grid->column('phone');
             $grid->column('created_at');
             $grid->filter(function (Grid\Filter $filter) {
@@ -66,19 +66,41 @@ class CustomerController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new Customer(['drawee', 'address']), function (Form $form) {
-            $form->text('link')->required();
+        return Form::make(new Customer(), function (Form $form) {
+            
             $form->text('name')->required();
+            $form->text('short_title')->required();
+            $form->text('link')->required();
             $form->text('other')->required();
-            $form->select('pay_method')->options(CustomerModel::PAY)->default(0)->required();
+            // $form->select('pay_method')->options(CustomerModel::PAY)->default(0)->required();
             $form->mobile('phone')->required();
-            $form->multipleSelect('drawee', '付款人')->options($form->repository()->drawee())->customFormat(function (array $v) {
-                return array_column($v, 'id');
-            });
-            $form->hasMany('address', '客户地址', function (Form\NestedForm $form) {
-                $form->text('address', '地址')->required();
-//                $form->text('other')->default('')->saveAsString();
-            })->useTable();
+
+            // $form->multipleSelect('drawee', '付款人')->options($form->repository()->drawee())->customFormat(function (array $v) {
+            //     return array_column($v, 'id');
+            // });
+    //             $form->hasMany('address', '客户地址', function (Form\NestedForm $form) {
+    //                 $form->text('address', '地址')->required();
+    // //                $form->text('other')->default('')->saveAsString();
+    //             })->useTable();
+
+            $form->text('sn')->value(create_uniqid_sn('customer'))->readonly()->required();
+            $form->select('status')->options(CustomerModel::STATUS_LIST)->required();
+
+            $form->text('address')->required();
+            $form->text('signatory')->required();
+            $form->text('department')->required();
+            $form->datetime('sign_start_at')->required();
+            $form->datetime('sign_stop_at')->required();
+            $form->decimal('money_limit')->required();
+            $form->text('contact_department');
+            $form->text('contact_tel')->required();
+            $form->text('contact_email')->required();
+            $form->text('contact_qq')->required();
+            $form->text('bank_title')->required();
+            $form->text('bank_name')->required();
+            $form->text('bank_account')->required();
+            $form->text('bank_top')->required();
+            $form->text('tax_code')->required();
         });
     }
 }

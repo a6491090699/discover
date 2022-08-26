@@ -5,6 +5,7 @@ return [
     ],
     'fields' => [
         'title' => '公司名称',
+        'short_title' => '简称',
         'hostname' => '法人',
         'tel' => '公司联系方式',
         'tax_number' => '纳税识别号',

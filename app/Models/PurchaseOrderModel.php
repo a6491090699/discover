@@ -65,6 +65,22 @@ class PurchaseOrderModel extends PurchaseBaseModel
     use SoftDeletes;
     protected $table = 'purchase_order';
 
+    const BUY_JINKOU = 1;
+    const BUY_NEIMAO = 2;
+    const PAY_TT = 1;
+    const PAY_XYZ = 2;
+    const PAY_CDHP = 3;
+
+    const TYPE_LIST = [
+        self::BUY_JINKOU => '进口',
+        self::BUY_NEIMAO => '内贸',
+    ];
+
+    const PAY_METHOD_LIST = [
+        self::PAY_TT => 'TT(现汇)',
+        self::PAY_XYZ => '信用证',
+        self::PAY_CDHP => '承兑汇票',
+    ];
     /**
      * @return HasMany
      */
@@ -92,7 +108,7 @@ class PurchaseOrderModel extends PurchaseBaseModel
     /**
      * @return string
      */
-    public function getStatusStrAttribute():string
+    public function getStatusStrAttribute(): string
     {
         return self::STATUS[$this->status];
     }
@@ -100,8 +116,13 @@ class PurchaseOrderModel extends PurchaseBaseModel
     /**
      * @return string
      */
-    public function getSupplierStrAttribute():string
+    public function getSupplierStrAttribute(): string
     {
         return $this->supplier->name;
+    }
+
+    public function frameContract()
+    {
+        return $this->belongsTo(FrameContract::class);
     }
 }
