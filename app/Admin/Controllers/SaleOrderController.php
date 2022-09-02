@@ -19,6 +19,7 @@ use App\Admin\Actions\Grid\BatchOrderPrint;
 use App\Admin\Actions\Grid\EditOrder;
 use App\Admin\Extensions\Form\Order\OrderController;
 use App\Admin\Repositories\SaleOrder;
+use App\Models\CustomerModel;
 use App\Models\ProductModel;
 use App\Models\PurchaseOrderModel;
 use App\Models\SaleOrderModel;
@@ -35,10 +36,10 @@ class SaleOrderController extends OrderController
      */
     protected function grid()
     {
+        
         return Grid::make(new SaleOrder(['customer', 'user']), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('customer.name', '客户');
-
             $grid->column('order_no');
             $grid->column('other')->emp();
             $grid->column('user.name', '创建用户');
@@ -100,17 +101,6 @@ class SaleOrderController extends OrderController
         })->else()->selectplus(function (Fluent $fluent) {
             return $fluent->sku['product']['sku_key_value'];
         });
-
-        $grid->column('percent', '含绒百分比')->if(function () use ($order) {
-            return $order->review_status !== SaleOrderModel::REVIEW_STATUS_OK;
-        })->edit();
-
-        $grid->column('standard', '检验标准')->if(function () use ($order) {
-            return $order->review_status === SaleOrderModel::REVIEW_STATUS_OK;
-        })->display(function () {
-            return PurchaseOrderModel::STANDARD[$this->standard];
-        })->else()->select(SaleOrderModel::STANDARD);
-
         $grid->column('should_num', '要货数量')->if(function () use ($order) {
             return $order->review_status !== SaleOrderModel::REVIEW_STATUS_OK;
         })->edit();
@@ -128,7 +118,7 @@ class SaleOrderController extends OrderController
     protected function setForm(Form &$form): void
     {
         $form->row(function (Form\Row $row) {
-            $row->width(6)->text('order_no', '单号')->default(build_order_no('YH'))->required()->readOnly();
+            $row->width(6)->text('order_no', '单号')->readOnly();
             $row->width(6)->text('created_at', '业务日期')->default(now())->required()->readOnly();
         });
 
@@ -140,7 +130,9 @@ class SaleOrderController extends OrderController
             } else {
                 $row->width(6)->select('status', '单据状态')->options([$this->oredr_model::STATUS_DOING => '受理中'])->default($this->oredr_model::STATUS_DOING)->required();
             }
-            $row->width(6)->text('other', '备注')->saveAsString();
+            $row->width(6)->select('type','销售类型')->options(SaleOrderModel::TYPE_LIST)->required();
+
+            
         });
         $customer = $form->repository()->customer();
         $form->row(function (Form\Row $row) use ($customer) {
@@ -152,8 +144,38 @@ class SaleOrderController extends OrderController
         });
 
         $form->row(function (Form\Row $row) {
-            $row->width(6)->select('drawee_id', '付款人')->required();
+            $row->width(6)->text('sign_man','签订人')->required();
+            $row->width(6)->datetime('sign_at','签订时间')->required();
         });
+
+        $form->row(function (Form\Row $row) {
+            
+            $row->width(6)->datetime('send_at','交货时间')->required();
+            $row->width(6)->select('pay_method','支付方式')->options(SaleOrderModel::PAY_METHOD_LIST)->required();
+        });
+        $form->row(function (Form\Row $row) {
+            // $row->width(6)->select('drawee_id', '付款人')->required();
+            $row->width(6)->text('other', '备注')->saveAsString();
+            $row->width(1)->hidden('total_money', '金额');
+            $row->width(1)->hidden('total_money_cn', '金额大写');
+
+        });
+
+        $form->saving(function(Form $form){
+            $customer =  CustomerModel::find($form->customer_id);
+            $form->order_no = create_order_sn('buy',$customer->short_title, $form->sign_at);
+            if($form->items){
+                $total_money = 0;
+                foreach($form->items as $item){
+                    $total_money += $item['price']*$item['should_num'];
+                }
+                $form->total_money = $total_money;
+                $form->total_money_cn = \Yurun\Util\Chinese\Money::toChinese($total_money, [
+                    'tenMin'    =>  true, 
+                ]);
+            }
+        });
+
     }
 
     /**
@@ -161,13 +183,11 @@ class SaleOrderController extends OrderController
      */
     protected function creating(Form &$form): void
     {
-        $form->width(12)->row(function (Form\Row $row) {
+        $form->width(10)->row(function (Form\Row $row) {
             $row->hasMany('items', '', function (Form\NestedForm $table) {
                 $table->select('product_id', '名称')->options(ProductModel::pluck('name', 'id'))->loadpku(route('api.product.find'))->required();
                 $table->ipt('unit', '单位')->rem(3)->default('-')->disable();
                 $table->select('sku_id', '属性选择')->options()->required();
-                $table->tableDecimal('percent', '含绒百分比')->default(0);
-                $table->select('standard', '检验标准')->options(PurchaseOrderModel::STANDARD)->default(0);
                 $table->num('should_num', '要货数量')->required();
                 $table->tableDecimal('price', '要货价格')->default(0.00)->required();
             })->useTable()->width(12)->enableHorizontal();

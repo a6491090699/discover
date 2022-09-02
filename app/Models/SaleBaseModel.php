@@ -42,4 +42,21 @@ class SaleBaseModel extends BaseModel
         self::STATUS_SIGN     => 'yellow',
         self::STATUS_RETURNED => 'success',
     ];
+
+    const PAY_TT = 1;
+    const PAY_XYZ = 2;
+    const PAY_CDHP = 3;
+
+    const PAY_METHOD_LIST = [
+        self::PAY_TT => 'TT(现汇)',
+        self::PAY_XYZ => '信用证',
+        self::PAY_CDHP => '承兑汇票',
+    ];
+
+    const TYPE_CHUKOU = 1;
+    const TYPE_NEIMAO = 2;
+    const TYPE_LIST = [
+        self::TYPE_CHUKOU =>'出口',
+        self::TYPE_NEIMAO =>'内贸',
+    ];
 }

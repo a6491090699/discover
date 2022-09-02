@@ -113,10 +113,18 @@ class PurchaseOrderController extends OrderController
 
         $form->row(function (Form\Row $row) {
             $row->width(6)->text('other', '备注')->saveAsString();
+            $row->width(6)->hidden('total_money')->default(0);
         });
         $form->saving(function(Form $form){
             $supplier =  SupplierModel::find($form->supplier_id);
-            $form->order_no = create_order_sn('buy',$supplier->short_title, $supplier->sign_at);
+            $form->order_no = create_order_sn('buy',$supplier->short_title, $form->sign_at);
+            if($form->items){
+                $total_money = 0;
+                foreach($form->items as $item){
+                    $total_money += $item['price']*$item['should_num'];
+                }
+                $form->total_money = $total_money;
+            }
         });
     }
 
@@ -128,8 +136,6 @@ class PurchaseOrderController extends OrderController
                 $table->ipt('unit', '单位')->rem(3)->default('-')->disable();
                 $table->ipt('type', '类型')->rem(5)->default('-')->disable();
                 $table->select('sku_id', '属性选择')->options()->required();
-                // $table->tableDecimal('percent', '含绒量')->default(0);
-                // $table->select('standard', '检验标准')->options(PurchaseOrderModel::STANDARD)->default(0);
                 $table->num('should_num', '采购数量')->required();
                 $table->tableDecimal('price', '采购价格')->default(0.00)->required();
             })->useTable()->width(12)->enableHorizontal();
@@ -149,16 +155,6 @@ class PurchaseOrderController extends OrderController
         })->else()->selectplus(function (Fluent $fluent) {
             return $fluent->sku['product']['sku_key_value'];
         });
-        $grid->column('percent', '含绒量')->if(function () use ($order) {
-            return $order->review_status !== PurchaseOrderModel::REVIEW_STATUS_OK;
-        })->edit();
-
-        $grid->column('standard', '检验标准')->if(function () use ($order) {
-            return $order->review_status === PurchaseOrderModel::REVIEW_STATUS_OK;
-        })->display(function () {
-            return PurchaseOrderModel::STANDARD[$this->standard];
-        })->else()->select(PurchaseOrderModel::STANDARD);
-
         $grid->column('should_num', '采购数量')->if(function () use ($order) {
             return $order->review_status !== PurchaseOrderModel::REVIEW_STATUS_OK;
         })->edit();

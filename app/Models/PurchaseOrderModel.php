@@ -125,4 +125,9 @@ class PurchaseOrderModel extends PurchaseBaseModel
     {
         return $this->belongsTo(FrameContract::class);
     }
+
+    public function scopeReceive($query)
+    {
+        return $query->where('status', self::STATUS_ARRIVE);
+    }
 }

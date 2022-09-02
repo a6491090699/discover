@@ -41,7 +41,7 @@ class SkuStockController extends AdminController
             $grid->column('percent', '含绒量(%)');
             $grid->column('standard_str', '检验标准');
             $grid->column('num');
-            $grid->column('batch_num', '批次库存')->expand(function () {
+            $grid->column('batch_num', '批次库存')->modal(function () {
                 return SkuStockBatchTable::make(['sku_id' => $this->sku_id, 'percent' => $this->percent]);
             });
 //            $grid->column('created_at');

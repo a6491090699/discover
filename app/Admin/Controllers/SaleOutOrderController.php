@@ -86,7 +86,7 @@ class SaleOutOrderController extends OrderController
         });
 
         $form->row(function (Form\Row $row) {
-            $row->width(6)->select('drawee_id', '付款人')->required();
+            // $row->width(6)->select('drawee_id', '付款人')->required();
             $row->width(6)->text('other', '备注')->saveAsString();
         });
     }
@@ -105,21 +105,12 @@ class SaleOutOrderController extends OrderController
             return $fluent->sku['product']['sku_key_value'];
         });
 
-        $grid->column('percent', '含绒百分比')->if(function () use ($order) {
-            return $order->review_status !== SaleOutOrderModel::REVIEW_STATUS_OK;
-        })->edit();
-
-        $grid->column('standard', '检验标准')->if(function () use ($order) {
-            return $order->review_status === SaleOutOrderModel::REVIEW_STATUS_OK;
-        })->display(function () {
-            return PurchaseOrderModel::STANDARD[$this->standard];
-        })->else()->selectplus(SaleOutOrderModel::STANDARD);
-        $grid->column('sku_stock_num', "库存参考数量")->display(function ($val) {
-            return $val;
-        });
+        // $grid->column('sku_stock_num', "库存参考数量")->display(function ($val) {
+        //     return $val;
+        // });
 
         $grid->column('should_num', '要货数量');
-        $grid->column('actual_num', '销售数量');
+        $grid->column('actual_num', '销售数量')->edit();
         $grid->column('price', '销售价格')->if(function () use ($order) {
             return $order->review_status !== SaleOutOrderModel::REVIEW_STATUS_OK;
         })->edit();

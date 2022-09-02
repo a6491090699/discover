@@ -38,14 +38,32 @@ if (!function_exists('build_order_no')) {
      */
     function build_order_no(string $prefix = ''): string
     {
-        $date = date("Ymd");
-        $number = OrderNoGeneratorModel::query()->where([
-            'prefix' => $prefix,
-            'happen_date' => $date
-        ])->value('number');
+        $prefix = strtoupper($prefix);
+        
+        $redis_key = 'sn_autoincrement_'.$prefix;
+        if (Redis::exists($redis_key)) {
+            $auto = Redis::get($redis_key);
+        } else {
+            Redis::set($redis_key, 1);
+            $auto = '1';
+        }
+        if (strlen($auto) < 6) {
+            $auto = str_repeat('0', 6 - strlen($auto)) . $auto;
+        }
 
-        return $prefix . $date . str_pad($number + 1, "4", "0", STR_PAD_LEFT);
+    // return uniqid($prefix);
+    return $prefix . date('ymd') . $auto;
     }
+    // function build_order_no(string $prefix = ''): string
+    // {
+    //     $date = date("Ymd");
+    //     $number = OrderNoGeneratorModel::query()->where([
+    //         'prefix' => $prefix,
+    //         'happen_date' => $date
+    //     ])->value('number');
+
+    //     return $prefix . $date . str_pad($number + 1, "4", "0", STR_PAD_LEFT);
+    // }
 }
 if (!function_exists('crossJoin')) {
     /**
@@ -121,13 +139,12 @@ if (!file_exists("store_order_img")) {
     }
 }
 
-function create_uniqid_sn($type)
+function create_uniqid_sn($type = '')
 {
     $prefix = '';
     switch ($type) {
         case 'customer':
             $prefix = 'KH';
-            
             break;
         case 'provider':
             $prefix = 'FWS';
@@ -140,6 +157,9 @@ function create_uniqid_sn($type)
             break;
         case 'frame_contract':
             $prefix = 'FR';
+            break;
+        case 'purchase_back':
+            $prefix = 'PB';
             break;
         default:
             $prefix = 'Q';
@@ -211,15 +231,16 @@ function create_order_sn($type, $short_title, $sign_at )
     // $wind = PurchaseOrderModel::where('sign_at' , $sign_at)->where('supplier_id',$supplier_id)->count();
     // $auto = substr($str , $wind , 1);
     $date_str = date('ymdHis', strtotime($sign_at));
+    $pinyin = new Pinyin();
     switch ($type) {
         case 'buy':
-            $first = "B-" . strtoupper(Pinyin::abbr($short_title)) . '-' . $date_str ;
+            $first = "B-" . strtoupper($pinyin->abbr($short_title)) . '-' . $date_str ;
             break;
         case 'sell':
-            $first = "S-" . strtoupper(Pinyin::abbr($short_title)) . '-' . $date_str ;
+            $first = "S-" . strtoupper($pinyin->abbr($short_title)) . '-' . $date_str ;
             break;
         default:
-            $first = "O-" . strtoupper(Pinyin::abbr($short_title)) . '-' . $date_str ;
+            $first = "O-" . strtoupper($pinyin->abbr($short_title)) . '-' . $date_str ;
             break;
     }
     return $first;

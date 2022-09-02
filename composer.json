@@ -23,6 +23,7 @@
         "overtrue/pinyin": "^4.0",
         "propaganistas/laravel-phone": "^4.2",
         "spatie/laravel-enum": "1.6.0",
+        "yurunsoft/chinese-util": "^2.0",
         "yxx/laravel-quick": "^1.0",
         "zgldh/qiniu-laravel-storage": "^0.10.3"
     },
