@@ -130,4 +130,9 @@ class PurchaseOrderModel extends PurchaseBaseModel
     {
         return $query->where('status', self::STATUS_ARRIVE);
     }
+
+    public function storeIn()
+    {
+        return $this->morphOne(StoreIn::class ,'order');
+    }
 }

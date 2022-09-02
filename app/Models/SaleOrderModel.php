@@ -116,4 +116,9 @@ class SaleOrderModel extends SaleBaseModel
     {
         return self::STATUS[$this->status];
     }
+
+    public function storeIn()
+    {
+        return $this->morphOne(StoreIn::class ,'order');
+    }
 }
