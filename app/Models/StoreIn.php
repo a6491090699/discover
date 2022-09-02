@@ -30,8 +30,6 @@ class StoreIn extends Model
         return $this->belongsTo(Delivery::class);
     }
 
-    public fun
-
     public function order()
     {
         return $this->morphTo();
