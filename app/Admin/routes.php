@@ -31,6 +31,8 @@ Route::group([
     $router->get('api/get-customer-address', 'ApiController@getCustomerAddress')->name('api.customer.address.find');
     $router->get('api/get-customer-drawee', 'ApiController@getCustomerDrawee')->name('api.customer.drawee.find');
 
+    $router->resource('store_outs', 'StoreOutController');
+    $router->resource('store_ins', 'StoreInController');
     $router->resource('purchase_order_backs', 'PurchaseOrderBackController');
     $router->resource('frame_contracts', 'FrameContractController');
     $router->resource('store_companies', 'StoreCompanyController');

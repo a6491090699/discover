@@ -12,13 +12,7 @@
  * // +----------------------------------------------------------------------
  */
 
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\ProductController;
-use App\Models\AdminUser;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Validation\ValidationException;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,48 +28,14 @@ use Illuminate\Validation\ValidationException;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-Route::post('login', function (Request $request) {
-    if ($a = auth()->attempt($request->only(['password', 'username']))) {
-        $user =  AdminUser::where('username', $request->username)->first();
-        $token = $user->createToken($user->id);
-        return $token->plainTextToken;
-    }
-});
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    $user = $request->user();
-    // dd($user->allPermissions()->toarray());
-    $user->allPermissions()->first(function ($permission) use ($request) {
-        return $permission->shouldPassThrough($request);
-    });
-    return $request->user();
-});
 
-Route::middleware('auth:sanctum')->post('/logout', function (Request $request) {
-    // Revoke all tokens...
-    $user = $request->user();
+//登陆注册模块
 
-    $user->tokens()->delete();
-    return ['success', '成功'];
-});
+Route::post('login', 'AuthController@login');
+Route::post('logout', 'AuthController@logout');
+Route::post('me', 'AuthController@me');
+Route::post('token', 'AuthController@token');
 
-
-Route::post('/sanctum/token', function (Request $request) {
-    $request->validate([
-        'username' => 'required',
-        'password' => 'required',
-        'device_name' => 'required'
-    ]);
-
-    $user = AdminUser::where('username', $request->username)->first();
-
-    if (!$user || !Hash::check($request->password, $user->password)) {
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect.'],
-        ]);
-    }
-
-    return $user->createToken($request->device_name)->plainTextToken;
-});
 
 //授权接口
 Route::middleware(['auth:sanctum','api.permission'])->group(function () {
