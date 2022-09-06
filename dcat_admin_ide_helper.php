@@ -88,6 +88,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection tax_number
      * @property Grid\Column|Collection bank
      * @property Grid\Column|Collection bank_count
+     * @property Grid\Column|Collection short_title
      * @property Grid\Column|Collection cost_type
      * @property Grid\Column|Collection pay_type
      * @property Grid\Column|Collection should_amount
@@ -104,18 +105,50 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection link
      * @property Grid\Column|Collection pay_method
      * @property Grid\Column|Collection phone
-     * @property Grid\Column|Collection customer_id
+     * @property Grid\Column|Collection status
+     * @property Grid\Column|Collection sn
+     * @property Grid\Column|Collection signatory
+     * @property Grid\Column|Collection department
+     * @property Grid\Column|Collection sign_start_at
+     * @property Grid\Column|Collection sign_stop_at
+     * @property Grid\Column|Collection money_limit
      * @property Grid\Column|Collection address
+     * @property Grid\Column|Collection contact_tel
+     * @property Grid\Column|Collection contact_qq
+     * @property Grid\Column|Collection contact_email
+     * @property Grid\Column|Collection contact_department
+     * @property Grid\Column|Collection bank_title
+     * @property Grid\Column|Collection bank_name
+     * @property Grid\Column|Collection bank_account
+     * @property Grid\Column|Collection bank_top
+     * @property Grid\Column|Collection tax_code
+     * @property Grid\Column|Collection customer_id
      * @property Grid\Column|Collection drawee_id
+     * @property Grid\Column|Collection order_type
+     * @property Grid\Column|Collection send_at
+     * @property Grid\Column|Collection arrived_at
+     * @property Grid\Column|Collection money
+     * @property Grid\Column|Collection enclosure
      * @property Grid\Column|Collection content
      * @property Grid\Column|Collection type
-     * @property Grid\Column|Collection status
      * @property Grid\Column|Collection reply
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
      * @property Grid\Column|Collection payload
      * @property Grid\Column|Collection exception
      * @property Grid\Column|Collection failed_at
+     * @property Grid\Column|Collection products
+     * @property Grid\Column|Collection year_rate
+     * @property Grid\Column|Collection money_zy
+     * @property Grid\Column|Collection money_czf
+     * @property Grid\Column|Collection money_wlf
+     * @property Grid\Column|Collection money_ccf
+     * @property Grid\Column|Collection money_yhsxf
+     * @property Grid\Column|Collection money_jkgs
+     * @property Grid\Column|Collection money_zzs
+     * @property Grid\Column|Collection money_sc
+     * @property Grid\Column|Collection money_other
+     * @property Grid\Column|Collection pics
      * @property Grid\Column|Collection position_id
      * @property Grid\Column|Collection batch_no
      * @property Grid\Column|Collection diff_num
@@ -131,19 +164,37 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection py_code
      * @property Grid\Column|Collection item_no
      * @property Grid\Column|Collection unit_id
+     * @property Grid\Column|Collection category_id
+     * @property Grid\Column|Collection bar_code
+     * @property Grid\Column|Collection quality_time
+     * @property Grid\Column|Collection product_date
+     * @property Grid\Column|Collection stock_max
+     * @property Grid\Column|Collection stock_min
+     * @property Grid\Column|Collection mark
      * @property Grid\Column|Collection product_id
      * @property Grid\Column|Collection attr_value_ids
+     * @property Grid\Column|Collection purchase_order_back_id
+     * @property Grid\Column|Collection back_num
+     * @property Grid\Column|Collection price
      * @property Grid\Column|Collection check_order_id
      * @property Grid\Column|Collection purchase_order_id
-     * @property Grid\Column|Collection price
      * @property Grid\Column|Collection supplier_id
      * @property Grid\Column|Collection finished_at
      * @property Grid\Column|Collection apply_at
      * @property Grid\Column|Collection check_status
+     * @property Grid\Column|Collection frame_contract_id
+     * @property Grid\Column|Collection sign_at
+     * @property Grid\Column|Collection sign_man
+     * @property Grid\Column|Collection total_money
      * @property Grid\Column|Collection accountant_id
      * @property Grid\Column|Collection settlement_at
+     * @property Grid\Column|Collection back_at
+     * @property Grid\Column|Collection store_id
+     * @property Grid\Column|Collection back_money
      * @property Grid\Column|Collection return_num
      * @property Grid\Column|Collection address_id
+     * @property Grid\Column|Collection total_money_cn
+     * @property Grid\Column|Collection params
      * @property Grid\Column|Collection profit
      * @property Grid\Column|Collection sum_price
      * @property Grid\Column|Collection num
@@ -162,6 +213,18 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection balance_num
      * @property Grid\Column|Collection inventory_num
      * @property Grid\Column|Collection inventory_diff_num
+     * @property Grid\Column|Collection charge_man
+     * @property Grid\Column|Collection store_in_id
+     * @property Grid\Column|Collection in_at
+     * @property Grid\Column|Collection car_number
+     * @property Grid\Column|Collection delivery_id
+     * @property Grid\Column|Collection store_out_id
+     * @property Grid\Column|Collection out_at
+     * @property Grid\Column|Collection store_company_id
+     * @property Grid\Column|Collection position
+     * @property Grid\Column|Collection man
+     * @property Grid\Column|Collection save_price
+     * @property Grid\Column|Collection move_price
      * @property Grid\Column|Collection plan_num
      * @property Grid\Column|Collection finish_num
      * @property Grid\Column|Collection craft_id
@@ -252,6 +315,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection tax_number(string $label = null)
      * @method Grid\Column|Collection bank(string $label = null)
      * @method Grid\Column|Collection bank_count(string $label = null)
+     * @method Grid\Column|Collection short_title(string $label = null)
      * @method Grid\Column|Collection cost_type(string $label = null)
      * @method Grid\Column|Collection pay_type(string $label = null)
      * @method Grid\Column|Collection should_amount(string $label = null)
@@ -268,18 +332,50 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection link(string $label = null)
      * @method Grid\Column|Collection pay_method(string $label = null)
      * @method Grid\Column|Collection phone(string $label = null)
-     * @method Grid\Column|Collection customer_id(string $label = null)
+     * @method Grid\Column|Collection status(string $label = null)
+     * @method Grid\Column|Collection sn(string $label = null)
+     * @method Grid\Column|Collection signatory(string $label = null)
+     * @method Grid\Column|Collection department(string $label = null)
+     * @method Grid\Column|Collection sign_start_at(string $label = null)
+     * @method Grid\Column|Collection sign_stop_at(string $label = null)
+     * @method Grid\Column|Collection money_limit(string $label = null)
      * @method Grid\Column|Collection address(string $label = null)
+     * @method Grid\Column|Collection contact_tel(string $label = null)
+     * @method Grid\Column|Collection contact_qq(string $label = null)
+     * @method Grid\Column|Collection contact_email(string $label = null)
+     * @method Grid\Column|Collection contact_department(string $label = null)
+     * @method Grid\Column|Collection bank_title(string $label = null)
+     * @method Grid\Column|Collection bank_name(string $label = null)
+     * @method Grid\Column|Collection bank_account(string $label = null)
+     * @method Grid\Column|Collection bank_top(string $label = null)
+     * @method Grid\Column|Collection tax_code(string $label = null)
+     * @method Grid\Column|Collection customer_id(string $label = null)
      * @method Grid\Column|Collection drawee_id(string $label = null)
+     * @method Grid\Column|Collection order_type(string $label = null)
+     * @method Grid\Column|Collection send_at(string $label = null)
+     * @method Grid\Column|Collection arrived_at(string $label = null)
+     * @method Grid\Column|Collection money(string $label = null)
+     * @method Grid\Column|Collection enclosure(string $label = null)
      * @method Grid\Column|Collection content(string $label = null)
      * @method Grid\Column|Collection type(string $label = null)
-     * @method Grid\Column|Collection status(string $label = null)
      * @method Grid\Column|Collection reply(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
      * @method Grid\Column|Collection payload(string $label = null)
      * @method Grid\Column|Collection exception(string $label = null)
      * @method Grid\Column|Collection failed_at(string $label = null)
+     * @method Grid\Column|Collection products(string $label = null)
+     * @method Grid\Column|Collection year_rate(string $label = null)
+     * @method Grid\Column|Collection money_zy(string $label = null)
+     * @method Grid\Column|Collection money_czf(string $label = null)
+     * @method Grid\Column|Collection money_wlf(string $label = null)
+     * @method Grid\Column|Collection money_ccf(string $label = null)
+     * @method Grid\Column|Collection money_yhsxf(string $label = null)
+     * @method Grid\Column|Collection money_jkgs(string $label = null)
+     * @method Grid\Column|Collection money_zzs(string $label = null)
+     * @method Grid\Column|Collection money_sc(string $label = null)
+     * @method Grid\Column|Collection money_other(string $label = null)
+     * @method Grid\Column|Collection pics(string $label = null)
      * @method Grid\Column|Collection position_id(string $label = null)
      * @method Grid\Column|Collection batch_no(string $label = null)
      * @method Grid\Column|Collection diff_num(string $label = null)
@@ -295,19 +391,37 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection py_code(string $label = null)
      * @method Grid\Column|Collection item_no(string $label = null)
      * @method Grid\Column|Collection unit_id(string $label = null)
+     * @method Grid\Column|Collection category_id(string $label = null)
+     * @method Grid\Column|Collection bar_code(string $label = null)
+     * @method Grid\Column|Collection quality_time(string $label = null)
+     * @method Grid\Column|Collection product_date(string $label = null)
+     * @method Grid\Column|Collection stock_max(string $label = null)
+     * @method Grid\Column|Collection stock_min(string $label = null)
+     * @method Grid\Column|Collection mark(string $label = null)
      * @method Grid\Column|Collection product_id(string $label = null)
      * @method Grid\Column|Collection attr_value_ids(string $label = null)
+     * @method Grid\Column|Collection purchase_order_back_id(string $label = null)
+     * @method Grid\Column|Collection back_num(string $label = null)
+     * @method Grid\Column|Collection price(string $label = null)
      * @method Grid\Column|Collection check_order_id(string $label = null)
      * @method Grid\Column|Collection purchase_order_id(string $label = null)
-     * @method Grid\Column|Collection price(string $label = null)
      * @method Grid\Column|Collection supplier_id(string $label = null)
      * @method Grid\Column|Collection finished_at(string $label = null)
      * @method Grid\Column|Collection apply_at(string $label = null)
      * @method Grid\Column|Collection check_status(string $label = null)
+     * @method Grid\Column|Collection frame_contract_id(string $label = null)
+     * @method Grid\Column|Collection sign_at(string $label = null)
+     * @method Grid\Column|Collection sign_man(string $label = null)
+     * @method Grid\Column|Collection total_money(string $label = null)
      * @method Grid\Column|Collection accountant_id(string $label = null)
      * @method Grid\Column|Collection settlement_at(string $label = null)
+     * @method Grid\Column|Collection back_at(string $label = null)
+     * @method Grid\Column|Collection store_id(string $label = null)
+     * @method Grid\Column|Collection back_money(string $label = null)
      * @method Grid\Column|Collection return_num(string $label = null)
      * @method Grid\Column|Collection address_id(string $label = null)
+     * @method Grid\Column|Collection total_money_cn(string $label = null)
+     * @method Grid\Column|Collection params(string $label = null)
      * @method Grid\Column|Collection profit(string $label = null)
      * @method Grid\Column|Collection sum_price(string $label = null)
      * @method Grid\Column|Collection num(string $label = null)
@@ -326,6 +440,18 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection balance_num(string $label = null)
      * @method Grid\Column|Collection inventory_num(string $label = null)
      * @method Grid\Column|Collection inventory_diff_num(string $label = null)
+     * @method Grid\Column|Collection charge_man(string $label = null)
+     * @method Grid\Column|Collection store_in_id(string $label = null)
+     * @method Grid\Column|Collection in_at(string $label = null)
+     * @method Grid\Column|Collection car_number(string $label = null)
+     * @method Grid\Column|Collection delivery_id(string $label = null)
+     * @method Grid\Column|Collection store_out_id(string $label = null)
+     * @method Grid\Column|Collection out_at(string $label = null)
+     * @method Grid\Column|Collection store_company_id(string $label = null)
+     * @method Grid\Column|Collection position(string $label = null)
+     * @method Grid\Column|Collection man(string $label = null)
+     * @method Grid\Column|Collection save_price(string $label = null)
+     * @method Grid\Column|Collection move_price(string $label = null)
      * @method Grid\Column|Collection plan_num(string $label = null)
      * @method Grid\Column|Collection finish_num(string $label = null)
      * @method Grid\Column|Collection craft_id(string $label = null)
@@ -421,6 +547,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection tax_number
      * @property Show\Field|Collection bank
      * @property Show\Field|Collection bank_count
+     * @property Show\Field|Collection short_title
      * @property Show\Field|Collection cost_type
      * @property Show\Field|Collection pay_type
      * @property Show\Field|Collection should_amount
@@ -437,18 +564,50 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection link
      * @property Show\Field|Collection pay_method
      * @property Show\Field|Collection phone
-     * @property Show\Field|Collection customer_id
+     * @property Show\Field|Collection status
+     * @property Show\Field|Collection sn
+     * @property Show\Field|Collection signatory
+     * @property Show\Field|Collection department
+     * @property Show\Field|Collection sign_start_at
+     * @property Show\Field|Collection sign_stop_at
+     * @property Show\Field|Collection money_limit
      * @property Show\Field|Collection address
+     * @property Show\Field|Collection contact_tel
+     * @property Show\Field|Collection contact_qq
+     * @property Show\Field|Collection contact_email
+     * @property Show\Field|Collection contact_department
+     * @property Show\Field|Collection bank_title
+     * @property Show\Field|Collection bank_name
+     * @property Show\Field|Collection bank_account
+     * @property Show\Field|Collection bank_top
+     * @property Show\Field|Collection tax_code
+     * @property Show\Field|Collection customer_id
      * @property Show\Field|Collection drawee_id
+     * @property Show\Field|Collection order_type
+     * @property Show\Field|Collection send_at
+     * @property Show\Field|Collection arrived_at
+     * @property Show\Field|Collection money
+     * @property Show\Field|Collection enclosure
      * @property Show\Field|Collection content
      * @property Show\Field|Collection type
-     * @property Show\Field|Collection status
      * @property Show\Field|Collection reply
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
      * @property Show\Field|Collection payload
      * @property Show\Field|Collection exception
      * @property Show\Field|Collection failed_at
+     * @property Show\Field|Collection products
+     * @property Show\Field|Collection year_rate
+     * @property Show\Field|Collection money_zy
+     * @property Show\Field|Collection money_czf
+     * @property Show\Field|Collection money_wlf
+     * @property Show\Field|Collection money_ccf
+     * @property Show\Field|Collection money_yhsxf
+     * @property Show\Field|Collection money_jkgs
+     * @property Show\Field|Collection money_zzs
+     * @property Show\Field|Collection money_sc
+     * @property Show\Field|Collection money_other
+     * @property Show\Field|Collection pics
      * @property Show\Field|Collection position_id
      * @property Show\Field|Collection batch_no
      * @property Show\Field|Collection diff_num
@@ -464,19 +623,37 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection py_code
      * @property Show\Field|Collection item_no
      * @property Show\Field|Collection unit_id
+     * @property Show\Field|Collection category_id
+     * @property Show\Field|Collection bar_code
+     * @property Show\Field|Collection quality_time
+     * @property Show\Field|Collection product_date
+     * @property Show\Field|Collection stock_max
+     * @property Show\Field|Collection stock_min
+     * @property Show\Field|Collection mark
      * @property Show\Field|Collection product_id
      * @property Show\Field|Collection attr_value_ids
+     * @property Show\Field|Collection purchase_order_back_id
+     * @property Show\Field|Collection back_num
+     * @property Show\Field|Collection price
      * @property Show\Field|Collection check_order_id
      * @property Show\Field|Collection purchase_order_id
-     * @property Show\Field|Collection price
      * @property Show\Field|Collection supplier_id
      * @property Show\Field|Collection finished_at
      * @property Show\Field|Collection apply_at
      * @property Show\Field|Collection check_status
+     * @property Show\Field|Collection frame_contract_id
+     * @property Show\Field|Collection sign_at
+     * @property Show\Field|Collection sign_man
+     * @property Show\Field|Collection total_money
      * @property Show\Field|Collection accountant_id
      * @property Show\Field|Collection settlement_at
+     * @property Show\Field|Collection back_at
+     * @property Show\Field|Collection store_id
+     * @property Show\Field|Collection back_money
      * @property Show\Field|Collection return_num
      * @property Show\Field|Collection address_id
+     * @property Show\Field|Collection total_money_cn
+     * @property Show\Field|Collection params
      * @property Show\Field|Collection profit
      * @property Show\Field|Collection sum_price
      * @property Show\Field|Collection num
@@ -495,6 +672,18 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection balance_num
      * @property Show\Field|Collection inventory_num
      * @property Show\Field|Collection inventory_diff_num
+     * @property Show\Field|Collection charge_man
+     * @property Show\Field|Collection store_in_id
+     * @property Show\Field|Collection in_at
+     * @property Show\Field|Collection car_number
+     * @property Show\Field|Collection delivery_id
+     * @property Show\Field|Collection store_out_id
+     * @property Show\Field|Collection out_at
+     * @property Show\Field|Collection store_company_id
+     * @property Show\Field|Collection position
+     * @property Show\Field|Collection man
+     * @property Show\Field|Collection save_price
+     * @property Show\Field|Collection move_price
      * @property Show\Field|Collection plan_num
      * @property Show\Field|Collection finish_num
      * @property Show\Field|Collection craft_id
@@ -585,6 +774,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection tax_number(string $label = null)
      * @method Show\Field|Collection bank(string $label = null)
      * @method Show\Field|Collection bank_count(string $label = null)
+     * @method Show\Field|Collection short_title(string $label = null)
      * @method Show\Field|Collection cost_type(string $label = null)
      * @method Show\Field|Collection pay_type(string $label = null)
      * @method Show\Field|Collection should_amount(string $label = null)
@@ -601,18 +791,50 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection link(string $label = null)
      * @method Show\Field|Collection pay_method(string $label = null)
      * @method Show\Field|Collection phone(string $label = null)
-     * @method Show\Field|Collection customer_id(string $label = null)
+     * @method Show\Field|Collection status(string $label = null)
+     * @method Show\Field|Collection sn(string $label = null)
+     * @method Show\Field|Collection signatory(string $label = null)
+     * @method Show\Field|Collection department(string $label = null)
+     * @method Show\Field|Collection sign_start_at(string $label = null)
+     * @method Show\Field|Collection sign_stop_at(string $label = null)
+     * @method Show\Field|Collection money_limit(string $label = null)
      * @method Show\Field|Collection address(string $label = null)
+     * @method Show\Field|Collection contact_tel(string $label = null)
+     * @method Show\Field|Collection contact_qq(string $label = null)
+     * @method Show\Field|Collection contact_email(string $label = null)
+     * @method Show\Field|Collection contact_department(string $label = null)
+     * @method Show\Field|Collection bank_title(string $label = null)
+     * @method Show\Field|Collection bank_name(string $label = null)
+     * @method Show\Field|Collection bank_account(string $label = null)
+     * @method Show\Field|Collection bank_top(string $label = null)
+     * @method Show\Field|Collection tax_code(string $label = null)
+     * @method Show\Field|Collection customer_id(string $label = null)
      * @method Show\Field|Collection drawee_id(string $label = null)
+     * @method Show\Field|Collection order_type(string $label = null)
+     * @method Show\Field|Collection send_at(string $label = null)
+     * @method Show\Field|Collection arrived_at(string $label = null)
+     * @method Show\Field|Collection money(string $label = null)
+     * @method Show\Field|Collection enclosure(string $label = null)
      * @method Show\Field|Collection content(string $label = null)
      * @method Show\Field|Collection type(string $label = null)
-     * @method Show\Field|Collection status(string $label = null)
      * @method Show\Field|Collection reply(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
      * @method Show\Field|Collection payload(string $label = null)
      * @method Show\Field|Collection exception(string $label = null)
      * @method Show\Field|Collection failed_at(string $label = null)
+     * @method Show\Field|Collection products(string $label = null)
+     * @method Show\Field|Collection year_rate(string $label = null)
+     * @method Show\Field|Collection money_zy(string $label = null)
+     * @method Show\Field|Collection money_czf(string $label = null)
+     * @method Show\Field|Collection money_wlf(string $label = null)
+     * @method Show\Field|Collection money_ccf(string $label = null)
+     * @method Show\Field|Collection money_yhsxf(string $label = null)
+     * @method Show\Field|Collection money_jkgs(string $label = null)
+     * @method Show\Field|Collection money_zzs(string $label = null)
+     * @method Show\Field|Collection money_sc(string $label = null)
+     * @method Show\Field|Collection money_other(string $label = null)
+     * @method Show\Field|Collection pics(string $label = null)
      * @method Show\Field|Collection position_id(string $label = null)
      * @method Show\Field|Collection batch_no(string $label = null)
      * @method Show\Field|Collection diff_num(string $label = null)
@@ -628,19 +850,37 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection py_code(string $label = null)
      * @method Show\Field|Collection item_no(string $label = null)
      * @method Show\Field|Collection unit_id(string $label = null)
+     * @method Show\Field|Collection category_id(string $label = null)
+     * @method Show\Field|Collection bar_code(string $label = null)
+     * @method Show\Field|Collection quality_time(string $label = null)
+     * @method Show\Field|Collection product_date(string $label = null)
+     * @method Show\Field|Collection stock_max(string $label = null)
+     * @method Show\Field|Collection stock_min(string $label = null)
+     * @method Show\Field|Collection mark(string $label = null)
      * @method Show\Field|Collection product_id(string $label = null)
      * @method Show\Field|Collection attr_value_ids(string $label = null)
+     * @method Show\Field|Collection purchase_order_back_id(string $label = null)
+     * @method Show\Field|Collection back_num(string $label = null)
+     * @method Show\Field|Collection price(string $label = null)
      * @method Show\Field|Collection check_order_id(string $label = null)
      * @method Show\Field|Collection purchase_order_id(string $label = null)
-     * @method Show\Field|Collection price(string $label = null)
      * @method Show\Field|Collection supplier_id(string $label = null)
      * @method Show\Field|Collection finished_at(string $label = null)
      * @method Show\Field|Collection apply_at(string $label = null)
      * @method Show\Field|Collection check_status(string $label = null)
+     * @method Show\Field|Collection frame_contract_id(string $label = null)
+     * @method Show\Field|Collection sign_at(string $label = null)
+     * @method Show\Field|Collection sign_man(string $label = null)
+     * @method Show\Field|Collection total_money(string $label = null)
      * @method Show\Field|Collection accountant_id(string $label = null)
      * @method Show\Field|Collection settlement_at(string $label = null)
+     * @method Show\Field|Collection back_at(string $label = null)
+     * @method Show\Field|Collection store_id(string $label = null)
+     * @method Show\Field|Collection back_money(string $label = null)
      * @method Show\Field|Collection return_num(string $label = null)
      * @method Show\Field|Collection address_id(string $label = null)
+     * @method Show\Field|Collection total_money_cn(string $label = null)
+     * @method Show\Field|Collection params(string $label = null)
      * @method Show\Field|Collection profit(string $label = null)
      * @method Show\Field|Collection sum_price(string $label = null)
      * @method Show\Field|Collection num(string $label = null)
@@ -659,6 +899,18 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection balance_num(string $label = null)
      * @method Show\Field|Collection inventory_num(string $label = null)
      * @method Show\Field|Collection inventory_diff_num(string $label = null)
+     * @method Show\Field|Collection charge_man(string $label = null)
+     * @method Show\Field|Collection store_in_id(string $label = null)
+     * @method Show\Field|Collection in_at(string $label = null)
+     * @method Show\Field|Collection car_number(string $label = null)
+     * @method Show\Field|Collection delivery_id(string $label = null)
+     * @method Show\Field|Collection store_out_id(string $label = null)
+     * @method Show\Field|Collection out_at(string $label = null)
+     * @method Show\Field|Collection store_company_id(string $label = null)
+     * @method Show\Field|Collection position(string $label = null)
+     * @method Show\Field|Collection man(string $label = null)
+     * @method Show\Field|Collection save_price(string $label = null)
+     * @method Show\Field|Collection move_price(string $label = null)
      * @method Show\Field|Collection plan_num(string $label = null)
      * @method Show\Field|Collection finish_num(string $label = null)
      * @method Show\Field|Collection craft_id(string $label = null)

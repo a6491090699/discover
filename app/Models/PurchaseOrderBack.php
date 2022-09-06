@@ -37,4 +37,9 @@ class PurchaseOrderBack extends Model
     {
         return $this->belongsTo(SupplierModel::class, 'supplier_id');
     }
+
+    public function storeOut()
+    {
+        return $this->morphOne(StoreOut::class ,'order');
+    }
 }

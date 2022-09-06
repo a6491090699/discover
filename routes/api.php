@@ -44,7 +44,17 @@ Route::middleware(['auth:sanctum','api.permission'])->group(function () {
 });
 
 //用户公共接口 无需授权
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware([])->group(function () {
     //菜单列表
     Route::get('menu' , 'PubController@menu');
+
+    
+});
+
+//dcat接口
+Route::prefix('pub')->group(function () {
+    //菜单列表
+    Route::get('orders' , 'ApiController@orders')->name('pub.orders');
+
+    
 });

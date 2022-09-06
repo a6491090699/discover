@@ -60,4 +60,23 @@ class SaleInOrderModel extends BaseModel
     use SoftDeletes;
 
     protected $table = 'sale_in_order';
+    const STATUS_WAIT = 0;
+    const STATUS_ARRIVE = 1;
+//    const STATUS_FINISH = 2;
+    const STATUS_RETURNING = 3;
+    const STATUS_RETURNED = 4;
+    
+    const STATUS = [
+        self::STATUS_WAIT      => '待收货',
+        self::STATUS_ARRIVE    => '已收货',
+        //        self::STATUS_FINISH    => '已完成',
+        self::STATUS_RETURNING => '退回中',
+        self::STATUS_RETURNED  => '已退回',
+    ];
+
+
+    public function storeIn()
+    {
+        return $this->morphOne(StoreIn::class ,'order');
+    }
 }

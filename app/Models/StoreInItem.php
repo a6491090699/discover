@@ -12,5 +12,15 @@ class StoreInItem extends Model
     use SoftDeletes;
 
     protected $table = 'store_in_items';
+    protected $guarded = [];
     
+    public function product()
+    {
+        return $this->belongsTo(ProductModel::class);
+    }
+
+    public function sku()
+    {
+        return $this->belongsTo(ProductSkuModel::class , 'sku_id');
+    }
 }

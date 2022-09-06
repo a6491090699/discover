@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class StoreOutItem extends Model
 {
-	use HasDateTimeFormatter;
+    use HasDateTimeFormatter;
     protected $table = 'store_out_items';
-    
+    protected $guarded = [];
 }

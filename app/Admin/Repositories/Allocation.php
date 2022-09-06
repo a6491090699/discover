@@ -2,10 +2,10 @@
 
 namespace App\Admin\Repositories;
 
-use App\Models\StoreInItem as Model;
+use App\Models\Allocation as Model;
 use Dcat\Admin\Repositories\EloquentRepository;
 
-class StoreInItem extends EloquentRepository
+class Allocation extends EloquentRepository
 {
     /**
      * Model.
@@ -13,6 +13,4 @@ class StoreInItem extends EloquentRepository
      * @var string
      */
     protected $eloquentClass = Model::class;
-
-    
 }
