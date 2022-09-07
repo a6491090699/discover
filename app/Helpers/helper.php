@@ -17,7 +17,6 @@ use App\Models\BaseModel;
 use App\Models\OrderNoGeneratorModel;
 use App\Models\PurchaseOrderModel;
 use Illuminate\Support\Facades\Redis;
-use Overtrue\Pinyin\Pinyin;
 
 if (!file_exists("lower_pinyin_abbr")) {
     /**
@@ -214,7 +213,7 @@ function increment_uniqid_sn($type)
 
 
 
-function create_order_sn($type, $short_title, $sign_at )
+function create_order_sn($type, $short_title, $sign_at)
 {
     // $redis_key = 'order_sn_autoincrement';
     // if (Redis::exists($redis_key)) {
@@ -231,16 +230,15 @@ function create_order_sn($type, $short_title, $sign_at )
     // $wind = PurchaseOrderModel::where('sign_at' , $sign_at)->where('supplier_id',$supplier_id)->count();
     // $auto = substr($str , $wind , 1);
     $date_str = date('ymdHis', strtotime($sign_at));
-    $pinyin = new Pinyin();
     switch ($type) {
         case 'buy':
-            $first = "B-" . strtoupper($pinyin->abbr($short_title)) . '-' . $date_str ;
+            $first = "B-" . up_pinyin_abbr($short_title) . '-' . $date_str ;
             break;
         case 'sell':
-            $first = "S-" . strtoupper($pinyin->abbr($short_title)) . '-' . $date_str ;
+            $first = "S-" . up_pinyin_abbr($short_title) . '-' . $date_str ;
             break;
         default:
-            $first = "O-" . strtoupper($pinyin->abbr($short_title)) . '-' . $date_str ;
+            $first = "O-" . up_pinyin_abbr($short_title) . '-' . $date_str ;
             break;
     }
     return $first;

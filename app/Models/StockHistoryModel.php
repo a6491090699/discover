@@ -93,30 +93,39 @@ class StockHistoryModel extends BaseModel
     const SCRAP_TYPE = 8;
     const CHECK_IN_TYPE = 9;
     const CHECK_OUT_TYPE = 10;
+    const SALE_IN_TYPE = 11;
+    const OTHER_IN = 12;
+    const OTHER_OUT = 13;
 
     const TYPE = [
-        self::OUT_STOCK_PUCHASE => "采购退货",
+        self::OUT_STOCK_PUCHASE => "采购退货出库",
         self::IN_STOCK_PUCHASE => "采购入库",
         self::INVENTORY_TYPE => "库存盘点",
         self::PRO_STOCK_TYPE => "生产入库",
-        self::COLLECTION_TYPE => "物料申领",
         self::TRANSFER_TYPE => "库存调拨",
         self::STORE_OUT_TYPE => "销售出库",
+        self::SALE_IN_TYPE => "销售退货入库",
+        self::OTHER_IN =>'其他入库',
+        self::OTHER_OUT =>'其他出库',
         self::INIT_TYPE => "期初建账",
         self::SCRAP_TYPE => '物料报废',
         self::CHECK_IN_TYPE => '检验入库',
         self::CHECK_OUT_TYPE => '检验出库',
+        self::COLLECTION_TYPE => "物料申领",
+
     ];
 
     const OUT = 0;
     const IN = 1;
     const INVENTORY = 2;
     const TRANSFER = 3;
+    const OTHER = 4;
     const FLAG = [
         self::IN => "入库",
         self::OUT => "出库",
         self::INVENTORY => "盘点",
         self::TRANSFER => '调拨',
+        self::OTHER => '其他',
     ];
 
     /**
