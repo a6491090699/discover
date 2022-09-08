@@ -81,6 +81,7 @@ class ProductModel extends BaseModel
         self::TYPE_NOT_FINISH => '半成品',
         self::TYPE_FINISH => '成品',
     ];
+
     /**
      * @return BelongsToMany
      */
@@ -100,6 +101,11 @@ class ProductModel extends BaseModel
     public function getTypeStrAttribute(): string
     {
         return self::TYPE[$this->type];
+    }
+
+    public function categories()
+    {
+        return $this->belongsTo(ProductCategory::class);
     }
 
     /**

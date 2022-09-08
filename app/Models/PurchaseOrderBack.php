@@ -8,19 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class PurchaseOrderBack extends Model
+class PurchaseOrderBack extends SaleBaseModel
 {
     use HasDateTimeFormatter;
     use SoftDeletes;
 
     protected $table = 'purchase_order_backs';
 
-    const STATUS_UNSEND =  0;
-    const STATUS_SEND =  1;
-    const STATUS_LIST = [
-        self::STATUS_UNSEND => 0,
-        self::STATUS_SEND => 1,
-    ];
 
     /**
      * @return HasMany

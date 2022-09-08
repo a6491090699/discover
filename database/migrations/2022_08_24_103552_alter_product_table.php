@@ -14,11 +14,11 @@ class AlterProductTable extends Migration
     public function up()
     {
         Schema::table('product', function (Blueprint $table) {
-            $table->unsignedTinyInteger('category_id');
-            $table->string('bar_code')->default('');
-            $table->string('quality_time')->default('');
+            // $table->unsignedTinyInteger('category_id');
+            $table->string('bar_code')->nullable();
+            $table->string('quality_time')->nullable();
             $table->date('product_date')->nullable();
-            $table->string('pics')->default('');
+            $table->string('pics')->nullable();
             $table->integer('stock_max');
             $table->integer('stock_min');
             $table->longText('mark');
@@ -33,7 +33,7 @@ class AlterProductTable extends Migration
     public function down()
     {
         Schema::table('product', function (Blueprint $table) {
-            $table->dropColumn('category_id');
+            // $table->dropColumn('category_id');
             $table->dropColumn('bar_code');
             $table->dropColumn('quality_time');
             $table->dropColumn('product_date');

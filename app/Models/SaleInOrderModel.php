@@ -55,11 +55,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|SaleInOrderModel whereAddressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SaleInOrderModel whereDraweeId($value)
  */
-class SaleInOrderModel extends BaseModel
+class SaleInOrderModel extends PurchaseBaseModel
 {
     use SoftDeletes;
 
     protected $table = 'sale_in_order';
+    
     const STATUS_WAIT = 0;
     const STATUS_ARRIVE = 1;
 //    const STATUS_FINISH = 2;

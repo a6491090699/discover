@@ -11,6 +11,15 @@ class StoreOut extends Model
 	use HasDateTimeFormatter;
     use SoftDeletes;
 
+    const REVIEW_STATUS_WAIT = 0;
+    const REVIEW_STATUS_OK = 1;
+    const REVIEW_STATUS_REREVIEW = 2;
+    const REVIEW_STATUS = [
+        self::REVIEW_STATUS_WAIT     => "待审核",
+        self::REVIEW_STATUS_OK       => "已审核",
+        self::REVIEW_STATUS_REREVIEW => "反审核",
+    ];
+
     const STATUS_OUT = 1;
     const STATUS_NOT_OUT = 2;
     const STATUS_LIST = [

@@ -93,25 +93,52 @@ class StockHistoryModel extends BaseModel
     const SCRAP_TYPE = 8;
     const CHECK_IN_TYPE = 9;
     const CHECK_OUT_TYPE = 10;
-    const SALE_IN_TYPE = 11;
-    const OTHER_IN = 12;
-    const OTHER_OUT = 13;
 
     const TYPE = [
-        self::OUT_STOCK_PUCHASE => "采购退货出库",
+        self::OUT_STOCK_PUCHASE => "采购退货",
         self::IN_STOCK_PUCHASE => "采购入库",
         self::INVENTORY_TYPE => "库存盘点",
         self::PRO_STOCK_TYPE => "生产入库",
+        self::COLLECTION_TYPE => "物料申领",
         self::TRANSFER_TYPE => "库存调拨",
         self::STORE_OUT_TYPE => "销售出库",
-        self::SALE_IN_TYPE => "销售退货入库",
-        self::OTHER_IN =>'其他入库',
-        self::OTHER_OUT =>'其他出库',
         self::INIT_TYPE => "期初建账",
         self::SCRAP_TYPE => '物料报废',
         self::CHECK_IN_TYPE => '检验入库',
         self::CHECK_OUT_TYPE => '检验出库',
-        self::COLLECTION_TYPE => "物料申领",
+    ];
+
+    //order_type
+    const OT_OUT_STOCK_PUCHASE = 'purchase_order_backs';
+    const OT_IN_STOCK_PUCHASE = 'purchase_order';
+    const OT_INVENTORY_TYPE = 2;
+    const OT_PRO_STOCK_TYPE = 3;
+    const OT_COLLECTION_TYPE = 4;
+    const OT_TRANSFER_TYPE = 'allocations';
+    const OT_STORE_OUT_TYPE = 'sale_out_order';
+    const OT_INIT_TYPE = 7;
+    const OT_SCRAP_TYPE = 8;
+    const OT_CHECK_IN_TYPE = 9;
+    const OT_CHECK_OUT_TYPE = 10;
+    const OT_SALE_IN_TYPE = 'sale_in_order';
+    const OT_OTHER_IN = 'other_in';
+    const OT_OTHER_OUT = 'other_out';
+
+    const OT_LIST = [
+        self::OT_OUT_STOCK_PUCHASE => "采购退货出库",
+        self::OT_IN_STOCK_PUCHASE => "采购入库",
+        self::OT_INVENTORY_TYPE => "库存盘点",
+        self::OT_PRO_STOCK_TYPE => "生产入库",
+        self::OT_TRANSFER_TYPE => "库存调拨",
+        self::OT_STORE_OUT_TYPE => "销售出库",
+        self::OT_SALE_IN_TYPE => "销售退货入库",
+        self::OT_OTHER_IN =>'其他入库',
+        self::OT_OTHER_OUT =>'其他出库',
+        self::OT_INIT_TYPE => "期初建账",
+        self::OT_SCRAP_TYPE => '物料报废',
+        self::OT_CHECK_IN_TYPE => '检验入库',
+        self::OT_CHECK_OUT_TYPE => '检验出库',
+        self::OT_COLLECTION_TYPE => "物料申领",
 
     ];
 

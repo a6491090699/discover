@@ -72,7 +72,7 @@ class StoreInController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new StoreIn(), function (Form $form) {
+        return Form::make(new StoreIn(['order']), function (Form $form) {
             $form->display('id');
             $form->text('sn')->readOnly();
             $form->datetime('in_at');
@@ -82,6 +82,7 @@ class StoreInController extends AdminController
             $form->select('order_id', '关联单号');
             $form->select('delivery_id')->options(Delivery::pluck('sn', 'id'));
             $form->select('status', '状态')->options(ModelsStoreIn::STATUS_LIST);
+            $form->select('review_status', '审核状态')->options(ModelsStoreIn::REVIEW_STATUS);
             $form->hidden('total_money');
             $form->text('car_number');
             if ($form->isCreating()) {

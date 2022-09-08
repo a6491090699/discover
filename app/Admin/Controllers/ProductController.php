@@ -17,6 +17,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Actions\Grid\BatchCreateProSave;
 use App\Admin\Repositories\Product;
 use App\Models\AttrModel;
+use App\Models\ProductCategory;
 use App\Models\ProductModel;
 use App\Repositories\ProductRepository;
 use App\Repositories\UnitRepository;
@@ -97,9 +98,9 @@ class ProductController extends AdminController
                     ->options($units)
                     ->default(head($units->keys()->toArray()) ?? '')
                     ->required();
-                $row->width(6)->select('type', '类型')
-                    ->options(ProductModel::TYPE)
-                    ->default(ProductModel::TYPE_NOT_FINISH)
+                $row->width(6)->hidden('type', '类型')->value(1);
+                $row->width(6)->select('product_category_id', '分类')
+                    ->options(ProductCategory::pluck('title','id'))
                     ->required();
             });
 

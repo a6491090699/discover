@@ -26,8 +26,8 @@ class AddSkuStockTable extends Migration
     public function up()
     {
         Schema::table('sku_stock', function (Blueprint $table) {
-            $table->decimal('percent', 10, 2)->default(0)->comment('含绒量');
-            $table->unsignedTinyInteger('standard')->default(0)->comment('检验标准');
+            // $table->decimal('percent', 10, 2)->default(0)->comment('含绒量');
+            // $table->unsignedTinyInteger('standard')->default(0)->comment('检验标准');
         });
     }
 
@@ -39,8 +39,8 @@ class AddSkuStockTable extends Migration
     public function down()
     {
         Schema::table('sku_stock', function (Blueprint $table) {
-            $table->dropColumn('percent');
-            $table->dropColumn('standard');
+            // $table->dropColumn('percent');
+            // $table->dropColumn('standard');
         });
     }
 }
