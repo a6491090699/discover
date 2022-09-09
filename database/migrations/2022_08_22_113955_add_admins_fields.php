@@ -15,6 +15,7 @@ class AddAdminsFields extends Migration
     {
         Schema::table('admin_users' , function(Blueprint $table){
             $table->integer('department_id')->default(0);
+            $table->integer('company_id')->default(0);
             $table->string('tel');
             $table->softDeletes();
         });
@@ -29,6 +30,7 @@ class AddAdminsFields extends Migration
     {
         Schema::table('admin_users' , function(Blueprint $table){
             $table->dropColumn('department_id');
+            $table->dropColumn('company_id');
             $table->dropColumn('tel');
             $table->dropSoftDeletes();
         });

@@ -39,15 +39,27 @@ Route::post('token', 'AuthController@token');
 
 //授权接口
 Route::middleware(['auth:sanctum','api.permission'])->group(function () {
+    
+    //系统模块
+    Route::resource('auth/users','UserController');
+    Route::resource('auth/permissions','PermissionController');
+    Route::resource('auth/roles' ,'RoleController');
+    Route::resource('auth/menus' ,'MenuController');
+    Route::resource('auth/Logs' ,'LogController');
     Route::resource('companies', "CompanyController");
+    Route::resource('departments', "DepartmentController");
+
+    //基础信息模块
     Route::resource('products', "ProductController");
+    
 });
 
-//用户公共接口 无需授权
-Route::middleware([])->group(function () {
+//用户必须接口 无需授权 需登录
+Route::middleware(['auth:sanctum'])->group(function () {
     //菜单列表
-    Route::get('menu' , 'PubController@menu');
-
+    Route::get('my-menu' , 'PubController@menu');
+    //站内信接口
+    Route::get('message' ,'PubController@me');
     
 });
 

@@ -28,8 +28,8 @@ class AdminUser extends Model implements AuthenticatableContract
 
     const DEFAULT_ID = 1;
 
-    protected $fillable = ['username', 'password', 'name', 'avatar','role_id'];
-
+    protected $fillable = ['username', 'password', 'name', 'avatar','company_id','department_id','tel'];
+    protected $hidden = ['password'];
     /**
      * Create a new Eloquent model instance.
      *
