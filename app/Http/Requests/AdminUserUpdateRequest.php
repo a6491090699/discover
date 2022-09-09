@@ -13,7 +13,6 @@ class AdminUserUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        dd(request()->all());
         return true;
     }
 
