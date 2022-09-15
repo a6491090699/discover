@@ -11,4 +11,14 @@ class StoreOutItem extends Model
     use HasDateTimeFormatter;
     protected $table = 'store_out_items';
     protected $guarded = [];
+
+    public function product()
+    {
+        return $this->belongsTo(ProductModel::class);
+    }
+
+    public function sku()
+    {
+        return $this->belongsTo(ProductSkuModel::class, 'sku_id');
+    }
 }

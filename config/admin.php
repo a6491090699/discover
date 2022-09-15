@@ -254,7 +254,8 @@ return [
 
         // Role table and model.
         'roles_table' => 'admin_roles',
-        'roles_model' => Dcat\Admin\Models\Role::class,
+        // 'roles_model' => Dcat\Admin\Models\Role::class,
+        'roles_model' => App\Models\Role::class,
 
         // Permission table and model.
         'permissions_table' => 'admin_permissions',

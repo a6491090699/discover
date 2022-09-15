@@ -16,6 +16,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\Statement;
 use App\Admin\Repositories\Customer;
+use App\Models\AdminUser;
 use App\Models\CustomerModel;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -87,8 +88,8 @@ class CustomerController extends AdminController
             $form->select('status')->options(CustomerModel::STATUS_LIST)->required();
 
             $form->text('address')->required();
-            $form->text('signatory')->required();
-            $form->text('department')->required();
+            $form->select('user_id')->options(AdminUser::pluck('name','id'));
+            // $form->text('department')->required();
             $form->datetime('sign_start_at')->required();
             $form->datetime('sign_stop_at')->required();
             $form->decimal('money_limit')->required();

@@ -19,8 +19,9 @@ class AuthController extends Controller
         if ($a = auth()->attempt($request->only(['password', 'username']))) {
             $user =  AdminUser::where('username', $request->username)->first();
             $token = $user->createToken($user->id);
-            return $token->plainTextToken;
+            return $this->_success(['token'=>$token->plainTextToken ,'userinfo'=>$user]);
         }
+        return $this->_fail();
     }
 
     public function me(Request $request)

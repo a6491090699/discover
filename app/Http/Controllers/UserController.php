@@ -77,7 +77,7 @@ class UserController extends Controller
      */
     public function update(AdminUserUpdateRequest $request, $id)
     {
-        dd(request()->all()  ,$id );
+
         $ret = app(AdminUserService::class)->update($id, $request->all());
         if ($ret) {
             return $this->_success();
@@ -93,6 +93,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ret = app(AdminUserService::class)->delete($id);
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 }

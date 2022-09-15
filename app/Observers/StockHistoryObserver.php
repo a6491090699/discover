@@ -22,6 +22,7 @@ class StockHistoryObserver
 {
     public function saved(StockHistoryModel $stockHistoryModel): void
     {
+        dd($stockHistoryModel->type);
         switch ($stockHistoryModel->type) {
                 // 采购入库单
             case StockHistoryModel::IN_STOCK_PUCHASE:

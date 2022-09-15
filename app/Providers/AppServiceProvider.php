@@ -44,6 +44,7 @@ use App\Models\StatementItemModel;
 use App\Models\StatementOrderModel;
 use App\Models\StockHistoryModel;
 use App\Models\StoreIn;
+use App\Models\StoreOut;
 use App\Models\TaskModel;
 use App\Observers\AccountantDateObserver;
 use App\Observers\ApplyForBatchObserver;
@@ -73,6 +74,7 @@ use App\Observers\StatementItemObserver;
 use App\Observers\StatementOrderObserver;
 use App\Observers\StockHistoryObserver;
 use App\Observers\StoreInObserver;
+use App\Observers\StoreOutObserver;
 use App\Observers\TaskObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
@@ -129,12 +131,13 @@ class AppServiceProvider extends ServiceProvider
         StatementItemModel::observe(StatementItemObserver::class);
         StatementOrderModel::observe([StatementOrderObserver::class, OrderNoCreatedObserver::class]);
         StoreIn::observe(StoreInObserver::class);
+        StoreOut::observe(StoreOutObserver::class);
         Relation::morphMap([
             'purchase_order' => PurchaseOrderModel::class,
             'sale_in_order' => SaleInOrderModel::class,
             'allocations' => Allocation::class,
             'purchase_order_backs' => PurchaseOrderBack::class,
-            'sale_out_order' => SaleOutOrderModel::class,
+            'sale_out_order' => SaleOrderModel::class,
         ]);
 
     }

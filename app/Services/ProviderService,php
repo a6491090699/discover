@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\Provider;
+
+class ProviderService extends ModelBaseService
+{
+    protected $model = Provider::class;
+    
+}

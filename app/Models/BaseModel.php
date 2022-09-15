@@ -61,4 +61,10 @@ class BaseModel extends Model
         self::REVIEW_STATUS_OK       => "success",
         self::REVIEW_STATUS_REREVIEW => "red",
     ];
+
+    //已审核
+    public function scopeReview($query)
+    {
+        return $query->where('review_status', 1);
+    }
 }

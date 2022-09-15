@@ -14,6 +14,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -62,7 +63,7 @@ class CustomerModel extends BaseModel
     const PAY_ZFB = 2;
     const STATUS_OPEN = 1;
     const STATUS_CLOSE = 2;
-    
+
     const STATUS_LIST = [
         self::STATUS_OPEN   => '启用',
         self::STATUS_CLOSE    => '禁用',
@@ -90,5 +91,13 @@ class CustomerModel extends BaseModel
         return $this->hasMany(CustomerAddressModel::class, 'customer_id');
     }
 
-    
+    /**
+     * 业务员
+     *
+     * @return void
+     */
+    public function signatory() :BelongsTo
+    {
+        return $this->belongsTo(AdminUser::class, 'user_id');
+    }
 }

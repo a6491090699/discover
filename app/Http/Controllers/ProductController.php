@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductUpdateRequest;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,8 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-        dd('我是控制器');
+        $data = app(ProductService::class)->list([] , [] , request()->input('page', 1) , 10);
+        return $this->_success($data);
     }
 
     /**
@@ -33,9 +36,13 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $ret = app(ProductService::class)->create($request->all());
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 
     /**
@@ -67,9 +74,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductUpdateRequest $request, $id)
     {
-        //
+        $ret = app(ProductService::class)->update($id, $request->all());
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 
     /**
@@ -80,6 +91,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ret = app(ProductService::class)->delete($id);
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 }

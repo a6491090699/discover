@@ -74,7 +74,7 @@ class StoreInObserver
         // dd($storeIn->isDirty('review_status') ,$storeIn->review_status , $storeIn->status);
         if ($storeIn->isDirty('status')
             && (int)$storeIn->status === StoreIn::STATUS_IN
-            && (int)$storeIn->review_status === StoreIn::REVIEW_STATUS_OK
+            // && (int)$storeIn->review_status === StoreIn::REVIEW_STATUS_OK
         ) {
             $storeIn->items->each(function (StoreInItem $storeInItem) use ($storeIn) {
                 $init_num = SkuStockModel::query()

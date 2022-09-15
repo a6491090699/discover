@@ -8,6 +8,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -24,6 +25,7 @@ class AdminUser extends Model implements AuthenticatableContract
         HasPermissions,
         HasApiTokens,
         Notifiable,
+        SoftDeletes,
         HasDateTimeFormatter;
 
     const DEFAULT_ID = 1;

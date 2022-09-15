@@ -19,7 +19,6 @@ class Permission
     public function handle(Request $request, Closure $next)
     {
         $user = $request->user();
-        
         if (! $user->allPermissions()->first(function ($permission) use ($request) {
             return $permission->shouldPassThroughApi($request);
         })) {

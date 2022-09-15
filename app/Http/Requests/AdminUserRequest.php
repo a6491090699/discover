@@ -36,7 +36,7 @@ class AdminUserRequest extends FormRequest
             'password'=>'required|confirmed',
             // 'password_confirmation '=>'required_with:password',
             'avatar'=>'required|image',
-            'tel'=>'required|string',
+            'tel'=>'required|phone:CN,mobile',
             'role_id'=>'required|integer',
             'department_id'=>'required|integer',
             'company_id'=>'required|integer',

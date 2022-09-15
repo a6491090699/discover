@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DepartmentService;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -13,7 +14,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $data = app(DepartmentService::class)->list([] , [] , request()->input('page', 1) , 10);
+        return $this->_success($data);
     }
 
     /**
@@ -34,7 +36,11 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ret = app(DepartmentService::class)->create($request->all());
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 
     /**
@@ -68,7 +74,11 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ret = app(DepartmentService::class)->update($id, $request->all());
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 
     /**
@@ -79,6 +89,10 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ret = app(DepartmentService::class)->delete($id);
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 }

@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-	use HasDateTimeFormatter;
+    use HasDateTimeFormatter;
     use SoftDeletes;
-    }
+}

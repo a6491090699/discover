@@ -50,16 +50,27 @@ Route::middleware(['auth:sanctum','api.permission'])->group(function () {
     Route::resource('departments', "DepartmentController");
 
     //基础信息模块
+    Route::resource('stores', "StoreController");
     Route::resource('products', "ProductController");
+    Route::resource('suppliers', "SupplierController");
+    Route::resource('providers', "ProviderController");
+    Route::resource('customers', "CustomerController");
+    Route::resource('frame_contracts', "FrameContractController");
     
 });
 
 //用户必须接口 无需授权 需登录
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum'])->prefix('pub')->group(function () {
+    Route::get('roles' ,'PubController@roles');
+    Route::get('permissions' ,'PubController@permissions');
+    Route::get('users' ,'PubController@users');
+
     //菜单列表
     Route::get('my-menu' , 'PubController@menu');
+    //所有的url列表 供权限管理拿path
+    Route::get('urls' , 'PubController@urls');
     //站内信接口
-    Route::get('message' ,'PubController@me');
+    // Route::get('message' ,'PubController@me');
     
 });
 

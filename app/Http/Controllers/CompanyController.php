@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompanyRequest;
+use App\Http\Requests\CompanyUpdateRequest;
+use App\Services\CompanyService;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -13,9 +16,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
-        dd('我是控制器123');
-
+        $data = app(CompanyService::class)->list([] , [] , request()->input('page', 1) , 10);
+        return $this->_success($data);
     }
 
     /**
@@ -34,9 +36,13 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        //
+        $ret = app(CompanyService::class)->create($request->all());
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 
     /**
@@ -68,9 +74,13 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CompanyUpdateRequest $request, $id)
     {
-        //
+        $ret = app(CompanyService::class)->update($id, $request->all());
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 
     /**
@@ -81,6 +91,10 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ret = app(CompanyService::class)->delete($id);
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();//
     }
 }

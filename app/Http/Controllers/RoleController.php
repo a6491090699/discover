@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoleRequest;
+use App\Http\Requests\RoleUpdateRequest;
+use App\Models\Role;
+use App\Services\RoleService;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -13,7 +17,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $data = app(RoleService::class)->list([], ['permissions'], request()->page, 10);
+        return $this->_success($data);
     }
 
     /**
@@ -32,9 +37,13 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
-        //
+        $ret = app(RoleService::class)->create($request->all());
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 
     /**
@@ -66,9 +75,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoleUpdateRequest $request, $id)
     {
-        //
+        $ret = app(RoleService::class)->update($id, $request->all());
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 
     /**
@@ -79,6 +92,10 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ret = app(RoleService::class)->delete($id);
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 }

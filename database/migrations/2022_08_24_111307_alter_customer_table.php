@@ -17,8 +17,8 @@ class AlterCustomerTable extends Migration
             $table->unsignedTinyInteger('status');
             $table->string('sn')->default('');
             $table->string('short_title')->default('')->comment('简称');
-            $table->string('signatory')->default('');
-            $table->string('department')->default('');
+            $table->integer('user_id')->default(0)->comment('业务员id');
+            // $table->string('department')->default('');
             $table->date('sign_start_at')->nullable();
             $table->date('sign_stop_at')->nullable();
             $table->string('money_limit')->default('');

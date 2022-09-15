@@ -26,8 +26,8 @@ class AdminUserUpdateRequest extends FormRequest
         return [
             'name'=>'nullable',
             'password'=>'nullable|confirmed',
-            'avatar'=>'nullable|image',
-            'tel'=>'nullable|string',
+            'avatar64'=>'nullable',
+            'tel'=>'nullable|phone:CN,mobile',
             'role_id'=>'nullable|integer',
             'department_id'=>'nullable|integer',
             'company_id'=>'nullable|integer',

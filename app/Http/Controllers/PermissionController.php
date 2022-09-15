@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PermissionRequest;
+use App\Http\Requests\PermissionUpdateRequest;
+use App\Services\PermissionService;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller
@@ -13,7 +16,9 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $data = app(PermissionService::class)->list([], [], request()->page, 10);
+        return $this->_success($data);
+        
     }
 
     /**
@@ -32,9 +37,13 @@ class PermissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PermissionRequest $request)
     {
-        //
+        $ret = app(PermissionService::class)->create($request->all());
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 
     /**
@@ -66,9 +75,13 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PermissionUpdateRequest $request, $id)
     {
-        //
+        $ret = app(PermissionService::class)->update($id, $request->all());
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 
     /**
@@ -79,6 +92,10 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ret = app(PermissionService::class)->delete($id);
+        if ($ret) {
+            return $this->_success();
+        }
+        return $this->_fail();
     }
 }

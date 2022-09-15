@@ -9,6 +9,15 @@ use Illuminate\Support\Str;
 
 class Permission extends ModelsPermission
 {
+    protected $methods = [
+        'GET',
+        'POST',
+        'PUT',
+        'DELETE',
+        'PATCH',
+        'OPTIONS',
+        'HEAD',
+    ];
     /**
      * If request should pass through the current permission.
      *
@@ -18,7 +27,8 @@ class Permission extends ModelsPermission
      */
     public function shouldPassThroughApi(Request $request): bool
     {
-        if (! $this->http_path) {
+        // dump($this->http_path);
+        if (!$this->http_path) {
             return false;
         }
 
@@ -29,13 +39,12 @@ class Permission extends ModelsPermission
                 [$method, $path] = explode(':', $path);
                 $method = explode(',', $method);
             }
-            
+
 
             $path = Str::contains($path, '.') ? $path : ltrim($this->apiBasePath($path), '/');
 
             return compact('method', 'path');
         }, $this->http_path);
-        
         foreach ($matches as $match) {
             if ($this->matchRequest($match, $request)) {
                 return true;
@@ -47,7 +56,9 @@ class Permission extends ModelsPermission
 
     public function apiBasePath($path = '')
     {
-        $prefix = '/'.trim( 'api', '/');
+        //更改
+        // $prefix = '/'.trim(config('admin.route.prefix'), '/');
+        $prefix = '/' . trim('api', '/');
 
         $prefix = ($prefix == '/') ? '' : $prefix;
 
@@ -57,6 +68,6 @@ class Permission extends ModelsPermission
             return $prefix ?: '/';
         }
 
-        return $prefix.'/'.$path;
+        return $prefix . '/' . $path;
     }
 }

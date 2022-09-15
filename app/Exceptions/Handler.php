@@ -15,7 +15,9 @@
 namespace App\Exceptions;
 
 use Dcat\Admin\Traits\HasFormResponse;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -62,6 +64,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        //权限抛错
+        if($exception instanceof AuthorizationException){
+            
+        }
         return parent::render($request, $exception);
     }
 }

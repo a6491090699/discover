@@ -7,21 +7,21 @@ class ModelBaseService
 
     public function create($data)
     {
-        $user = new $this->model();
-        $user->fill($data)->save();
-        return $user;
+        $new = new $this->model();
+        $new->fill($data)->save();
+        return $new;
     }
 
     public function update($id, $data)
     {
         // $updates = collect($data);
-        
-        return $this->model::where('id', $id)->update($updates);
+
+        return $this->model::where('id', $id)->update($data);
     }
 
     public function delete($id)
     {
-        return $this->model::delete($id);
+        return $this->model::destroy($id);
     }
 
     public function list($where = [], $with = [], $page = 1, $pagesize = 10, $order_field = 'id', $order_sort = 'desc')
@@ -38,5 +38,10 @@ class ModelBaseService
     public static function find($id = 0)
     {
         return $this->model::find($id);
+    }
+
+    public function selectItem()
+    {
+        return $this->model::get($this->select_value??'*');
     }
 }

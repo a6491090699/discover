@@ -74,10 +74,11 @@ class StoreOutObserver
 
     public function saving(StoreOut $storeOut): void
     {
-        if ($storeOut->isDirty('review_status')
-            && (int)$storeOut->review_status === StoreOut::REVIEW_STATUS_OK
+        if ($storeOut->isDirty('status')
             && (int)$storeOut->status === StoreOut::STATUS_OUT
+            // && (int)$storeOut->review_status === StoreOut::REVIEW_STATUS_OK
         ) {
+            
             $storeOut->items->each(function (StoreOutItem $storeOutItem) use ($storeOut) {
                 
                 StockHistoryModel::create([
@@ -87,7 +88,7 @@ class StoreOutObserver
                     'order_id'        => $storeOut->order_id,
                     'order_type'      => $storeOut->order_type,
                     'cost_price'      => 0,
-                    'type'            => 0,
+                    'type'            => StockHistoryModel::STORE_OUT_TYPE,
                     'flag'            => StockHistoryModel::OUT,
                     'with_order_no'   => $storeOut->sn,
                     'init_num'        => 0,
@@ -100,14 +101,7 @@ class StoreOutObserver
             //置为已发出
             $storeOut->order->status = $storeOut->order::STATUS_SEND;
             $storeOut->order->save();
-            $storeOut->apply_at = now();
-            $storeOut->amount()->create([
-                'customer_id' => $storeOut->customer_id,
-                'should_amount' => $storeOut->items->reduce(function (float $amount, StoreOutItem $itemModel) {
-                    $sumPrice = bcmul($itemModel->price, $itemModel->actual_num, 5);
-                    return bcadd($sumPrice, $amount, 5);
-                }, 0),
-            ]);
+            
         }
     }
 }

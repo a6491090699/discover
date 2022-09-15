@@ -99,8 +99,6 @@ class StoreOutController extends AdminController
                     $table->tableDecimal('price', '单价')->default(0.00)->required();
                 })->useTable()->width(12)->enableHorizontal();
             }
-            if ($form->isEditing()) {
-            }
             $form->display('created_at');
             $form->display('updated_at');
             $form->saving(function ($form) {
