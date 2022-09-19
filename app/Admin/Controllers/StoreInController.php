@@ -77,8 +77,15 @@ class StoreInController extends AdminController
             $form->text('sn')->readOnly();
             $form->datetime('in_at');
             $form->select('store_id')->options(Store::pluck('title', 'id'));
-            $form->select('order_type')->options(ModelsStoreIn::TYPE_LIST)
-                ->load('order_id', route('pub.orders'));
+            if ($form->isCreating()) {
+                $form->select('order_type')->options(ModelsStoreIn::TYPE_LIST)
+                    ->load('order_id', route('pub.orders'));
+            }
+            if ($form->isEditing()) {
+                $form->select('order_type')->options(ModelsStoreIn::TYPE_LIST)
+                    ->load('order_id', route('pub.multi-orders'));
+            }
+
             $form->select('order_id', '关联单号');
             $form->select('delivery_id')->options(Delivery::pluck('sn', 'id'));
             $form->select('status', '状态')->options(ModelsStoreIn::STATUS_LIST);

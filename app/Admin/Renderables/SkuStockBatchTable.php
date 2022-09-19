@@ -25,7 +25,7 @@ class SkuStockBatchTable extends LazyRenderable
         $sku_id      = $this->sku_id;
         $batch_stock = SkuStockBatchModel::where([
             'sku_id' =>  $sku_id,
-            'percent' => $this->percent,
+            // 'percent' => $this->percent,
         ])->where('num', ">", 0)->get()->map(function (SkuStockBatchModel $batchModel, int $key) {
             return [
                 $key + 1,
@@ -36,7 +36,7 @@ class SkuStockBatchTable extends LazyRenderable
                 $batchModel->sku->attr_value_ids_str ?? '',
                 $batchModel->batch_no,
                 $batchModel->num,
-                $batchModel->position->name ?? '',
+                $batchModel->store->title ?? '',
             ];
         })->toArray();
 
@@ -47,9 +47,9 @@ class SkuStockBatchTable extends LazyRenderable
             '单位',
             '类型',
             '属性',
-            '批次号',
+            '入库号',
             '库存数量',
-            '库位'
+            '仓库',
         ];
 
         return Table::make($titles, $batch_stock);

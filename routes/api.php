@@ -77,7 +77,8 @@ Route::middleware(['auth:sanctum'])->prefix('pub')->group(function () {
 //dcat接口
 Route::prefix('pub')->group(function () {
     //菜单列表
-    Route::get('orders' , 'ApiController@orders')->name('pub.orders');
+    Route::get('orders' , 'PubController@orders')->name('pub.orders');
+    Route::get('multi-orders' , 'PubController@multiOrders')->name('pub.multi-orders');
 
     
 });

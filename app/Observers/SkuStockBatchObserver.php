@@ -26,14 +26,14 @@ class SkuStockBatchObserver
     {
         $num = SkuStockBatchModel::query()->where([
             'sku_id' => $skuStockBatchModel->sku_id,
-            'percent' => $skuStockBatchModel->percent,
-            'standard'       => $skuStockBatchModel->standard,
+            // 'percent' => $skuStockBatchModel->percent,
+            // 'standard'       => $skuStockBatchModel->standard,
         ])->sum('num');
         SkuStockModel::updateOrCreate(
             [
                 'sku_id' => $skuStockBatchModel->sku_id,
-                'percent' => $skuStockBatchModel->percent,
-                'standard'       => $skuStockBatchModel->standard,
+                // 'percent' => $skuStockBatchModel->percent,
+                // 'standard'       => $skuStockBatchModel->standard,
             ],
             ['num' => $num]
         );

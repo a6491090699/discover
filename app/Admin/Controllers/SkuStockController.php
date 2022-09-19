@@ -38,11 +38,9 @@ class SkuStockController extends AdminController
             $grid->column('sku.product.unit.name', '单位');
             $grid->column('sku.product.type_str', '类型');
             $grid->column('sku.attr_value_ids_str', '属性');
-            $grid->column('percent', '含绒量(%)');
-            $grid->column('standard_str', '检验标准');
             $grid->column('num');
             $grid->column('batch_num', '批次库存')->modal(function () {
-                return SkuStockBatchTable::make(['sku_id' => $this->sku_id, 'percent' => $this->percent]);
+                return SkuStockBatchTable::make(['sku_id' => $this->sku_id]);
             });
 //            $grid->column('created_at');
 //            $grid->column('updated_at')->sortable();
@@ -64,8 +62,6 @@ class SkuStockController extends AdminController
                     $group->ngt('不大于');
                     $group->equal('等于');
                 })->width(3);
-                $filter->like('percent', "含绒量")->decimal()->width(3);
-                $filter->equal('standard', "检验标准")->select(SkuStockBatchModel::STANDARD)->width(3);
             });
             $grid->disableActions();
             $grid->disableCreateButton();

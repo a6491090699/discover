@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use App\Services\AdminUserService;
 use App\Services\PermissionService;
 use App\Services\RoleService;
+use App\Models\Allocation;
+use App\Models\PurchaseOrderBack;
+use App\Models\PurchaseOrderModel;
+use App\Models\SaleInOrderModel;
+use App\Models\SaleOrderModel;
+use App\Models\StoreIn;
+use App\Models\StoreOut;
 use Illuminate\Http\Request;
 
 class PubController extends Controller
@@ -52,5 +59,60 @@ class PubController extends Controller
     {
         $list = app(PermissionService::class)->getRoutes();
         return $this->_success($list);
+    }
+
+    public function orders(Request $request)
+    {
+        $val = $request->get('q');
+        switch ($val) {
+            case StoreIn::TYPE_BACK:
+                $list = SaleInOrderModel::where('status', SaleInOrderModel::STATUS_WAIT)->review()->get(['id', 'order_no as text']);
+                break;
+            case StoreIn::TYPE_BUY:
+                $list = PurchaseOrderModel::where('status', PurchaseOrderModel::STATUS_WAIT)->review()->get(['id', 'order_no as text']);
+                break;
+            case StoreIn::TYPE_DIAOBO:
+                $list = Allocation::where('status', Allocation::STATUS_DOING)->review()->get(['id', 'sn as text']);
+                break;
+            case StoreOut::TYPE_SELL_OUT:
+                $list = SaleOrderModel::where('status', SaleOrderModel::STATUS_DOING)->review()->get(['id', 'order_no as text']);
+                break;
+            case StoreOut::TYPE_BUY_OUT:
+                $list = PurchaseOrderBack::where('status', PurchaseOrderBack::STATUS_DOING)->review()->get(['id', 'sn as text']);
+                break;
+            case StoreOut::TYPE_DIAOBO_OUT:
+                $list = Allocation::where('status', Allocation::STATUS_DOING)->review()->get(['id', 'sn as text']);
+                break;
+            default:
+                $list = collect([]);
+        }
+        return $list->toArray();
+    }
+    public function multiOrders(Request $request)
+    {
+        $val = $request->get('q');
+        switch ($val) {
+            case StoreIn::TYPE_BACK:
+                $list = SaleInOrderModel::whereIn('status', [SaleInOrderModel::STATUS_WAIT, SaleInOrderModel::STATUS_ARRIVE])->review()->get(['id', 'order_no as text']);
+                break;
+            case StoreIn::TYPE_BUY:
+                $list = PurchaseOrderModel::whereIn('status', [PurchaseOrderModel::STATUS_WAIT, PurchaseOrderModel::STATUS_ARRIVE])->review()->get(['id', 'order_no as text']);
+                break;
+            case StoreIn::TYPE_DIAOBO:
+                $list = Allocation::whereIn('status', [Allocation::STATUS_DOING, Allocation::STATUS_DONE])->review()->get(['id', 'sn as text']);
+                break;
+            case StoreOut::TYPE_SELL_OUT:
+                $list = SaleOrderModel::whereIn('status', [SaleOrderModel::STATUS_DOING, SaleOrderModel::STATUS_SEND])->review()->get(['id', 'order_no as text']);
+                break;
+            case StoreOut::TYPE_BUY_OUT:
+                $list = PurchaseOrderBack::whereIn('status', [PurchaseOrderBack::STATUS_DOING, PurchaseOrderBack::STATUS_SEND])->review()->get(['id', 'sn as text']);
+                break;
+            case StoreOut::TYPE_DIAOBO_OUT:
+                $list = Allocation::whereIn('status', [Allocation::STATUS_DOING, Allocation::STATUS_DONE])->review()->get(['id', 'sn as text']);
+                break;
+            default:
+                $list = collect([]);
+        }
+        return $list->toArray();
     }
 }

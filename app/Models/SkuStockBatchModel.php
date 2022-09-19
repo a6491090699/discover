@@ -67,4 +67,11 @@ class SkuStockBatchModel extends BaseModel
     {
         return $this->belongsTo(PositionModel::class, 'position_id');
     }
+
+    public function store():BelongsTo
+    {
+        return $this->belongsTo(Store::class, 'store_id');
+    }
+
+    
 }

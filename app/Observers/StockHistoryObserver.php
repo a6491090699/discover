@@ -22,7 +22,6 @@ class StockHistoryObserver
 {
     public function saved(StockHistoryModel $stockHistoryModel): void
     {
-        dd($stockHistoryModel->type);
         switch ($stockHistoryModel->type) {
                 // 采购入库单
             case StockHistoryModel::IN_STOCK_PUCHASE:
@@ -32,7 +31,7 @@ class StockHistoryObserver
                 SkuStockBatchModel::updateOrCreate([
                     'position_id' => $stockHistoryModel->in_position_id,
                     'store_id' => $stockHistoryModel->store_id,
-                    'batch_no'    => $stockHistoryModel->batch_no,
+                    'batch_no'    => $stockHistoryModel->with_order_no,
                     'sku_id'      => $stockHistoryModel->sku_id,
                 ], [
                     'num'        => DB::raw("num + $stockHistoryModel->in_num"),
@@ -44,7 +43,7 @@ class StockHistoryObserver
                     [
                         'position_id' => $stockHistoryModel->in_position_id,
                         'store_id' => $stockHistoryModel->store_id,
-                        'batch_no'    => $stockHistoryModel->batch_no,
+                        'batch_no'    => $stockHistoryModel->with_order_no,
                         'sku_id'      => $stockHistoryModel->sku_id,
 
                     ]
@@ -59,7 +58,7 @@ class StockHistoryObserver
                 SkuStockBatchModel::updateOrCreate([
                     'position_id' => $stockHistoryModel->out_position_id,
                     'store_id' => $stockHistoryModel->store_id,
-                    'batch_no'    => $stockHistoryModel->batch_no,
+                    'batch_no'    => $stockHistoryModel->with_order_no,
                     'sku_id'      => $stockHistoryModel->sku_id,
                 ], [
                     'num' => DB::raw("num - $stockHistoryModel->out_num"),
