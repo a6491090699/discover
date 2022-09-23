@@ -16,10 +16,12 @@ class CreateFrameContractsTable extends Migration
         Schema::create('frame_contracts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('sn')->index()->default('')->comment('框架合同编号');
-            $table->decimal('money')->nullable()->comment('合同总额');
+            $table->decimal('money' , 65 , 2)->nullable()->comment('合同总额');
             $table->integer('customer_id')->default('0')->comment('客户');
             $table->longText('products')->nullable();
-            $table->decimal('year_rate')->nullable();
+            $table->float('year_rate')->nullable();
+            $table->float('zhanyong_rate')->nullable();
+            $table->float('caozuo_rate')->nullable();
             $table->decimal('money_zy')->nullable();
             $table->decimal('money_czf')->nullable();
             $table->decimal('money_wlf')->nullable();

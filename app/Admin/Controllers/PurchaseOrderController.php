@@ -19,6 +19,7 @@ use App\Admin\Actions\Grid\BatchOrderPrint;
 use App\Admin\Actions\Grid\EditOrder;
 use App\Admin\Extensions\Form\Order\OrderController;
 use App\Admin\Repositories\PurchaseOrder;
+use App\Models\FrameContract;
 use App\Models\ProductModel;
 use App\Models\PurchaseOrderModel;
 use App\Models\SupplierModel;
@@ -39,7 +40,7 @@ class PurchaseOrderController extends OrderController
     {
         return Grid::make(new PurchaseOrder(['user', 'supplier']), function (Grid $grid) {
             $grid->column('id')->sortable();
-//            $grid->column('check_status')->using(PurchaseOrderModel::CHECK_STATUS);
+            //            $grid->column('check_status')->using(PurchaseOrderModel::CHECK_STATUS);
             $grid->column('order_no');
             $grid->column('other')->emp();
             $grid->column('status', '状态')->using(PurchaseOrderModel::STATUS)->label(PurchaseOrderModel::STATUS_COLOR);
@@ -65,7 +66,7 @@ class PurchaseOrderController extends OrderController
             ])->orderBy('id', 'desc');
 
             $grid->column('id')->sortable();
-//            $grid->column('check_status')->using(PurchaseOrderModel::CHECK_STATUS);
+            //            $grid->column('check_status')->using(PurchaseOrderModel::CHECK_STATUS);
 
             $grid->column('order_no');
             $grid->column('other')->emp();
@@ -87,7 +88,7 @@ class PurchaseOrderController extends OrderController
     protected function setForm(Form &$form): void
     {
         $form->row(function (Form\Row $row) {
-            $row->width(6)->text('order_no', '单号')->readOnly();
+            $row->width(6)->text('order_no', '单号')->help('不填则自动生成规则(补充协议则自填)');
             $row->width(6)->text('created_at', '业务日期')->default(now())->required()->readOnly();
         });
         $form->row(function (Form\Row $row) {
@@ -103,28 +104,40 @@ class PurchaseOrderController extends OrderController
         });
 
         $form->row(function (Form\Row $row) {
-            $row->width(6)->select('type','采购类型')->options(PurchaseOrderModel::TYPE_LIST)->required();
-            $row->width(6)->select('pay_method','支付方式')->options(PurchaseOrderModel::PAY_METHOD_LIST)->required();
+            $row->width(6)->select('type', '采购类型')->options(PurchaseOrderModel::TYPE_LIST)->required();
+            $row->width(6)->select('pay_method', '支付方式')->options(PurchaseOrderModel::PAY_METHOD_LIST)->required();
         });
         $form->row(function (Form\Row $row) {
-            $row->width(6)->text('sign_man','签订人')->required();
-            $row->width(6)->datetime('sign_at','签订时间')->required();
+            $row->width(6)->text('sign_man', '签订人')->required();
+            $row->width(6)->datetime('sign_at', '签订时间')->required();
         });
 
         $form->row(function (Form\Row $row) {
+            $row->width(6)->select('frame_contract_id', '关联框架合同')->options(FrameContract::pluck('sn', 'id')->toarray())->required();
             $row->width(6)->text('other', '备注')->saveAsString();
             $row->width(6)->hidden('total_money')->default(0);
         });
-        $form->saving(function(Form $form){
-            $supplier =  SupplierModel::find($form->supplier_id);
-            $form->order_no = create_order_sn('buy',$supplier->short_title, $form->sign_at);
-            if($form->items){
+        $form->row(function (Form\Row $row) {
+            $row->width(6)->decimal('advance_charge_money', '定金');
+        });
+
+        $form->saving(function (Form $form) {
+            if (empty($form->order_no)) {
+                $supplier =  SupplierModel::find($form->supplier_id);
+                $form->order_no = create_order_sn('buy', $supplier->short_title, $form->sign_at);
+            }
+            if ($form->items) {
                 $total_money = 0;
-                foreach($form->items as $item){
-                    $total_money += $item['price']*$item['should_num'];
+                foreach ($form->items as $item) {
+                    $total_money += $item['price'] * $item['should_num'];
                 }
                 $form->total_money = $total_money;
             }
+        });
+        $form->saved(function ($form) {
+            $frame_contract = FrameContract::find($form->model()->frame_contract_id);
+            $frame_contract->money = $frame_contract->purchaseOrders()->sum('total_money');
+            $frame_contract->save();
         });
     }
 

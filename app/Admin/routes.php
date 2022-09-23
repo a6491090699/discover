@@ -31,6 +31,9 @@ Route::group([
     $router->get('api/get-customer-address', 'ApiController@getCustomerAddress')->name('api.customer.address.find');
     $router->get('api/get-customer-drawee', 'ApiController@getCustomerDrawee')->name('api.customer.drawee.find');
 
+    $router->resource('fee_types', 'FeeTypeController');
+    $router->resource('sell_pay_logs', 'SellPayLogController');
+    $router->resource('buy_pay_logs', 'BuyPayLogController');
     $router->resource('deliveries', 'DeliveryController');
     $router->resource('store_outs', 'StoreOutController');
     $router->resource('store_ins', 'StoreInController');
@@ -89,6 +92,7 @@ Route::group([
     $router->resource('checkout-products', 'CheckProductController');
 
     $router->get('report-centers', 'ReportCenterController@index');
+    $router->get('settle-data/{id}', 'FinancialReportController@settleData')->name('financial.settle-data');
     $router->get('settlement-history', 'FinancialReportController@settlementHistory')->name('financial.settlement-history');
     $router->get('unsettled-cost', 'FinancialReportController@unsettledCost')->name('financial.unsettled-cost');
     $router->get('cost-order-statistical', 'FinancialReportController@costOrderStatistical')->name('financial.cost-order-statistical');

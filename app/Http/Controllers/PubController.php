@@ -88,15 +88,16 @@ class PubController extends Controller
         }
         return $list->toArray();
     }
+
     public function multiOrders(Request $request)
     {
         $val = $request->get('q');
         switch ($val) {
             case StoreIn::TYPE_BACK:
-                $list = SaleInOrderModel::whereIn('status', [SaleInOrderModel::STATUS_WAIT, SaleInOrderModel::STATUS_ARRIVE])->review()->get(['id', 'order_no as text']);
+                $list = SaleInOrderModel::whereIn('status', [SaleInOrderModel::STATUS_WAIT, SaleInOrderModel::STATUS_PART_ARRIVE, SaleInOrderModel::STATUS_ARRIVE])->review()->get(['id', 'order_no as text']);
                 break;
             case StoreIn::TYPE_BUY:
-                $list = PurchaseOrderModel::whereIn('status', [PurchaseOrderModel::STATUS_WAIT, PurchaseOrderModel::STATUS_ARRIVE])->review()->get(['id', 'order_no as text']);
+                $list = PurchaseOrderModel::whereIn('status', [PurchaseOrderModel::STATUS_WAIT, PurchaseOrderModel::STATUS_PART_ARRIVE, PurchaseOrderModel::STATUS_ARRIVE])->review()->get(['id', 'order_no as text']);
                 break;
             case StoreIn::TYPE_DIAOBO:
                 $list = Allocation::whereIn('status', [Allocation::STATUS_DOING, Allocation::STATUS_DONE])->review()->get(['id', 'sn as text']);

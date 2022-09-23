@@ -72,7 +72,7 @@ class SaleOrderModel extends SaleBaseModel
     /**
      * @return HasMany
      */
-    public function items():HasMany
+    public function items(): HasMany
     {
         return $this->hasMany(SaleItemModel::class, 'order_id');
     }
@@ -112,13 +112,28 @@ class SaleOrderModel extends SaleBaseModel
     /**
      * @return string
      */
-    public function getStatusStrAttribute():string
+    public function getStatusStrAttribute(): string
     {
         return self::STATUS[$this->status];
     }
 
     public function storeOut()
     {
-        return $this->morphOne(StoreOut::class ,'order');
+        return $this->morphOne(StoreOut::class, 'order');
+    }
+
+    public function purchaseOrder()
+    {
+        return $this->belongsTo(PurchaseOrderModel::class);
+    }
+
+    public function frameContract()
+    {
+        return $this->belongsTo(FrameContract::class);
+    }
+    
+    public function payLog()
+    {
+        return $this->hasMany(SellPayLog::class);
     }
 }

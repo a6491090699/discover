@@ -83,7 +83,7 @@ class StoreOutController extends AdminController
             $form->text('sn')->readOnly();
             $form->datetime('out_at');
             $form->select('store_id')->options(Store::pluck('title','id'));
-            $form->select('order_type')->options(ModelsStoreOut::TYPE_LIST)->load('order_id',route('pub.orders'));
+            $form->select('order_type')->options(ModelsStoreOut::TYPE_LIST)->load('order_id',route('pub.multi-orders'));
             $form->select('order_id');
             $form->select('status')->options(ModelsStoreOut::STATUS_LIST);
             $form->hidden('total_money');

@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Observers;
 
+use App\Admin\Repositories\StoreIn as RepositoriesStoreIn;
 use App\Models\PurchaseOrderModel;
 use App\Models\SkuStockModel;
 use App\Models\StockHistoryModel;
@@ -72,7 +74,8 @@ class StoreInObserver
     public function saving(StoreIn $storeIn): void
     {
         // dd($storeIn->isDirty('review_status') ,$storeIn->review_status , $storeIn->status);
-        if ($storeIn->isDirty('status')
+        if (
+            $storeIn->isDirty('status')
             && (int)$storeIn->status === StoreIn::STATUS_IN
             // && (int)$storeIn->review_status === StoreIn::REVIEW_STATUS_OK
         ) {
@@ -97,12 +100,14 @@ class StoreInObserver
                     'balance_num'    => $init_num + $storeInItem->actual_num,
                     'user_id'        => Admin::user()->id,
                 ]);
-
             });
             //入库单入库状态 自动把采购单的状态置为已收货
-            $storeIn->order->status = $storeIn->order::STATUS_ARRIVE;
+            if (app(RepositoriesStoreIn::class)->ifAllIn($storeIn->id)) {
+                $storeIn->order->status = $storeIn->order::STATUS_ARRIVE;
+            } else {
+                $storeIn->order->status = $storeIn->order::STATUS_PART_ARRIVE;
+            }
             $storeIn->order->save();
-            
         }
     }
 
@@ -113,5 +118,4 @@ class StoreInObserver
     {
         $storeIn->user_id = Admin::user()->id;
     }
-
 }

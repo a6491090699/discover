@@ -18,6 +18,7 @@ use App\Admin\Repositories\CostOrder;
 use App\Admin\Repositories\StatementItem;
 use App\Models\CostOrderModel;
 use App\Models\CustomerModel;
+use App\Models\FrameContract;
 use App\Models\StatementOrderModel;
 use App\Models\SupplierModel;
 use Dcat\Admin\Controllers\AdminController;
@@ -188,5 +189,28 @@ class FinancialReportController extends AdminController
             ->description(' ')
             ->full()
             ->body($grid);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id 框架合同id
+     * @return void
+     */
+    public function settleData($id)
+    {
+        // yytodo  
+
+        return view('settle.detail');
+        dd(123213);
+        $frame = FrameContract::find($id);
+        //获取采购合同数据以及支付记录
+        // $purchase_order_info = app(PurchaseOrder)
+        //获取销售合同数据以及支付记录
+
+        //获取入库记录
+
+        //获取出库记录 ? 
+        
     }
 }

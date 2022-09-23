@@ -25,4 +25,9 @@ class Supplier extends EloquentRepository
      * @var string
      */
     protected $eloquentClass = Model::class;
+
+    public function selectItems()
+    {
+        return $this->eloquentClass::pluck('name', 'id')->toarray();
+    }
 }

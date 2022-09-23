@@ -66,4 +66,9 @@ class Customer extends EloquentRepository
         return $this;
     }
 
+    public function selectItems()
+    {
+        return $this->eloquentClass::pluck('name', 'id')->toArray();
+    }
+
 }

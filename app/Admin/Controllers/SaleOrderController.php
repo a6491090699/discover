@@ -20,6 +20,7 @@ use App\Admin\Actions\Grid\EditOrder;
 use App\Admin\Extensions\Form\Order\OrderController;
 use App\Admin\Repositories\SaleOrder;
 use App\Models\CustomerModel;
+use App\Models\FrameContract;
 use App\Models\ProductModel;
 use App\Models\PurchaseOrderModel;
 use App\Models\SaleOrderModel;
@@ -36,7 +37,7 @@ class SaleOrderController extends OrderController
      */
     protected function grid()
     {
-        
+
         return Grid::make(new SaleOrder(['customer', 'user']), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('customer.name', '客户');
@@ -130,9 +131,7 @@ class SaleOrderController extends OrderController
             } else {
                 $row->width(6)->select('status', '单据状态')->options([$this->oredr_model::STATUS_DOING => '受理中'])->default($this->oredr_model::STATUS_DOING)->required();
             }
-            $row->width(6)->select('type','销售类型')->options(SaleOrderModel::TYPE_LIST)->required();
-
-            
+            $row->width(6)->select('type', '销售类型')->options(SaleOrderModel::TYPE_LIST)->required();
         });
         $customer = $form->repository()->customer();
         $form->row(function (Form\Row $row) use ($customer) {
@@ -144,38 +143,40 @@ class SaleOrderController extends OrderController
         });
 
         $form->row(function (Form\Row $row) {
-            $row->width(6)->text('sign_man','签订人')->required();
-            $row->width(6)->datetime('sign_at','签订时间')->required();
+            $row->width(6)->text('sign_man', '签订人')->required();
+            $row->width(6)->datetime('sign_at', '签订时间')->required();
         });
 
         $form->row(function (Form\Row $row) {
-            
-            $row->width(6)->datetime('send_at','交货时间')->required();
-            $row->width(6)->select('pay_method','支付方式')->options(SaleOrderModel::PAY_METHOD_LIST)->required();
+
+            $row->width(6)->datetime('send_at', '交货时间')->required();
+            $row->width(6)->select('pay_method', '支付方式')->options(SaleOrderModel::PAY_METHOD_LIST)->required();
         });
         $form->row(function (Form\Row $row) {
             // $row->width(6)->select('drawee_id', '付款人')->required();
+            $row->width(6)->select('frame_contract_id', '关联框架合同')->options(FrameContract::pluck('sn', 'id')->toarray())->required();
             $row->width(6)->text('other', '备注')->saveAsString();
             $row->width(1)->hidden('total_money', '金额');
             $row->width(1)->hidden('total_money_cn', '金额大写');
-
+        });
+        $form->row(function (Form\Row $row) {
+            $row->width(6)->decimal('advance_charge_money', '定金');
         });
 
-        $form->saving(function(Form $form){
+        $form->saving(function (Form $form) {
             $customer =  CustomerModel::find($form->customer_id);
-            $form->order_no = create_order_sn('buy',$customer->short_title, $form->sign_at);
-            if($form->items){
+            $form->order_no = create_order_sn('buy', $customer->short_title, $form->sign_at);
+            if ($form->items) {
                 $total_money = 0;
-                foreach($form->items as $item){
-                    $total_money += $item['price']*$item['should_num'];
+                foreach ($form->items as $item) {
+                    $total_money += $item['price'] * $item['should_num'];
                 }
                 $form->total_money = $total_money;
                 $form->total_money_cn = \Yurun\Util\Chinese\Money::toChinese($total_money, [
-                    'tenMin'    =>  true, 
+                    'tenMin'    =>  true,
                 ]);
             }
         });
-
     }
 
     /**

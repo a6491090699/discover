@@ -80,6 +80,9 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection order_no
      * @property Grid\Column|Collection apply_id
      * @property Grid\Column|Collection other
+     * @property Grid\Column|Collection approval_type_id
+     * @property Grid\Column|Collection desc
+     * @property Grid\Column|Collection check_users
      * @property Grid\Column|Collection attr_id
      * @property Grid\Column|Collection sku_stock_batch_id
      * @property Grid\Column|Collection carbon_fiber
@@ -151,6 +154,8 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection failed_at
      * @property Grid\Column|Collection products
      * @property Grid\Column|Collection year_rate
+     * @property Grid\Column|Collection caozuo_rate
+     * @property Grid\Column|Collection zhanyong_rate
      * @property Grid\Column|Collection money_zy
      * @property Grid\Column|Collection money_czf
      * @property Grid\Column|Collection money_wlf
@@ -195,6 +200,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection frame_contract_id
      * @property Grid\Column|Collection sign_at
      * @property Grid\Column|Collection sign_man
+     * @property Grid\Column|Collection advance_charge_money
      * @property Grid\Column|Collection accountant_id
      * @property Grid\Column|Collection settlement_at
      * @property Grid\Column|Collection back_at
@@ -313,6 +319,9 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection order_no(string $label = null)
      * @method Grid\Column|Collection apply_id(string $label = null)
      * @method Grid\Column|Collection other(string $label = null)
+     * @method Grid\Column|Collection approval_type_id(string $label = null)
+     * @method Grid\Column|Collection desc(string $label = null)
+     * @method Grid\Column|Collection check_users(string $label = null)
      * @method Grid\Column|Collection attr_id(string $label = null)
      * @method Grid\Column|Collection sku_stock_batch_id(string $label = null)
      * @method Grid\Column|Collection carbon_fiber(string $label = null)
@@ -384,6 +393,8 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection failed_at(string $label = null)
      * @method Grid\Column|Collection products(string $label = null)
      * @method Grid\Column|Collection year_rate(string $label = null)
+     * @method Grid\Column|Collection caozuo_rate(string $label = null)
+     * @method Grid\Column|Collection zhanyong_rate(string $label = null)
      * @method Grid\Column|Collection money_zy(string $label = null)
      * @method Grid\Column|Collection money_czf(string $label = null)
      * @method Grid\Column|Collection money_wlf(string $label = null)
@@ -428,6 +439,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection frame_contract_id(string $label = null)
      * @method Grid\Column|Collection sign_at(string $label = null)
      * @method Grid\Column|Collection sign_man(string $label = null)
+     * @method Grid\Column|Collection advance_charge_money(string $label = null)
      * @method Grid\Column|Collection accountant_id(string $label = null)
      * @method Grid\Column|Collection settlement_at(string $label = null)
      * @method Grid\Column|Collection back_at(string $label = null)
@@ -551,6 +563,9 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection order_no
      * @property Show\Field|Collection apply_id
      * @property Show\Field|Collection other
+     * @property Show\Field|Collection approval_type_id
+     * @property Show\Field|Collection desc
+     * @property Show\Field|Collection check_users
      * @property Show\Field|Collection attr_id
      * @property Show\Field|Collection sku_stock_batch_id
      * @property Show\Field|Collection carbon_fiber
@@ -622,6 +637,8 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection failed_at
      * @property Show\Field|Collection products
      * @property Show\Field|Collection year_rate
+     * @property Show\Field|Collection caozuo_rate
+     * @property Show\Field|Collection zhanyong_rate
      * @property Show\Field|Collection money_zy
      * @property Show\Field|Collection money_czf
      * @property Show\Field|Collection money_wlf
@@ -666,6 +683,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection frame_contract_id
      * @property Show\Field|Collection sign_at
      * @property Show\Field|Collection sign_man
+     * @property Show\Field|Collection advance_charge_money
      * @property Show\Field|Collection accountant_id
      * @property Show\Field|Collection settlement_at
      * @property Show\Field|Collection back_at
@@ -784,6 +802,9 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection order_no(string $label = null)
      * @method Show\Field|Collection apply_id(string $label = null)
      * @method Show\Field|Collection other(string $label = null)
+     * @method Show\Field|Collection approval_type_id(string $label = null)
+     * @method Show\Field|Collection desc(string $label = null)
+     * @method Show\Field|Collection check_users(string $label = null)
      * @method Show\Field|Collection attr_id(string $label = null)
      * @method Show\Field|Collection sku_stock_batch_id(string $label = null)
      * @method Show\Field|Collection carbon_fiber(string $label = null)
@@ -855,6 +876,8 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection failed_at(string $label = null)
      * @method Show\Field|Collection products(string $label = null)
      * @method Show\Field|Collection year_rate(string $label = null)
+     * @method Show\Field|Collection caozuo_rate(string $label = null)
+     * @method Show\Field|Collection zhanyong_rate(string $label = null)
      * @method Show\Field|Collection money_zy(string $label = null)
      * @method Show\Field|Collection money_czf(string $label = null)
      * @method Show\Field|Collection money_wlf(string $label = null)
@@ -899,6 +922,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection frame_contract_id(string $label = null)
      * @method Show\Field|Collection sign_at(string $label = null)
      * @method Show\Field|Collection sign_man(string $label = null)
+     * @method Show\Field|Collection advance_charge_money(string $label = null)
      * @method Show\Field|Collection accountant_id(string $label = null)
      * @method Show\Field|Collection settlement_at(string $label = null)
      * @method Show\Field|Collection back_at(string $label = null)

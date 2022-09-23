@@ -44,6 +44,7 @@ HTML;
 
     public function script()
     {
+        //判断是否显示保存按钮
         $showBtn = $this->row('review_status') === BaseModel::REVIEW_STATUS_OK ? 'no' : 'yes';
         $lable   = admin_trans_label();
         return <<<JS

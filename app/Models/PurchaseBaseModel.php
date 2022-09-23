@@ -29,6 +29,7 @@ class PurchaseBaseModel extends BaseModel
 //    const STATUS_FINISH = 2;
     const STATUS_RETURNING = 3;
     const STATUS_RETURNED = 4;
+    const STATUS_PART_ARRIVE = 5;
 
     const CHECK_STATUS_NO = 0;
     const CHECK_STATUS_FIRST = 1;
@@ -42,6 +43,7 @@ class PurchaseBaseModel extends BaseModel
 
     const STATUS = [
         self::STATUS_WAIT      => '待收货',
+        self::STATUS_PART_ARRIVE    => '部分收货',
         self::STATUS_ARRIVE    => '已收货',
         //        self::STATUS_FINISH    => '已完成',
         self::STATUS_RETURNING => '退回中',

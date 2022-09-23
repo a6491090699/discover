@@ -72,17 +72,18 @@ class StoreInController extends AdminController
      */
     protected function form()
     {
+        app(StoreIn::class)->ifAllIn(1);
         return Form::make(new StoreIn(['order']), function (Form $form) {
             $form->display('id');
             $form->text('sn')->readOnly();
             $form->datetime('in_at');
             $form->select('store_id')->options(Store::pluck('title', 'id'));
             if ($form->isCreating()) {
-                $form->select('order_type')->options(ModelsStoreIn::TYPE_LIST)
-                    ->load('order_id', route('pub.orders'));
+                $form->select('order_type' ,'类型')->options(ModelsStoreIn::TYPE_LIST)
+                    ->load('order_id', route('pub.multi-orders'));
             }
             if ($form->isEditing()) {
-                $form->select('order_type')->options(ModelsStoreIn::TYPE_LIST)
+                $form->select('order_type' ,'类型')->options(ModelsStoreIn::TYPE_LIST)
                     ->load('order_id', route('pub.multi-orders'));
             }
 

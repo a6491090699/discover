@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FrameContract extends Model
 {
-	use HasDateTimeFormatter;
+    use HasDateTimeFormatter;
     use SoftDeletes;
 
     // CONST STATUS_STAT = 1;
@@ -17,6 +17,13 @@ class FrameContract extends Model
 
     protected $table = 'frame_contracts';
 
-    
-    
+    public function purchaseOrders()
+    {
+        return $this->hasMany(PurchaseOrderModel::class);
+    }
+
+    public function saleOrders()
+    {
+        return $this->hasMany(SaleOrderModel::class);
+    }
 }
