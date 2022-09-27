@@ -14,7 +14,7 @@ class SettleData extends RowAction
     /**
      * @return string
      */
-	protected $title = '结算数据';
+    protected $title = '结算数据';
 
     /**
      * Handle the action request.
@@ -49,12 +49,12 @@ HTML;
     }
 
     /**
-	 * @return string|array|void
-	 */
-	public function confirm()
-	{
-		// return ['Confirm?', 'contents'];
-	}
+     * @return string|array|void
+     */
+    public function confirm()
+    {
+        // return ['Confirm?', 'contents'];
+    }
 
     /**
      * @param Model|Authenticatable|HasPermissions|null $user
@@ -93,6 +93,34 @@ HTML;
                 end: function(){
                     Dcat.reload();
                 },
+            };
+            option.btn = ['导出excel' ,'重新生成,核算日期设为今日'];
+            option.btn1 = function(index, layero){
+                location.href = '{$this->action()}?_export=1';
+            };
+
+            option.btn2 = function(index, layero){
+                var a = new Date();
+                var today = a.toLocaleDateString();
+                Dcat.NP.start();
+                    $.ajax({
+                        type: "GET",
+                        url: '{$this->action()}?_reset='+today ,//url
+                        success: function (data) {
+                            if (data.status) {
+                                Dcat.success(data.message);
+                            } else {
+                                Dcat.error(data.message);
+                            }
+                        },
+                        error : function(a,b,c) {
+                            Dcat.handleAjaxError(a, b, c);
+                        },
+                        complete:function(a,b) {
+                            Dcat.NP.done();
+                        }
+                    });
+                    layer.close(index);
             };
             
             layer.open(option)

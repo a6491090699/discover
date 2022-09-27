@@ -35,34 +35,34 @@ if (!function_exists('build_order_no')) {
      * @param string $prefix
      * @return string
      */
-    function build_order_no(string $prefix = ''): string
-    {
-        $prefix = strtoupper($prefix);
-        
-        $redis_key = 'sn_autoincrement_'.$prefix;
-        if (Redis::exists($redis_key)) {
-            $auto = Redis::get($redis_key);
-        } else {
-            Redis::set($redis_key, 1);
-            $auto = '1';
-        }
-        if (strlen($auto) < 6) {
-            $auto = str_repeat('0', 6 - strlen($auto)) . $auto;
-        }
-
-    // return uniqid($prefix);
-    return $prefix . date('ymd') . $auto;
-    }
     // function build_order_no(string $prefix = ''): string
     // {
-    //     $date = date("Ymd");
-    //     $number = OrderNoGeneratorModel::query()->where([
-    //         'prefix' => $prefix,
-    //         'happen_date' => $date
-    //     ])->value('number');
+    //     $prefix = strtoupper($prefix);
 
-    //     return $prefix . $date . str_pad($number + 1, "4", "0", STR_PAD_LEFT);
+    //     $redis_key = 'sn_autoincrement_' . $prefix;
+    //     if (Redis::exists($redis_key)) {
+    //         $auto = Redis::get($redis_key);
+    //     } else {
+    //         Redis::set($redis_key, 1);
+    //         $auto = '1';
+    //     }
+    //     if (strlen($auto) < 6) {
+    //         $auto = str_repeat('0', 6 - strlen($auto)) . $auto;
+    //     }
+
+    //     // return uniqid($prefix);
+    //     return $prefix . date('ymd') . $auto;
     // }
+    function build_order_no(string $prefix = ''): string
+    {
+        $date = date("Ymd");
+        $number = OrderNoGeneratorModel::query()->where([
+            'prefix' => $prefix,
+            'happen_date' => $date
+        ])->value('number');
+
+        return $prefix . $date . str_pad($number + 1, "4", "0", STR_PAD_LEFT);
+    }
 }
 if (!function_exists('crossJoin')) {
     /**
@@ -161,10 +161,10 @@ function create_uniqid_sn($type = '')
             $prefix = 'PB';
             break;
         default:
-            $prefix = 'Q';
+            $prefix = $type;
             break;
     }
-    $redis_key = 'sn_autoincrement_'.$prefix;
+    $redis_key = 'sn_autoincrement_' . $prefix;
     if (Redis::exists($redis_key)) {
         $auto = Redis::get($redis_key);
     } else {
@@ -185,7 +185,7 @@ function increment_uniqid_sn($type)
     switch ($type) {
         case 'customer':
             $prefix = 'KH';
-            
+
             break;
         case 'provider':
             $prefix = 'FWS';
@@ -200,10 +200,10 @@ function increment_uniqid_sn($type)
             $prefix = 'FR';
             break;
         default:
-            $prefix = 'Q';
+            $prefix = $type;
             break;
     }
-    $redis_key = 'sn_autoincrement_'.$prefix;
+    $redis_key = 'sn_autoincrement_' . $prefix;
     if (Redis::exists($redis_key)) {
         Redis::incr($redis_key);
     }
@@ -232,13 +232,13 @@ function create_order_sn($type, $short_title, $sign_at)
     $date_str = date('ymdHis', strtotime($sign_at));
     switch ($type) {
         case 'buy':
-            $first = "B-" . up_pinyin_abbr($short_title) . '-' . $date_str ;
+            $first = "B-" . up_pinyin_abbr($short_title) . '-' . $date_str;
             break;
         case 'sell':
-            $first = "S-" . up_pinyin_abbr($short_title) . '-' . $date_str ;
+            $first = "S-" . up_pinyin_abbr($short_title) . '-' . $date_str;
             break;
         default:
-            $first = "O-" . up_pinyin_abbr($short_title) . '-' . $date_str ;
+            $first = "O-" . up_pinyin_abbr($short_title) . '-' . $date_str;
             break;
     }
     return $first;

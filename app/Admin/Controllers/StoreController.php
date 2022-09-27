@@ -84,9 +84,15 @@ class StoreController extends AdminController
             $form->decimal('save_price')->required();
             $form->decimal('move_price')->required();
             
+            
         
             $form->display('created_at');
             $form->display('updated_at');
+            if ($form->isCreating()) {
+                $form->saved(function($form){
+                    increment_uniqid_sn('store');
+                });
+            }
         });
     }
 }

@@ -22,5 +22,10 @@ class SellPayLog extends Model
         self::PAY_XYZ => '信用证',
         self::PAY_CDHP => '承兑汇票',
     ];
+
+    public function feeType()
+    {
+        return $this->belongsTo(FeeType::class);
+    }
     
 }

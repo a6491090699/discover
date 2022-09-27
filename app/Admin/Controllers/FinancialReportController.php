@@ -15,7 +15,10 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\CostOrder;
+use App\Admin\Repositories\FrameContract as RepositoriesFrameContract;
+use App\Admin\Repositories\PurchaseOrder;
 use App\Admin\Repositories\StatementItem;
+use App\Exports\SettleExport;
 use App\Models\CostOrderModel;
 use App\Models\CustomerModel;
 use App\Models\FrameContract;
@@ -26,6 +29,7 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Layout\Content;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Excel;
 
 class FinancialReportController extends AdminController
 {
@@ -197,20 +201,38 @@ class FinancialReportController extends AdminController
      * @param [type] $id 框架合同id
      * @return void
      */
-    public function settleData($id)
+    public function settleData(Content $content, FrameContract $id)
     {
-        // yytodo  
-
-        return view('settle.detail');
-        dd(123213);
-        $frame = FrameContract::find($id);
-        //获取采购合同数据以及支付记录
-        // $purchase_order_info = app(PurchaseOrder)
-        //获取销售合同数据以及支付记录
-
-        //获取入库记录
-
-        //获取出库记录 ? 
-        
+        // yytodo
+        if (request()->query('_reset')) {
+            app(RepositoriesFrameContract::class)->triggerCount($id);
+            return response()->json(['status' => 1, 'message' => '重置成功']);
+        }
+        $settle = app(RepositoriesFrameContract::class)->settleDetail($id);
+        $frame_contract = $id;
+        $purchase_all = 0;
+        $sale_zhanyong = 0;
+        $sale_all = 0;
+        foreach ($settle['purchase_settle_data'] as $item) {
+            $item['pay_logs']->map(function ($i) use (&$purchase_all) {
+                $purchase_all += ($i->zhanyong + $i->caozuo + $i->this_time_money);
+            });
+        }
+        foreach ($settle['sale_settle_data'] as $item) {
+            $item['pay_logs']->map(function ($i) use (&$sale_zhanyong, &$sale_all) {
+                $sale_zhanyong += $i->zhanyong;
+                $sale_all += $i->this_time_money;
+            });
+        }
+        $diff = $sale_zhanyong;
+        $ret = compact('settle', 'sale_zhanyong', 'sale_all', 'purchase_all', 'frame_contract');
+        if (request()->query('_export')) {
+            return Excel::download(new SettleExport($ret), '结算数据.xlsx');
+        }
+        return $content
+            ->title("结算单")
+            ->description(' ')
+            ->full()
+            ->body(view('settle.detail', $ret));
     }
 }

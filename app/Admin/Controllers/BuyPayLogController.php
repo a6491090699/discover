@@ -26,14 +26,14 @@ class BuyPayLogController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new BuyPayLog(['purchaseOrder']), function (Grid $grid) {
+        return Grid::make(new BuyPayLog(['purchaseOrder.supplier']), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('sn');
             $grid->column('fee_type_id', '费用类型')->using(app(FeeType::class)->selectItems());
             $grid->column('purchase_order_id')->using(app(PurchaseOrder::class)->selectItems());
 
             $grid->column('pay_at');
-            $grid->column('supplier_id')->using(app(Supplier::class)->selectItems());
+            $grid->column('purchaseOrder.supplier.name','供应商');
             $grid->column('this_time_money');
             $grid->column('purchaseOrder.total_money', '合同金额');
             $grid->column('unpay_money');
@@ -86,16 +86,17 @@ class BuyPayLogController extends AdminController
     {
         return Form::make(new BuyPayLog(), function (Form $form) {
             $form->display('id');
-            $form->text('sn')->default(build_order_no('BPL'));
+            $form->text('sn')->default(create_uniqid_sn('BPL'));
+            $form->select('purchase_order_id')->options(app(PurchaseOrder::class)->selectItems())->required();
+
             $form->datetime('pay_at');
-            $form->select('supplier_id')->options(app(Supplier::class)->selectItems());
+            // $form->select('supplier_id')->options(app(Supplier::class)->selectItems());
             $form->select('fee_type_id', '费用类型')->options(app(FeeType::class)->selectItems());
             // $form->text('contract_money');
             $form->text('unpay_money')->help('留空则自动计算');
             $form->text('this_time_money');
             $form->select('pay_method')->options(ModelsBuyPayLog::PAY_METHOD_LIST);
 
-            $form->select('purchase_order_id')->options(app(PurchaseOrder::class)->selectItems())->required();
             $form->text('other');
             if ($form->isEditing()) {
             }
@@ -108,7 +109,12 @@ class BuyPayLogController extends AdminController
                         $form->unpay_money = max($order->total_money - $sofar_money, 0);
                     }
                 });
+                $form->saved(function ($form) {
+                    increment_uniqid_sn('BPL');
+                });
             }
+
+            
         });
     }
 }

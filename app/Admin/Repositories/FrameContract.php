@@ -30,13 +30,13 @@ class FrameContract extends EloquentRepository
     {
         // $check_at = now();
         $purchases = $model->purchaseOrders;
-        $purchases->map(function($item , $key)use($model){
-            $item->paylog->map(function($i , $k)use($model){
-                if($i->feeType->has_caozuo){
+        $purchases->map(function ($item, $key) use ($model) {
+            $item->payLog->map(function ($i, $k) use ($model) {
+                if ($i->feeType->has_caozuo) {
                     //计算操作费
                     $i->caozuo = $i->this_time_money * $model->caozuo_rate;
                 }
-                if($i->feeType->has_zhanyong){
+                if ($i->feeType->has_zhanyong) {
                     //计算资金占用费
                     $i->zhanyong = $i->this_time_money * $model->zhanyong_rate;
                 }
@@ -50,13 +50,11 @@ class FrameContract extends EloquentRepository
     public function accountReceivable(Model $model)
     {
         $sale_orders = $model->saleOrders;
-        $sale_orders->map(function($item , $key)use($model){
-            $item->paylog->map(function($i , $k)use($model){
-                if($i->feeType->has_caozuo){
-                    //计算操作费
-                    $i->caozuo = $i->this_time_money * $model->caozuo_rate;
-                }
-                if($i->feeType->has_zhanyong){
+        $sale_orders->map(function ($item, $key) use ($model) {
+            $item->payLog->map(function ($i, $k) use ($model) {
+                $i->caozuo = 0;
+
+                if ($i->feeType->has_zhanyong) {
                     //计算资金占用费
                     $i->zhanyong = $i->this_time_money * $model->zhanyong_rate;
                 }
@@ -66,23 +64,34 @@ class FrameContract extends EloquentRepository
         });
     }
 
+    public function triggerCount(Model $model)
+    {
+        $this->accountPayable($model);
+        $this->accountReceivable($model);
+    }
+
     public function settleDetail(Model $model)
     {
+        if ($model->status == 0) {
+            $this->triggerCount($model);
+            $model->status = 1;
+            $model->save();
+        }
         
-
         //获取采购合同数据以及支付记录+获取入库记录
         $purchases = $model->purchaseOrders;
         $purchase_settle_data = [];
-        $purchases->map(function($item)use(&$purchase_settle_data){
+        $purchases->map(function ($item) use (&$purchase_settle_data) {
             $purchase_settle_data[] = app(PurchaseOrder::class)->settleData($item);
         });
-        
+
         //获取销售合同数据以及支付记录 + 获取出库记录
         $sale_orders = $model->saleOrders;
         $sale_settle_data = [];
-        $sale_orders->map(function($item)use(&$sale_settle_data){
+        $sale_orders->map(function ($item) use (&$sale_settle_data) {
             $sale_settle_data[] = app(SaleOrder::class)->settleData($item);
         });
-        
+
+        return compact('purchase_settle_data', 'sale_settle_data');
     }
 }

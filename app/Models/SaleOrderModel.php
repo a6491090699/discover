@@ -134,6 +134,6 @@ class SaleOrderModel extends SaleBaseModel
     
     public function payLog()
     {
-        return $this->hasMany(SellPayLog::class);
+        return $this->hasMany(SellPayLog::class,'sale_order_id');
     }
 }

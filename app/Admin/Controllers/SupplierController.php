@@ -88,9 +88,11 @@ class SupplierController extends AdminController
             $form->text('bank_name')->required();
             $form->text('bank_account')->required();
             $form->text('bank_top')->required();
-            $form->saved(function ($form) {
-                increment_uniqid_sn('supplier');
-            });
+            if ($form->isCreating()) {
+                $form->saved(function($form){
+                    increment_uniqid_sn('supplier');
+                });
+            }
         });
     }
 }

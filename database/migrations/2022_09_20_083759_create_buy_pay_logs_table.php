@@ -17,7 +17,6 @@ class CreateBuyPayLogsTable extends Migration
             $table->increments('id');
             $table->string('sn')->default('');
             $table->timestamp('pay_at')->nullable();
-            $table->integer('supplier_id');
             $table->integer('fee_type_id');
             $table->decimal('contract_money')->nullable();
             $table->decimal('unpay_money')->nullable();

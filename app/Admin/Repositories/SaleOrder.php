@@ -68,9 +68,9 @@ class SaleOrder extends EloquentRepository
     public function settleData(Model $order)
     {
         //支付记录
-        $pay_logs = $order->paylog()->oldest('pay_at')->get();
+        $pay_logs = $order->payLog()->oldest('pay_at')->get();
         //出库记录
-        $store_out_logs = $order->storeIn()->where('status',StoreOut::STATUS_OUT)->oldest('out_at')->get();
+        $store_out_logs = $order->storeOut()->where('status',StoreOut::STATUS_OUT)->oldest('out_at')->get();
         
         return compact('order','pay_logs','store_out_logs');
     }

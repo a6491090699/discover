@@ -102,6 +102,11 @@ class CustomerController extends AdminController
             $form->text('bank_account')->required();
             $form->text('bank_top')->required();
             $form->text('tax_code')->required();
+            if ($form->isCreating()) {
+                $form->saved(function ($form) {
+                    increment_uniqid_sn('customer');
+                });
+            }
         });
     }
 }

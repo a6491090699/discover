@@ -37,7 +37,7 @@ class PurchaseOrderBackController extends AdminController
             $grid->column('store_id');
             $grid->column('supplier_id');
             $grid->column('back_money');
-            $grid->column('status')->using(['未发货','已发货']);
+            $grid->column('status')->using(['未发货', '已发货']);
             // $grid->column('other');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
@@ -84,14 +84,14 @@ class PurchaseOrderBackController extends AdminController
             $form->datetime('back_at');
             $form->select('purchase_order_id')->options(PurchaseOrderModel::receive()->pluck('order_no', 'id'));
             $form->select('store_id')->options(Store::pluck('title', 'id'));
-            $form->select('supplier_id')->options(SupplierModel::pluck('name','id'));
-            $form->select('status','状态')->options(['未发货','已发货']);
+            $form->select('supplier_id')->options(SupplierModel::pluck('name', 'id'));
+            $form->select('status', '状态')->options(['未发货', '已发货']);
             $form->hidden('back_money')->default(0);
-            
+
             $form->display('created_at');
             $form->display('updated_at');
             // $form->text('other');
-            if($form->isCreating()){
+            if ($form->isCreating()) {
                 $form->hasMany('items', '', function (Form\NestedForm $table) {
                     $table->select('product_id', '名称')->options(ProductModel::pluck('name', 'id'))->loadpku(route('api.product.find'))->required();
                     $table->ipt('unit', '单位')->rem(3)->default('-')->disable();
@@ -102,23 +102,23 @@ class PurchaseOrderBackController extends AdminController
                     $table->num('back_num', '退货数量')->required();
                     $table->tableDecimal('price', '退货价格')->default(0.00)->required();
                 })->useTable()->width(12)->enableHorizontal();
-            }
-            if($form->isEditing()){
-                
-            }
-            $form->saving(function ($form) {
-                $form->sn = create_uniqid_sn('purchase_back');
-                
-                if($form->items){
-                    $back_money = 0;
-                    foreach($form->items as $item){
-                        $back_money += $item['price']*$item['back_num'];
-                    }
-                    $form->back_money = $back_money;
-                }
-                
-            });
+                $form->saving(function ($form) {
+                    $form->sn = create_uniqid_sn('purchase_back');
 
+                    if ($form->items) {
+                        $back_money = 0;
+                        foreach ($form->items as $item) {
+                            $back_money += $item['price'] * $item['back_num'];
+                        }
+                        $form->back_money = $back_money;
+                    }
+                });
+                $form->saved(function ($form) {
+                    increment_uniqid_sn('purchase_back');
+                });
+            }
+            if ($form->isEditing()) {
+            }
         });
     }
 
@@ -133,11 +133,11 @@ class PurchaseOrderBackController extends AdminController
 
     protected function setItems($id)
     {
-        return Grid::make(new PurchaseBackItem(['sku','product']) , function(Grid $grid)use($id){
+        return Grid::make(new PurchaseBackItem(['sku', 'product']), function (Grid $grid) use ($id) {
             $grid->setName('items');
             $order = ModelsPurchaseOrderBack::find($id);
-            $grid->model()->where('purchase_order_back_id',$id);
-   
+            $grid->model()->where('purchase_order_back_id', $id);
+
             $grid->column('product.name', '产品名称');
             $grid->column('product.unit.name', '单位');
             $grid->column('product.type_str', '类型');
@@ -159,7 +159,5 @@ class PurchaseOrderBackController extends AdminController
                 return bcmul($this->back_num, $this->price, 2);
             });
         });
-       
-        
     }
 }

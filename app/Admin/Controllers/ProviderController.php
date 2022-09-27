@@ -100,6 +100,11 @@ class ProviderController extends AdminController
         
             $form->display('created_at');
             $form->display('updated_at');
+            if ($form->isCreating()) {
+                $form->saved(function($form){
+                    increment_uniqid_sn('provider');
+                });
+            }
         });
     }
 }
