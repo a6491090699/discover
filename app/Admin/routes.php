@@ -24,6 +24,7 @@ Route::group([
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
     $router->get('/', 'HomeController@index');
+    $router->get('test', 'HomeController@test');
     $router->get('api/get-attr-value', 'ApiController@getAttrValue')->name('api.attrvalue.find');
     $router->get('api/get-product-unit', 'ApiController@getUnitByProductId')->name('api.productunit.find');
     $router->get('api/get-product', 'ApiController@getProductInfo')->name('api.product.find');
@@ -31,6 +32,7 @@ Route::group([
     $router->get('api/get-customer-address', 'ApiController@getCustomerAddress')->name('api.customer.address.find');
     $router->get('api/get-customer-drawee', 'ApiController@getCustomerDrawee')->name('api.customer.drawee.find');
 
+    $router->resource('invoices', 'InvoiceController');
     $router->resource('fee_types', 'FeeTypeController');
     $router->resource('sell_pay_logs', 'SellPayLogController');
     $router->resource('buy_pay_logs', 'BuyPayLogController');

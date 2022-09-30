@@ -45,4 +45,9 @@ class HomeController extends Controller
 //                });
             });
     }
+
+    public function test()
+    {
+        cache()->set('yytest','hehe');
+    }
 }

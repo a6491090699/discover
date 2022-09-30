@@ -2,10 +2,10 @@
 
 namespace App\Admin\Repositories;
 
-use App\Models\SellPayLog as Model;
+use App\Models\Invoice as Model;
 use Dcat\Admin\Repositories\EloquentRepository;
 
-class SellPayLog extends EloquentRepository
+class Invoice extends EloquentRepository
 {
     /**
      * Model.
@@ -13,9 +13,4 @@ class SellPayLog extends EloquentRepository
      * @var string
      */
     protected $eloquentClass = Model::class;
-
-    public function selectItems()
-    {
-        return $this->eloquentClass::pluck('sn', 'id')->toarray();
-    }
 }

@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'FeeType' => 'FeeType',
+        'FeeType' => '费用类型',
     ],
     'fields' => [
         'title' => '费用类型',

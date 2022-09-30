@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'StoreCompany' => 'StoreCompany',
+        'StoreCompany' => '仓库公司',
     ],
     'fields' => [
         'title' => '公司名称',

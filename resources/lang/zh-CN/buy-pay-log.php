@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'BuyPayLog' => 'BuyPayLog',
+        'BuyPayLog' => '采购付款记录',
     ],
     'fields' => [
         'sn' => '单号',

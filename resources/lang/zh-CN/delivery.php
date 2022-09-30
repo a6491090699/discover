@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'Delivery' => 'Delivery',
+        'Delivery' => '物流单列表',
     ],
     'fields' => [
         'order_id' => '关联订单',

@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'StoreIn' => 'StoreIn',
+        'StoreIn' => '入库列表',
     ],
     'fields' => [
         'sn' => '入库单号',

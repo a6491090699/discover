@@ -14,7 +14,7 @@
 
 return [
     'labels' => [
-        'CustomerDrawee' => 'CustomerDrawee',
+        'CustomerDrawee' => '客户付款人',
     ],
     'fields' => [
         'customer_id' => '客户档案id',

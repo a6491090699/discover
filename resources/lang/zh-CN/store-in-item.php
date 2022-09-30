@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'StoreInItem' => 'StoreInItem',
+        'StoreInItem' => '入库物品列表',
     ],
     'fields' => [
         'store_in_id' => '入库id',

@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'FrameContract' => 'FrameContract',
+        'FrameContract' => '框架合同',
     ],
     'fields' => [
         'sn' => '合同编号',

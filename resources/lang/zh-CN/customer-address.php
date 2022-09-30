@@ -14,7 +14,7 @@
 
 return [
     'labels' => [
-        'CustomerAddress' => 'CustomerAddress',
+        'CustomerAddress' => '客户地址',
     ],
     'fields' => [
         'address' => '地址',

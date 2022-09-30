@@ -14,7 +14,7 @@
 
 return [
     'labels' => [
-        'CostItem' => 'CostItem',
+        'CostItem' => '费用列表',
     ],
     'fields' => [
         'with_order_no' => '相关订单',

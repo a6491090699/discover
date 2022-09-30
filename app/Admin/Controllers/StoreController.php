@@ -19,23 +19,27 @@ class StoreController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Store(), function (Grid $grid) {
+        return Grid::make(new Store(['storeCompany']), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('store_company_id')->using(StoreCompany::pluck('title','id')->toArray());
+            
             $grid->column('sn');
+            $grid->column('title');
             $grid->column('position');
             $grid->column('man');
             $grid->column('tel');
             $grid->column('type')->using(ModelsStore::TYPE_LIST);
+            $grid->column('storeCompany.title','所属仓库公司');
             $grid->column('save_price');
             $grid->column('move_price');
-            $grid->column('title');
-            $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
+            // $grid->column('created_at');
+            // $grid->column('updated_at')->sortable();
         
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
+            // $grid->filter(function (Grid\Filter $filter) {
+            //     $filter->equal('id');
         
+            // });
+            $grid->selector(function (Grid\Tools\Selector $selector) {
+                $selector->select('store_company_id', '仓库公司', StoreCompany::pluck('title','id')->toArray());
             });
         });
     }

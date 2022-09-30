@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'StoreOut' => 'StoreOut',
+        'StoreOut' => '出库列表',
     ],
     'fields' => [
         'sn' => '出库单号',

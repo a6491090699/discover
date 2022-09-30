@@ -20,39 +20,17 @@ class DepartmentController extends AdminController
      */
     protected function grid()
     {
-        // return new Tree(new $menuModel(), function (Tree $tree) {
-        //     $tree->disableCreateButton();
-        //     $tree->disableQuickCreateButton();
-        //     $tree->disableEditButton();
-
-        //     $tree->branch(function ($branch) {
-        //         $payload = "<i class='fa {$branch['icon']}'></i>&nbsp;<strong>{$branch['title']}</strong>";
-
-        //         if (! isset($branch['children'])) {
-        //             if (url()->isValidUrl($branch['uri'])) {
-        //                 $uri = $branch['uri'];
-        //             } else {
-        //                 $uri = admin_base_path($branch['uri']);
-        //             }
-
-        //             $payload .= "&nbsp;&nbsp;&nbsp;<a href=\"$uri\" class=\"dd-nodrag\">$uri</a>";
-        //         }
-
-        //         return $payload;
-        //     });
-        // });
 
         return Grid::make(new Department(['company']), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('title')->tree();
-            $grid->column('company.title');
+            // $grid->column('company.title','公司名');
             $grid->column('parent_id');
             $grid->column('created_at');
             $grid->column('updated_at')->sortable();
         
-            $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
-        
+            $grid->selector(function (Grid\Tools\Selector $selector) {
+                $selector->select('company_id', '公司', Company::pluck('title','id')->toArray());
             });
         });
     }

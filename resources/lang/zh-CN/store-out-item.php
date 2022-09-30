@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'StoreOutItem' => 'StoreOutItem',
+        'StoreOutItem' => '出库物品列表',
     ],
     'fields' => [
         'store_out_id' => '出库单',
