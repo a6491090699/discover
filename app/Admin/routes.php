@@ -32,6 +32,7 @@ Route::group([
     $router->get('api/get-customer-address', 'ApiController@getCustomerAddress')->name('api.customer.address.find');
     $router->get('api/get-customer-drawee', 'ApiController@getCustomerDrawee')->name('api.customer.drawee.find');
 
+    $router->resource('messages', 'MessageController');
     $router->resource('invoices', 'InvoiceController');
     $router->resource('fee_types', 'FeeTypeController');
     $router->resource('sell_pay_logs', 'SellPayLogController');
@@ -79,6 +80,9 @@ Route::group([
     $router->resource('init-stock-orders', 'InitStockOrderController');
     $router->resource('init-stock-items', 'InitStockItemController');
     $router->get('order-prints', 'PrintController@print')->name('order.print');
+    $router->get('prints-approval', 'PrintController@approvalPrint')->name('order.approvalPrint');
+
+    
     $router->resource('accountant-dates', "AccountantDateController");
     $router->resource('accountant-date-items', "AccountantDateItemController");
     $router->resource('purchase-order-amounts', 'PurchaseOrderAmountController');

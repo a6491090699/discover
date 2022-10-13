@@ -81,4 +81,9 @@ class AdminUser extends Model implements AuthenticatableContract
 
         return $this->belongsToMany($relatedModel, $pivotTable, 'user_id', 'role_id');
     }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class ,'to_uid');
+    }
 }

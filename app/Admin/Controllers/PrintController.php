@@ -36,4 +36,21 @@ class PrintController extends Controller
         $orderName = head(admin_trans($orderSlug . ".labels"));
         return view('print.print', compact("orders", 'orderField', 'itemField', 'orderName'));
     }
+
+    public function approvalPrint(Request $request)
+    {
+        // $orderIds = explode("-", $request->input('ids'));
+        // $model = $request->input('model');
+        // /** @var Model $modelClass */
+        // $modelClass = "\\App\Models\\" . $model;
+        // $orders = $modelClass::query()->findOrFail($orderIds);
+        // $orderSlug = $request->input('slug');
+        // $orderField = collect(admin_trans($orderSlug.".fields"))->chunk(2)->toArray();
+
+        // $itemSlug = Str::replaceFirst("order", "item", $orderSlug);
+        // $itemField = admin_trans($itemSlug.".fields");
+        // $orderName = head(admin_trans($orderSlug . ".labels"));
+        // return view('print.print', compact("orders", 'orderField', 'itemField', 'orderName'));
+        return view('print.approval.store_out');
+    }
 }
