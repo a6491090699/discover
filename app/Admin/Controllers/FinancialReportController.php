@@ -203,7 +203,6 @@ class FinancialReportController extends AdminController
      */
     public function settleData(Content $content, FrameContract $id)
     {
-        // yytodo
         if (request()->query('_reset')) {
             app(RepositoriesFrameContract::class)->triggerCount($id);
             return response()->json(['status' => 1, 'message' => '重置成功']);

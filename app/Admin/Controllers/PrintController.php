@@ -51,6 +51,6 @@ class PrintController extends Controller
         // $itemField = admin_trans($itemSlug.".fields");
         // $orderName = head(admin_trans($orderSlug . ".labels"));
         // return view('print.print', compact("orders", 'orderField', 'itemField', 'orderName'));
-        return view('print.approval.store_out');
+        return view('print.approval.ckhq');
     }
 }

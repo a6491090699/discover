@@ -32,6 +32,9 @@ Route::group([
     $router->get('api/get-customer-address', 'ApiController@getCustomerAddress')->name('api.customer.address.find');
     $router->get('api/get-customer-drawee', 'ApiController@getCustomerDrawee')->name('api.customer.drawee.find');
 
+    $router->resource('approvals', 'ApprovalController');
+    $router->resource('flows', 'FlowController');
+    $router->resource('templates', 'TemplateController');
     $router->resource('messages', 'MessageController');
     $router->resource('invoices', 'InvoiceController');
     $router->resource('fee_types', 'FeeTypeController');
