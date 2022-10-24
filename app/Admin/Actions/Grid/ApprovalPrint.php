@@ -26,10 +26,11 @@ class ApprovalPrint extends RowAction
     public function handle(Request $request)
     {
         // dump($this->getKey());
+        $approval_id = $this->getKey();
 
         return $this->response()
             // ->success('Processed successfully: '.$this->getKey())
-            ->redirect(route('order.approvalPrint'));
+            ->redirect(route('order.approvalPrint' , [$approval_id]));
     }
 
     /**

@@ -28,6 +28,17 @@ class Flow extends Model
         $this->attributes['flow_list'] = json_encode(array_values($fields));
     }
 
+    // public function getFLowListAttribute($extra)
+    // {
+    //     return array_values(json_decode($extra, true) ?: []);
+    // }
+
+    // public function setFLowListAttribute($extra)
+    // {
+    //     $this->attributes['flow_list'] = json_encode(array_values($extra));
+    // }
+
+
     public function template()
     {
         return $this->belongsTo(Template::class, 'template_id');

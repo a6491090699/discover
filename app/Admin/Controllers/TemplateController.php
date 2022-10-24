@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\Template;
+use App\Models\Template as ModelsTemplate;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -22,6 +23,7 @@ class TemplateController extends AdminController
             $grid->column('id')->sortable();
             $grid->column('title');
             $grid->column('slug');
+            $grid->column('type','类型')->using(ModelsTemplate::TYPE_LIST);
             // $grid->column('fields');
             $grid->column('status')->using(['禁用','启用']);
             $grid->column('created_at');
@@ -68,6 +70,8 @@ class TemplateController extends AdminController
                 $table->text('name','字段名');
                 $table->text('field','字段');
             });
+            $form->select('type','类型')->options(ModelsTemplate::TYPE_LIST)->default(ModelsTemplate::TYPE_SHENPI);
+
             $form->select('status')->options(['禁用', '启用']);
 
             $form->display('created_at');

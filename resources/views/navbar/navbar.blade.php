@@ -9,9 +9,9 @@
             </li>
             <li class="scrollable-container media-list ps ps--active-y">
                 @foreach(\App\Models\Message::where('to_uid',auth()->id())->where('is_read',0)->take(3)->get() as $item)
-                <a class="d-flex justify-content-between" href="{{$item->to_url}}">
-                    <div class="media d-flex align-items-start">
-                        <div class="media-left"><i class="feather icon-plus-square font-medium-5 primary"></i></div>
+                <a class="d-flex justify-content-between message-item" href="javascript:void(0)" data-id="{{$item->id}}" data-url="{{$item->to_url}}">
+                    <div class="media d-flex align-items-start" style="width:100%">
+                        <div class="media-left"><i class="feather icon-alert-triangle font-medium-5 primary"></i></div>
                         <div class="media-body">
                             <h6 class="primary media-heading">{{$item->fromUser->name}}</h6><small class="notification-text">{{$item->content}}</small>
                         </div><small>
@@ -45,3 +45,20 @@
         </ul>
     </li>
 </ul>
+
+<script>
+    $('.message-item').click(function(){
+        var id = $(this).data('id')
+        var url = $(this).data('url')
+        if(id){
+            $.ajax({
+                url:"{{route('pub.messageRead')}}",
+                method: "POST",
+                data :{id:id},
+                success:function(d){
+                    location.href=url;
+                }
+            })
+        }
+    })
+</script>

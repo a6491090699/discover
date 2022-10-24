@@ -32,7 +32,11 @@ Route::group([
     $router->get('api/get-customer-address', 'ApiController@getCustomerAddress')->name('api.customer.address.find');
     $router->get('api/get-customer-drawee', 'ApiController@getCustomerDrawee')->name('api.customer.drawee.find');
 
+    $router->any('approvals/check/{id}' , 'ApprovalController@checkInfo')->name('approval.checkInfo');
+    // $router->post('approvals/check' , 'ApprovalController@check')->name('approval.check');
+    $router->put('approvals/check' , 'ApprovalController@check')->name('approval.check');
     $router->resource('approvals', 'ApprovalController');
+ 
     $router->resource('flows', 'FlowController');
     $router->resource('templates', 'TemplateController');
     $router->resource('messages', 'MessageController');
@@ -83,7 +87,9 @@ Route::group([
     $router->resource('init-stock-orders', 'InitStockOrderController');
     $router->resource('init-stock-items', 'InitStockItemController');
     $router->get('order-prints', 'PrintController@print')->name('order.print');
-    $router->get('prints-approval', 'PrintController@approvalPrint')->name('order.approvalPrint');
+    $router->get('prints-approval/{id}', 'PrintController@approvalPrint')->name('order.approvalPrint');
+    $router->get('prints-contract/{id}', 'PrintController@contractPrint')->name('order.contractPrint');
+    $router->get('prints-test', 'PrintController@test');
 
     
     $router->resource('accountant-dates', "AccountantDateController");

@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'Template' => 'Template',
+        'Template' => '模板管理',
     ],
     'fields' => [
         'title' => '标题',

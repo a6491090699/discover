@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin\Repositories\Message;
 use App\Services\AdminUserService;
 use App\Services\PermissionService;
 use App\Services\RoleService;
@@ -115,5 +116,18 @@ class PubController extends Controller
                 $list = collect([]);
         }
         return $list->toArray();
+    }
+
+
+    public function messageRead()
+    {
+        $id = request()->input('id');
+        if (request()->filled('id')) {
+            if (app(Message::class)->read($id)) {
+                return response()->json(['status' => 1, 'message' => 'success']);
+            }
+            return response()->json(['status' => 0, 'message' => 'fail']);
+        }
+        return response()->json(['status' => 0, 'message' => 'error']);
     }
 }

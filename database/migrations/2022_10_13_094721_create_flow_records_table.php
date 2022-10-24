@@ -19,6 +19,7 @@ class CreateFlowRecordsTable extends Migration
             $table->integer('step_id');
             $table->integer('check_user_id');
             $table->text('content');
+            $table->tinyIncrements('status')->default(0)->comment('0未审核 1成功  2 失败 ');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -2,12 +2,14 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\ApprovalCheck;
 use App\Admin\Actions\Grid\ApprovalPrint;
 use App\Admin\Repositories\Approval;
 use App\Admin\Repositories\Flow;
 use App\Models\AdminUser;
 use App\Models\Approval as ModelsApproval;
 use App\Models\Flow as ModelsFlow;
+use App\Models\FlowRecord;
 use App\Models\Template;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
@@ -15,10 +17,33 @@ use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
 use Dcat\Admin\Form\NestedForm;
+use Dcat\Admin\Layout\Content;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ApprovalController extends AdminController
 {
+    public function title()
+    {
+        $dtype = request()->input('dtype', 1);
+        switch ($dtype) {
+            case 1:
+                $title = '我的待办';
+                break;
+            case 2:
+                $title = '我发起的';
+                break;
+            case 3:
+                $title = '我处理的';
+                break;
+            case 4:
+                $title = '抄送我的';
+                break;
+            default:
+                $title = '审批列表';
+        }
+        return $title;
+    }
     /**
      * Make a grid builder.
      *
@@ -26,25 +51,48 @@ class ApprovalController extends AdminController
      */
     protected function grid()
     {
+        if (!request()->filled('dtype')) {
+            abort(404);
+        }
         return Grid::make(new Approval(), function (Grid $grid) {
-            $dtype = request()->input('dtype', 0);
+            $dtype = request()->input('dtype', 1);
             $user_id = auth()->id();
             switch ($dtype) {
                 case 1:
                     //我的待办
-                    $grid->model()->with('flowSteps', 'flowRecords', 'flow')->where('check_status', ModelsApproval::STATUS_ING)->whereHas('flowSteps', function ($query) use ($user_id) {
+                    $grid->model()->with('flowSteps', 'flowRecords', 'flow')->whereIn('check_status', [ModelsApproval::STATUS_ING, ModelsApproval::STATUS_NO])->whereHas('flowSteps', function ($query) use ($user_id) {
                         $query->where('flow_uid', $user_id);
-                    });
+                    })->where('next_user_id',$user_id);
+
+                    $grid->actions(new ApprovalCheck());
+
+                    $grid->disableQuickEditButton();
 
                     break;
                 case 2:
                     //我发起的
                     $grid->model()->with('flowSteps', 'flowRecords', 'flow')->where('user_id', $user_id);
+                    //审核中 就不能编辑了 todo
+                    $grid->actions(function (Grid\Displayers\Actions $actions) {
+                        // 当前行的数据数组
+                        $rowArray = $actions->row->toArray();
+
+                        if (auth()->id() !== $rowArray['user_id'] || $rowArray['check_status'] != ModelsApproval::STATUS_NO) {
+                            $actions->disableQuickEdit();
+                        }
+                        $actions->disableView(false);
+                    });
                     break;
                 case 3:
                     //我处理的
-                    $grid->model()->with('flowSteps', 'flowRecords', 'flow')->whereIn('check_status', [ModelsApproval::STATUS_SUCCESS, ModelsApproval::STATUS_FAIL])->whereHas('flowSteps', function ($query) use ($user_id) {
+                    $grid->model()->with('flowSteps', 'flowRecords', 'flow')->whereHas('flowSteps', function ($query) use ($user_id) {
                         $query->where('flow_uid', $user_id);
+                    });
+                    $grid->disableQuickEditButton();
+                    $grid->actions(function (Grid\Displayers\Actions $actions) {
+                        // 当前行的数据数组
+                        $rowArray = $actions->row->toArray();
+                        $actions->disableView(false);
                     });
                     break;
                 case 4:
@@ -66,28 +114,43 @@ class ApprovalController extends AdminController
             // $grid->column('remark');
             // $grid->column('last_user_id');
             $grid->column('created_at');
+
             $grid->actions(new ApprovalPrint());
 
-            $grid->actions(function (Grid\Displayers\Actions $actions) {
-                // 当前行的数据数组
-                $rowArray = $actions->row->toArray();
 
-                // if (auth()->id() !== $rowArray['user_id'] || $rowArray['check_status'] != ModelsApproval::STATUS_NO) {
-                //     $actions->disableQuickEdit();
-                // }
-                // $actions->disableView(false);
-
-                //todo action审批按钮
-            });
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
             });
         });
     }
 
+    public function checkInfo($id, Content $content)
+    {
+        return $content
+            ->title($this->title())
+            ->description($this->description()['show'] ?? trans('admin.show'))
+            ->body($this->detail($id))
+            ->body($this->items()->edit($id))->full();
+    }
+
+    public function check()
+    {
+        if (request()->filled(['id','status'])) {
+
+            $data = request()->all();
+
+            if (app(Approval::class)->check($data['id'], auth()->id(), $data['status'] ?? 0, $data)) {
+                return response()->json(['status' => 1, 'message' => '操作成功']);
+            } else {
+                return response()->json(['status' => 0, 'message' => '操作失败']);
+            }
+        }
+        return response()->json(['status' => 0, 'message' => '请选择审核状态']);
+    }
+
     /**
      * Make a show builder.
-     *
+     * 审批详情
      * @param mixed $id
      *
      * @return Show
@@ -95,18 +158,44 @@ class ApprovalController extends AdminController
     protected function detail($id)
     {
         return Show::make($id, new Approval(), function (Show $show) {
+            $show->disableDeleteButton();
+            $show->disableEditButton();
+            $show->disableListButton();
             $show->field('id');
-            $show->field('flow_id');
-            $show->field('content');
+            $show->field('title');
+            $show->field('flow_id')->using(app(Flow::class)->selectItems());
+            // $show->field('content');
             $show->field('remark');
-            $show->field('user_id');
-            $show->field('check_step_sort');
-            $show->field('check_user_ids');
-            $show->field('flow_user_ids');
-            $show->field('check_status');
-            $show->field('last_user_id');
-            $show->field('created_at');
-            $show->field('updated_at');
+            $show->field('user_id')->using(AdminUser::pluck('name', 'id')->toArray());
+            // $show->field('check_step_sort');
+            $show->field('check_user_ids')->as(function () {
+                $users = AdminUser::whereIn('id', $this->check_user_ids)->pluck('name', 'id');
+                $r = '';
+                foreach ($this->check_user_ids as $i) {
+                    $r .= $users[$i] . '>>>';
+                }
+                return rtrim($r, '>>>');
+            });
+            $show->field('first_man', '当前审批人')->as(function () {
+                $uid = $this->check_user_ids[$this->check_step_sort];
+                return AdminUser::where('id', $uid)->value('name');
+            });
+            $show->field('next_man', '下一个审批人')->as(function () {
+                $nextid = min($this->check_step_sort + 1, count($this->check_user_ids) - 1);
+                $uid = $this->check_user_ids[$nextid];
+                return AdminUser::where('id', $uid)->value('name') ?? '';
+            });
+            $show->divider();
+            $show->html('<div class="box-header with-border" style="padding: .65rem 1rem">
+                <h3 class="box-title" style="line-height:30px;">审批单详情</h3></div>');
+            $flow = ModelsFlow::find($show->model()->flow_id);
+            foreach ($flow->template->fields as $item) {
+
+                $show->field($item['field'], $item['name'])->as(function ($i) use ($item) {
+                    $content = json_decode($this->content, JSON_UNESCAPED_UNICODE);
+                    return $content[$item['field']] ?? '';
+                });
+            }
         });
     }
 
@@ -125,7 +214,14 @@ class ApprovalController extends AdminController
                 $form->hidden('user_id');
                 //当前审批人
                 if ($form->isEditing()) {
-                    $form->multipleSelect('check_user_ids')->options(AdminUser::pluck('name', 'id')->toArray())->disable();
+                    $form->text('check_user_ids')->customFormat(function ($item) {
+                        $users = AdminUser::whereIn('id', $this->check_user_ids)->pluck('name', 'id');
+                        $r = '';
+                        foreach ($this->check_user_ids as $i) {
+                            $r .= $users[$i] . '>>>';
+                        }
+                        return rtrim($r, '>>>');
+                    })->disable();
 
                     $form->text('first_man', '当前审批人')->customFormat(function ($item) {
                         $uid = $this->check_user_ids[$this->check_step_sort];
@@ -138,9 +234,13 @@ class ApprovalController extends AdminController
                         return AdminUser::where('id', $uid)->value('name') ?? '';
                     })->disable();
                 }
+                if ($form->isCreating()) {
+                    $form->hidden('check_user_ids');
+                }
 
                 $form->hidden('check_step_sort');
                 $form->hidden('content');
+                $form->hidden('next_user_id');
                 $form->select('check_status')->options(ModelsApproval::STATUS_LIST)->default(0);
                 $form->text('remark');
 
@@ -153,7 +253,7 @@ class ApprovalController extends AdminController
                 $form->tab('审批单设置', function (Form $form) {
                     $flow = ModelsFlow::find($form->model()->flow_id);
                     foreach ($flow->template->fields as $item) {
-                        $form->text($item['field'], $item['name'])->customFormat(function ($i) use ($item) {
+                        $form->textarea($item['field'], $item['name'])->customFormat(function ($i) use ($item) {
                             $content = json_decode($this->content, JSON_UNESCAPED_UNICODE);
                             return $content[$item['field']] ?? '';
                         });
@@ -170,7 +270,10 @@ class ApprovalController extends AdminController
                 if ($form->isCreating()) {
                     $form->user_id = auth()->id();
                     $form->check_step_sort = 0;
-                    $form->check_user_ids = ModelsFlow::where('id', $form->flow_id)->value('flow_list');
+                    $flow_list = data_get(ModelsFlow::where('id', $form->flow_id)->value('flow_list'), '*.id');
+                    $form->check_user_ids = $flow_list;
+                    $form->next_user_id = $flow_list[0];
+                    // $form->check_user_ids = [2,1];
                 }
                 if ($form->isEditing()) {
                     $flow = ModelsFlow::find($form->model()->flow_id);
@@ -191,6 +294,40 @@ class ApprovalController extends AdminController
                     app(Approval::class)->add($newId);
                 }
             });
+        });
+    }
+
+    /**
+     * Make a form builder.
+     *
+     * @return Form
+     */
+    protected function items()
+    {
+        return Form::make(new Approval(), function (Form &$form) {
+            $form->title('审批单编辑');
+            $form->disableListButton();
+            $form->disableViewButton();
+            $form->disableDeleteButton();
+            $form->disableResetButton();
+            $form->disableEditingCheck();
+            $form->disableViewCheck();
+            $form->disableSubmitButton();
+            $form->hidden('id');
+            $form->hidden('content');
+            $form->select('status','审批状态')->options(FlowRecord::STATUS_LIST)->required();
+            // $form->hidden('after-save')->value(3);
+
+            if ($form->isEditing()) {
+
+                $flow = ModelsFlow::find($form->model()->flow_id);
+                foreach ($flow->template->fields as $item) {
+                    $form->textarea($item['field'], $item['name'])->customFormat(function ($i) use ($item) {
+                        $content = json_decode($this->content, JSON_UNESCAPED_UNICODE);
+                        return $content[$item['field']] ?? '';
+                    });
+                }
+            }
         });
     }
 }

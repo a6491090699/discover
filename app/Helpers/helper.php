@@ -17,6 +17,7 @@ use App\Models\BaseModel;
 use App\Models\OrderNoGeneratorModel;
 use App\Models\PurchaseOrderModel;
 use Illuminate\Support\Facades\Redis;
+use Yurun\Util\Chinese\Money;
 
 if (!file_exists("lower_pinyin_abbr")) {
     /**
@@ -276,4 +277,10 @@ function list_to_tree($list, $pk = 'id', $pid = 'pid', $child = '_child', $root 
         }
     }
     return $tree;
+}
+
+function up_pinyin_money($money)
+{
+    $chinese = Money::toChinese($money);
+    return $chinese;
 }
