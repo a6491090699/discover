@@ -81,7 +81,7 @@ class StoreController extends AdminController
             $form->text('title')->required();
             $form->select('store_company_id')->options(StoreCompany::pluck('title','id'))->required();
             $form->text('sn')->value(create_uniqid_sn('store'))->readonly()->required();
-            $form->text('position')->required();
+            $form->text('position','详细地址')->required();
             $form->text('man')->required();
             $form->text('tel')->required();
             $form->select('type')->options(ModelsStore::TYPE_LIST)->required();

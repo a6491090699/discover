@@ -2,6 +2,7 @@
 
 namespace App\Admin\Actions\Grid;
 
+use App\Models\FrameContract;
 use Dcat\Admin\Actions\Response;
 use Dcat\Admin\Grid\RowAction;
 use Dcat\Admin\Traits\HasPermissions;
@@ -9,7 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class ApprovalPrint extends RowAction
+class ContractTradePrint extends RowAction
 {
     /**
      * @return string
@@ -26,11 +27,12 @@ class ApprovalPrint extends RowAction
     public function handle(Request $request)
     {
         // dump($this->getKey());
-        $approval_id = $this->getKey();
-
+        
+        $obj = FrameContract::find($this->getKey());
+        
         return $this->response()
             // ->success('Processed successfully: '.$this->getKey())
-            ->redirect(route('order.approvalPrint' , [$approval_id]));
+            ->redirect(route('order.contractPrint' , [$this->getKey(),'type'=>'trade','slug'=>$obj->template->slug]));
     }
 
     /**

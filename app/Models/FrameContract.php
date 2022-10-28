@@ -26,4 +26,10 @@ class FrameContract extends Model
     {
         return $this->hasMany(SaleOrderModel::class);
     }
+
+    public function template()
+    {
+        return $this->belongsTo(Template::class);
+    }
+
 }

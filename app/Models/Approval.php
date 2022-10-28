@@ -19,10 +19,10 @@ class Approval extends Model
     const STATUS_REVOKE = '4';
 
     const STATUS_LIST = [
-        self::STATUS_NO => '未审核',
-        self::STATUS_ING => '审核中',
-        self::STATUS_SUCCESS => '审核成功',
-        self::STATUS_FAIL => '审核失败',
+        self::STATUS_NO => '未审批',
+        self::STATUS_ING => '审批中',
+        self::STATUS_SUCCESS => '审批成功',
+        self::STATUS_FAIL => '审批失败',
         self::STATUS_REVOKE => '撤回',
     ];
 
@@ -49,5 +49,15 @@ class Approval extends Model
     public function setCheckUserIdsAttribute($fields)
     {
         $this->attributes['check_user_ids'] = json_encode(array_values($fields));
+    }
+
+    public function getFlowUserIdsAttribute($fields)
+    {
+        return array_values(json_decode($fields, true) ?: []);
+    }
+
+    public function setFlowUserIdsAttribute($fields)
+    {
+        $this->attributes['flow_user_ids'] = json_encode(array_values($fields));
     }
 }

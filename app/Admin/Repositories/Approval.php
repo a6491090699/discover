@@ -7,6 +7,7 @@ use App\Models\Flow;
 use App\Models\FlowRecord;
 use App\Models\FlowStep;
 use Dcat\Admin\Repositories\EloquentRepository;
+use Illuminate\Support\Facades\DB;
 
 class Approval extends EloquentRepository
 {
@@ -30,38 +31,69 @@ class Approval extends EloquentRepository
 
         //flow_steps
         $steps = [];
+        $check_user_ids = data_get($flow->flow_list, '*.id');
 
-        foreach ($flow->flow_list as $key => $item) {
+        foreach ($check_user_ids as $key => $item) {
             $steps[] = new FlowStep([
                 'flow_uid' => $item,
                 'sort' => $key,
             ]);
         }
         $approval->flowSteps()->saveMany($steps);
+
+        //发送通知
+        app(Message::class)->add($approval->user_id, $check_user_ids[0], '您有新审批单未审批', 2, route('approvals.index', ['dtype' => 1]));
     }
 
-    public function check($approval_id, $user_id, $content = '')
+    public function check($approval_id, $user_id, $status, $data = '')
     {
+        DB::beginTransaction();
         $approval = Model::find($approval_id);
         if (in_array($user_id, $approval->check_user_ids)) {
+            $flow = $approval->flow;
+            $cc = [];
+            foreach ($flow->template->fields as $item) {
+                if (isset($data[$item['field']])) {
+                    $cc[$item['field']] = $data[$item['field']];
+                }
+            }
+
             $approval->flowRecords()->save(new FlowRecord([
                 'step_id' => $approval->flowSteps()->where('flow_uid', $user_id)->value('id'),
                 'check_user_id' => $user_id,
-                'content' => $content,
+                'content' => '',
+                'status' => $status,
             ]));
             $approval->last_user_id = $user_id;
-            $approval->flow_user_ids = array_push((array)$approval->flow_user_ids, $user_id);
+            $flow_user_ids = $approval->flow_user_ids;
+            
+            array_push($flow_user_ids, (string)$user_id);
+            $approval->flow_user_ids = $flow_user_ids;
+            $approval->content = json_encode($cc, JSON_UNESCAPED_UNICODE);
+
+            //审核失败
+            if ($status == 2) {
+                $approval->check_status = Model::STATUS_FAIL;
+                $approval->save();
+                return true;
+            }
             //是否最后一个
             $check_user_ids = $approval->check_user_ids;
-            if ($approval->user_id == array_pop($check_user_ids)) {
+            if (auth()->id() == array_pop($check_user_ids)) {
                 $approval->check_status = Model::STATUS_SUCCESS;
             } else {
                 $approval->check_step_sort = $approval->check_step_sort + 1;
+                $approval->next_user_id = $approval->check_user_ids[$approval->check_step_sort];
+                //发送通知
+                app(Message::class)->add($approval->user_id, $approval->next_user_id, '您有新审批单未审批', 2, route('approvals.index', ['dtype' => 1]));
             }
             $approval->save();
-
+            DB::commit();
             return true;
+            
+
         } else {
+            DB::rollBack();
             return false;
         }
     }
@@ -92,20 +124,19 @@ class Approval extends EloquentRepository
                 break;
             case 2:
                 //我发起的
-                $query = $query->where('user_id',$user_id);
+                $query = $query->where('user_id', $user_id);
                 break;
             case 3:
                 //我处理的
-                $query = $query->whereIn('check_status', [Model::STATUS_SUCCESS,Model::STATUS_FAIL])->whereHas('flowSteps', function ($query) use ($user_id) {
+                $query = $query->whereIn('check_status', [Model::STATUS_SUCCESS, Model::STATUS_FAIL])->whereHas('flowSteps', function ($query) use ($user_id) {
                     $query->where('flow_uid', $user_id);
                 });
                 break;
             case 4:
                 //抄送我的
-                
+
                 break;
             default:
-
         }
 
         $data = $query->paginate($pagesize, '*', 'page', $page);

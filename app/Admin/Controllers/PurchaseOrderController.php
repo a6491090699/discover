@@ -22,6 +22,7 @@ use App\Admin\Repositories\PurchaseOrder;
 use App\Models\FrameContract;
 use App\Models\ProductModel;
 use App\Models\PurchaseOrderModel;
+use App\Models\Store;
 use App\Models\SupplierModel;
 use App\Repositories\SupplierRepository;
 use Dcat\Admin\Form;
@@ -118,6 +119,11 @@ class PurchaseOrderController extends OrderController
             $row->width(6)->hidden('total_money')->default(0);
         });
         $form->row(function (Form\Row $row) {
+            $row->width(6)->datetime('receive_deadline', '预计收货截止日期')->required();
+            $row->width(6)->decimal('liquidated_damage_rate', '违约金比例')->required();
+        });
+        $form->row(function (Form\Row $row) {
+            $row->width(6)->select('store_id', '入库仓库')->options(Store::pluck('title','id'))->required();
             $row->width(6)->decimal('advance_charge_money', '定金');
         });
 

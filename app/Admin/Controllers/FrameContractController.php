@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\ContractTradePrint;
 use App\Admin\Actions\Grid\SettleData;
 use App\Admin\Renderables\FrameContractTable;
 use App\Admin\Renderables\PurchaseOrderTable;
@@ -9,10 +10,12 @@ use App\Admin\Renderables\SaleOrderTable;
 use App\Admin\Repositories\Customer;
 use App\Admin\Repositories\FrameContract;
 use App\Models\CustomerModel;
+use App\Models\Template;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Controllers\AdminController;
+use Dcat\Admin\Form\NestedForm;
 use Dcat\Admin\Support\Helper;
 
 class FrameContractController extends AdminController
@@ -33,8 +36,8 @@ class FrameContractController extends AdminController
             $grid->column('sn');
             $grid->column('money');
             $grid->column('customer_id')->using(app(Customer::class)->selectItems());
-            $grid->column('purchase_order' ,'采购合同列表')->display('查看')->modal(PurchaseOrderTable::make());
-            $grid->column('sale_order' ,'销售合同列表')->display('查看')->modal(SaleOrderTable::make());
+            $grid->column('purchase_order', '采购合同列表')->display('查看')->modal(PurchaseOrderTable::make());
+            $grid->column('sale_order', '销售合同列表')->display('查看')->modal(SaleOrderTable::make());
             // $grid->column('products');
             // $grid->column('year_rate');
             // $grid->column('money_zy');
@@ -50,10 +53,10 @@ class FrameContractController extends AdminController
             // $grid->column('pics');
             $grid->column('created_at');
             $grid->actions(new SettleData());
-        
+            $grid->actions(new ContractTradePrint());
+
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
             });
         });
     }
@@ -98,14 +101,35 @@ class FrameContractController extends AdminController
     protected function form()
     {
         return Form::make(new FrameContract(), function (Form $form) {
-            $form->display('id');
-            $form->text('sn')->value(create_uniqid_sn('frame_contract'))->readonly()->required();
-            $form->decimal('money')->readOnly();
-            $form->select('customer_id')->options(app(Customer::class)->selectItems())->required();
-            // $form->text('products');
-            $form->decimal('year_rate');
-            $form->decimal('zhanyong_rate' ,'资金占用费率(年化率)');
-            $form->decimal('caozuo_rate','操作费率');
+            $form->tab('信息设置' ,function(Form $form){
+                $form->display('id');
+                $form->text('sn')->value(create_uniqid_sn('frame_contract'))->readonly()->required();
+                $form->decimal('money')->readOnly();
+                $form->select('customer_id')->options(app(Customer::class)->selectItems())->required();
+                // $form->text('products');
+                $form->decimal('year_rate');
+                $form->decimal('zhanyong_rate', '资金占用费率(年化率)');
+                $form->decimal('caozuo_rate', '操作费率');
+                $form->select('template_id', '合作协议模板')->options(Template::where('type', 2)->pluck('title', 'id'))->required();
+                $form->multipleImage('pics')->saving(function ($v) {
+                    $v = Helper::array($v);
+                    return json_encode($v);
+                });
+                $form->hidden('template_data');
+            });
+            if ($form->isEditing()) {
+                $form->tab('协议模板参数设置' , function(Form $form){
+                    $template = Template::find($form->model()->template_id);
+                    foreach ($template->fields as $item) {
+                        $form->textarea($item['field'], $item['name'])->customFormat(function ($i) use ($item) {
+                            $template_data = json_decode($this->template_data, JSON_UNESCAPED_UNICODE);
+                            return $template_data[$item['field']] ?? '';
+                        });
+                    }
+                });
+            }
+
+            
             // $form->selectTable('purcharse_order_ids')->title('采购合同关联(多选)')->dialogWidth('50%')->from()->model();
             // $form->selectTable('sale_order_ids')->title('销售合同关联(多选)')->dialogWidth('50%')->from()->model();
             // $form->decimal('money_zy');
@@ -118,21 +142,26 @@ class FrameContractController extends AdminController
             // $form->decimal('money_sc');
             // $form->keyValue('money_other');
             // $form->number('status')->required();
-            $form->multipleImage('pics')->saving(function ($v) {
-                $v = Helper::array($v);
-                return json_encode($v);
-            });
             
+
             // $form->display('created_at');
             // $form->display('updated_at');
 
             if ($form->isCreating()) {
-                $form->saved(function($form){
+                $form->saved(function ($form) {
                     increment_uniqid_sn('frame_contract');
                 });
             }
-            
-
+            if ($form->isEditing()) {
+                $template = Template::find($form->model()->template_id);
+                $template_data = [];
+                foreach ($template->fields as $item) {
+                    $template_data[$item['field']] = $form->input($item['field']);
+                    $form->deleteInput($item['field']);
+                }
+                $form->template_data = json_encode($template_data);
+                $form->deleteInput('check_user_ids');
+            }
         });
     }
 }

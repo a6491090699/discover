@@ -9,7 +9,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class ApprovalPrint extends RowAction
+class ContractSellPrint extends RowAction
 {
     /**
      * @return string
@@ -26,11 +26,11 @@ class ApprovalPrint extends RowAction
     public function handle(Request $request)
     {
         // dump($this->getKey());
-        $approval_id = $this->getKey();
+        $contract_id = $this->getKey();
 
         return $this->response()
             // ->success('Processed successfully: '.$this->getKey())
-            ->redirect(route('order.approvalPrint' , [$approval_id]));
+            ->redirect(route('order.contractPrint' , [$contract_id ,'type'=>'sell']));
     }
 
     /**

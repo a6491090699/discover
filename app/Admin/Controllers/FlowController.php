@@ -65,7 +65,15 @@ class FlowController extends AdminController
 
             $form->text('title');
             $form->select('check_type')->options(ModelsFlow::CHECK_TYPE_LIST)->default(ModelsFlow::CHECK_TYPE_ZHIDING)->when(ModelsFlow::CHECK_TYPE_ZHIDING, function (Form $form) {
-                $form->listbox('flow_list', '会签人')->options(AdminUser::pluck('name', 'id')->toArray())->help('按顺序会签');
+                // $form->listbox('flow_list', '会签人')->options(AdminUser::pluck('name', 'id')->toArray())->help('按顺序会签');
+                //todo 不能排序  用table做 
+                $form->table('flow_list' ,'会签人' , function(NestedForm $table){
+                    $table->select('id','用户')->options(AdminUser::pluck('name', 'id')->toArray());
+                })->help('按顺序会签');
+                // $form->table('fields', function (NestedForm $table) {
+                //     $table->text('name','字段名');
+                //     $table->text('field','字段');
+                // });
             });
             $form->select('template_id', '审批模板')->options(Template::pluck('title', 'id')->toarray());
             $form->text('remark');

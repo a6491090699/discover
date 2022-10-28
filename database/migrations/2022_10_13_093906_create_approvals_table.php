@@ -17,7 +17,7 @@ class CreateApprovalsTable extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->integer('flow_id')->nullable();
-            $table->string('content')->nullable();
+            $table->longText('content')->nullable();
             $table->text('remark')->nullable();
             $table->dateTime('end_at')->nullable();
             $table->integer('user_id')->nullable();

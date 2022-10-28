@@ -140,4 +140,9 @@ class PurchaseOrderModel extends PurchaseBaseModel
     {
         return $this->hasMany(BuyPayLog::class , 'purchase_order_id');
     }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
 }

@@ -27,5 +27,6 @@ class VerifyCsrfToken extends Middleware
         //
         'admin/auth/menu',
         'admin/auth/permissions',
+        'api/pub/*'
     ];
 }

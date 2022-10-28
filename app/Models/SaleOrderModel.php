@@ -131,9 +131,14 @@ class SaleOrderModel extends SaleBaseModel
     {
         return $this->belongsTo(FrameContract::class);
     }
-    
+
     public function payLog()
     {
-        return $this->hasMany(SellPayLog::class,'sale_order_id');
+        return $this->hasMany(SellPayLog::class, 'sale_order_id');
+    }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
     }
 }

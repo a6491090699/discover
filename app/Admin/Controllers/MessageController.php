@@ -70,12 +70,12 @@ class MessageController extends AdminController
     {
         return Form::make(new Message(), function (Form $form) {
             $form->display('id');
-            $form->text('from_uid');
-            $form->text('to_uid');
-            $form->text('content');
-            $form->text('is_read');
-            $form->text('type');
-            $form->text('to_url');
+            $form->select('from_uid')->options(AdminUser::pluck('name','id')->toArray());
+            $form->select('to_uid')->options(AdminUser::pluck('name','id')->toArray());
+            $form->textarea('content');
+            $form->hidden('is_read')->value(0);
+            $form->hidden('type');
+            $form->hidden('to_url');
 
             $form->display('created_at');
             $form->display('updated_at');
