@@ -57,6 +57,9 @@ class FrameContractController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->equal('sn');
+                $filter->equal('customer_id')->select(app(Customer::class)->selectItems());
+                
             });
         });
     }

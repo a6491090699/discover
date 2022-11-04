@@ -32,15 +32,27 @@ class SupplierController extends AdminController
     {
         return Grid::make(new Supplier(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('link')->emp();
+            // $grid->column('link')->emp();
             $grid->column('name')->emp();
+            $grid->column('sn')->emp();
 
-            $grid->column('status')->using(SupplierModel::STATUS_LIST);
-            $grid->column('phone')->emp();
-            $grid->column('other')->emp();
+            $grid->column('status')->using(SupplierModel::STATUS_LIST)->dot(
+                [
+                    1 => 'primary',
+                    2 => 'danger',
+                    3 => 'success',
+                ],
+            );
+            // $grid->column('phone')->emp();
+            // $grid->column('other')->emp();
             $grid->column('created_at');
 
             $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('id');
+                $filter->like('name');
+                $filter->equal('phone');
+                $filter->equal('status')->select(SupplierModel::STATUS_LIST);
+                $filter->equal('sn');
             });
         });
     }
@@ -89,7 +101,7 @@ class SupplierController extends AdminController
             $form->text('bank_account')->required();
             $form->text('bank_top')->required();
             if ($form->isCreating()) {
-                $form->saved(function($form){
+                $form->saved(function ($form) {
                     increment_uniqid_sn('supplier');
                 });
             }

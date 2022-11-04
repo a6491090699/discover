@@ -240,15 +240,15 @@ style='font-size:12.0pt;mso-bidi-font-weight:bold'><o:p>&nbsp;</o:p></span></p>
 
 <p class=MsoNormal align=right style='margin-right:56.0pt;text-align:right'><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
-minor-fareast'>合同编号：{{$info->template_data['sn']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast'>合同编号：{{$info->template_data['sn']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal align=right style='margin-right:56.0pt;text-align:right'><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
-minor-fareast'>签订日期：{{$info->template_data['sign_at']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast'>签订日期：{{$info->template_data['sign_at']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal align=right style='margin-right:56.0pt;text-align:right'><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
-minor-fareast'>签订地点：{{$info->template_data['sign_address']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast'>签订地点：{{$info->template_data['sign_address']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='margin-right:56.0pt'><span lang=EN-US
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
@@ -275,18 +275,18 @@ none'><span lang=EN-US style='font-size:14.0pt;line-height:125%;font-family:
 <p class=MsoNormal style='text-indent:84.0pt;mso-char-indent-count:6.0;
 line-height:125%;layout-grid-mode:char;mso-layout-grid-align:none'><span
 lang=EN-US style='font-size:14.0pt;line-height:125%;font-family:宋体;mso-bidi-font-family:
-"Times New Roman"'>{{$info->template_data['b_name']}}</span><span style='font-size:14.0pt;line-height:125%;
+"Times New Roman"'>{{$info->template_data['b_name']??''}}</span><span style='font-size:14.0pt;line-height:125%;
 font-family:宋体;mso-bidi-font-family:"Times New Roman"'></span><span
 style='font-size:14.0pt;line-height:125%;font-family:宋体;mso-fareast-font-family:
 宋体;mso-fareast-theme-font:minor-fareast'>（以下称乙方） <span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='line-height:125%;layout-grid-mode:char;mso-layout-grid-align:
 none'><span style='font-size:14.0pt;line-height:125%;font-family:宋体;mso-fareast-font-family:
-宋体;mso-fareast-theme-font:minor-fareast'>公司地址：{{$info->template_data['b_address']}}<span lang=EN-US><o:p></o:p></span></span></p>
+宋体;mso-fareast-theme-font:minor-fareast'>公司地址：{{$info->template_data['b_address']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='line-height:125%;layout-grid-mode:char;mso-layout-grid-align:
 none'><span style='font-size:14.0pt;line-height:125%;font-family:宋体;mso-fareast-font-family:
-宋体;mso-fareast-theme-font:minor-fareast'>法定代表人：{{$info->template_data['b_hostname']}}<span lang=EN-US><o:p></o:p></span></span></p>
+宋体;mso-fareast-theme-font:minor-fareast'>法定代表人：{{$info->template_data['b_hostname']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:14.0pt;font-family:宋体;
 mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'><o:p>&nbsp;</o:p></span></p>
@@ -308,7 +308,7 @@ minor-fareast;mso-hansi-font-family:Calibri;mso-hansi-theme-font:minor-latin;
 color:windowtext'><span lang=EN-US>法规</span></span></a></span><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
 minor-fareast'>，甲乙双方在公平自愿的基础上，经平等协商，就双方合作开展<u style='text-underline:red'><span
-lang=EN-US style='color:red'>{{$info->template_data['goods_name']}}</span></u>贸易事宜，达成如下协议：<span lang=EN-US><o:p></o:p></span></span></p>
+lang=EN-US style='color:red'>{{$info->template_data['goods_name']??''}}</span></u>贸易事宜，达成如下协议：<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
@@ -322,32 +322,32 @@ minor-fareast'>、供货方：{{config('admin.our_info.name')}}<span lang=EN-US>
 <p class=MsoNormal><span lang=EN-US style='font-size:14.0pt;font-family:宋体;
 mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'>2</span><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
-minor-fareast'>、采购合同号：{{$info->template_data['buy_contract_sn']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast'>、采购合同号：{{$info->template_data['buy_contract_sn']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:14.0pt;font-family:宋体;
 mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'>3</span><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
-minor-fareast'>、品名：{{$info->template_data['goods_name']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast'>、品名：{{$info->template_data['goods_name']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:14.0pt;font-family:宋体;
 mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'>4</span><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
-minor-fareast'>、规格：{{$info->template_data['goods_attr']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast'>、规格：{{$info->template_data['goods_attr']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:14.0pt;font-family:宋体;
 mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'>5</span><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
-minor-fareast'>、数量：{{$info->template_data['goods_num']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast'>、数量：{{$info->template_data['goods_num']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:14.0pt;font-family:宋体;
 mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'>6</span><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
-minor-fareast'>、金额：{{$info->template_data['goods_money']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast'>、金额：{{$info->template_data['goods_money']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:14.0pt;font-family:宋体;
 mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'>7</span><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
-minor-fareast'>、送货地址：{{$info->template_data['send_address']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast'>、送货地址：{{$info->template_data['send_address']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
@@ -363,7 +363,7 @@ minor-fareast'>三、业务合作品种：<span lang=EN-US><o:p></o:p></span></s
 
 <p class=MsoNormal style='text-indent:28.0pt;mso-char-indent-count:2.0'><u><span
 lang=EN-US style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;
-mso-fareast-theme-font:minor-fareast;color:red'>{{$info->template_data['goods_name']}}</span></u><span
+mso-fareast-theme-font:minor-fareast;color:red'>{{$info->template_data['goods_name']??''}}</span></u><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
 minor-fareast'>产品<span lang=EN-US><o:p></o:p></span></span></p>
 
@@ -415,9 +415,9 @@ lang=EN-US><o:p></o:p></span></span></p>
 lang=EN-US style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;
 mso-fareast-theme-font:minor-fareast'>2</span><span style='font-size:14.0pt;
 font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'>、甲方与乙方选定的<span
-lang=EN-US style='color:red'>{{$info->template_data['supplier_name']}}</span>（以下统称“供货方”）签署<span lang=EN-US
-style='color:red'>{{$info->template_data['goods_name']}}</span>采购合同（以下统称“采购合同”）并自主履行。乙方完全同意甲方与供货方签订的合同编号为<span
-lang=EN-US style='color:red'>{{$info->template_data['buy_contract_sn']}}</span>的采购合同内容，日后乙方不得以合同条款瑕疵等为由向甲方提出索赔。甲方有权对上述采购合同及其他为完成委托事务而签署的协议作出变更、中止或解除。乙方对供货方的资信及其履行采购合同中的义务负全部责任。如因供货方违约导致采购合同不能履行或者不能完全履行的（包括但不限于供货方货物供应量不足、供货不及时、货物质量不符合合同约定），乙方需承担所有责任，赔偿甲方所有直接和间接损失。<span
+lang=EN-US style='color:red'>{{$info->template_data['supplier_name']??''}}</span>（以下统称“供货方”）签署<span lang=EN-US
+style='color:red'>{{$info->template_data['goods_name']??''}}</span>采购合同（以下统称“采购合同”）并自主履行。乙方完全同意甲方与供货方签订的合同编号为<span
+lang=EN-US style='color:red'>{{$info->template_data['buy_contract_sn']??''}}</span>的采购合同内容，日后乙方不得以合同条款瑕疵等为由向甲方提出索赔。甲方有权对上述采购合同及其他为完成委托事务而签署的协议作出变更、中止或解除。乙方对供货方的资信及其履行采购合同中的义务负全部责任。如因供货方违约导致采购合同不能履行或者不能完全履行的（包括但不限于供货方货物供应量不足、供货不及时、货物质量不符合合同约定），乙方需承担所有责任，赔偿甲方所有直接和间接损失。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:28.0pt;mso-char-indent-count:2.0'><span
@@ -458,7 +458,7 @@ mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'><span
 style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>1</span><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
 minor-fareast'>、每批次采购前，乙方将拟采购货物的履约保证金（履约保证金比例：采购货款总额的<span lang=EN-US
-style='color:red'>{{$info->template_data['bond_rate']}}</span><span lang=EN-US>%</span>）支付给甲方，该保证金将在乙方最后一次付清款项时冲抵。<span
+style='color:red'>{{$info->template_data['bond_rate']??''}}</span><span lang=EN-US>%</span>）支付给甲方，该保证金将在乙方最后一次付清款项时冲抵。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:28.0pt;mso-char-indent-count:2.0'><span
@@ -466,7 +466,7 @@ lang=EN-US style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:�
 mso-fareast-theme-font:minor-fareast'>2</span><span style='font-size:14.0pt;
 font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'>、每批次采购货物存放于<span
 style='color:red'>甲方仓库（根据实际业务修改）</span>的，乙方按照付多少款提多少货，款到提货的原则至<u><span
-lang=EN-US style='color:red'>{{$info->template_data['receive_address']}}</span></u>自行提货，提货时产生的费用（包括但不限于运输、装卸等费用）由乙方自理。<span
+lang=EN-US style='color:red'>{{$info->template_data['receive_address']??''}}</span></u>自行提货，提货时产生的费用（包括但不限于运输、装卸等费用）由乙方自理。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:28.0pt;mso-char-indent-count:2.0'><span
@@ -527,9 +527,9 @@ style='color:red'>（以实际业务为准）</span></u>。<span lang=EN-US><o:p
 lang=EN-US style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;
 mso-fareast-theme-font:minor-fareast'>9</span><span style='font-size:14.0pt;
 font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'>、若货物行情下跌，当市场价格（市场价格行情参考<span
-lang=EN-US style='color:red'>{{$info->template_data['market_url']}}</span>）较采购合同中采购价下跌幅度在<span lang=EN-US
-style='color:red'>{{$info->template_data['market_down_rate']}}</span><span lang=EN-US>%</span>（含）以上时，乙方应在接到甲方通知之日起<span
-lang=EN-US>2</span>个工作日内按甲方要求追加未提货部分货款<span lang=EN-US style='color:red'>{{$info->template_data['down_bond_append_rate']}}</span><span
+lang=EN-US style='color:red'>{{$info->template_data['market_url']??''}}</span>）较采购合同中采购价下跌幅度在<span lang=EN-US
+style='color:red'>{{$info->template_data['market_down_rate']??''}}</span><span lang=EN-US>%</span>（含）以上时，乙方应在接到甲方通知之日起<span
+lang=EN-US>2</span>个工作日内按甲方要求追加未提货部分货款<span lang=EN-US style='color:red'>{{$info->template_data['down_bond_append_rate']??''}}</span><span
 lang=EN-US>%</span>的履约保证金，履约保证金通过银行转账的方式付至甲方账户。<span lang=EN-US><span
 style='mso-tab-count:1'>&nbsp; </span><o:p></o:p></span></span></p>
 
@@ -542,16 +542,16 @@ minor-fareast'>：<span lang=EN-US><o:p></o:p></span></span></p>
 lang=EN-US style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;
 mso-fareast-theme-font:minor-fareast'>1</span><span style='font-size:14.0pt;
 font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'>、若乙方未按本合同第六条的约定及时将履约保证金交付于甲方，则乙方每日应按逾期付款金额的<span
-lang=EN-US style='color:red'>{{$info->template_data['no_bond_rate']}}%</span>向甲方支付违约金且甲方有权单方面解除合同。<span lang=EN-US><o:p></o:p></span></span></p>
+lang=EN-US style='color:red'>{{$info->template_data['no_bond_rate']??''}}%</span>向甲方支付违约金且甲方有权单方面解除合同。<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:1.5;
 line-height:20.0pt;mso-line-height-rule:exactly'><span lang=EN-US
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
 minor-fareast'>2</span><span style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:
 宋体;mso-fareast-theme-font:minor-fareast'>、甲方每批次采购货物后，乙方应于<span lang=EN-US
-style='color:red'>{{$info->template_data['all_receive_days']}}</span>日之内将该批次货物全部接收，若乙方逾期付款提货，需于逾期后<span lang=EN-US>3</span>个工作日内按未提货物货款的<span
-lang=EN-US style='color:red'>{{$info->template_data['no_receive_append_bond_rate']}}</span><span lang=EN-US>%</span>向甲方追加履约保证金。若乙方逾期<span
-lang=EN-US style='color:red'>{{$info->template_data['no_receive_overdue_days']}}</span>天仍未付款提货，则视为甲方严重违约，甲方有权没收履约保证金并自行处置货物，若不足以弥补乙方全部损失，乙方可向甲方继续追偿直至弥补全部直接和间接损失。<span
+style='color:red'>{{$info->template_data['all_receive_days']??''}}</span>日之内将该批次货物全部接收，若乙方逾期付款提货，需于逾期后<span lang=EN-US>3</span>个工作日内按未提货物货款的<span
+lang=EN-US style='color:red'>{{$info->template_data['no_receive_append_bond_rate']??''}}</span><span lang=EN-US>%</span>向甲方追加履约保证金。若乙方逾期<span
+lang=EN-US style='color:red'>{{$info->template_data['no_receive_overdue_days']??''}}</span>天仍未付款提货，则视为甲方严重违约，甲方有权没收履约保证金并自行处置货物，若不足以弥补乙方全部损失，乙方可向甲方继续追偿直至弥补全部直接和间接损失。<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='text-indent:28.0pt;mso-char-indent-count:2.0'><span
@@ -614,7 +614,7 @@ minor-fareast'><o:p></o:p></span></p>
 <p class=MsoNormal style='text-indent:28.0pt;mso-char-indent-count:2.0;
 line-height:20.0pt;mso-line-height-rule:exactly'><span style='font-size:14.0pt;
 font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast;
-mso-bidi-font-family:宋体'>乙方地址：{{$info->template_data['b_address']}}<span lang=EN-US><o:p></o:p></span></span></p>
+mso-bidi-font-family:宋体'>乙方地址：{{$info->template_data['b_address']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='line-height:20.0pt;mso-line-height-rule:exactly'><b><span
 style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:宋体;mso-fareast-theme-font:
@@ -634,19 +634,19 @@ mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'><o:p>&nbsp;
 
 <p class=MsoNormal><span style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:
 宋体;mso-fareast-theme-font:minor-fareast'>甲方（盖章）：{{config('admin.our_info.name')}}<span lang=EN-US><span
-style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span>乙方（盖章）：{{$info->template_data['b_name']}}<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span></span>乙方（盖章）：{{$info->template_data['b_name']??''}}<span
 lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal><span lang=EN-US style='font-size:14.0pt;font-family:宋体;
 mso-fareast-font-family:宋体;mso-fareast-theme-font:minor-fareast'><o:p>&nbsp;</o:p></span></p>
 
 <p class=MsoNormal><span style='font-size:14.0pt;font-family:宋体;mso-fareast-font-family:
-宋体;mso-fareast-theme-font:minor-fareast'>法定代表人：{{config('admin.our_info.hostname')}}<span lang=EN-US><span
-style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span>法定代表人：{{$info->template_data['b_hostname']}}<span lang=EN-US><o:p></o:p></span></span></p>
+宋体;mso-fareast-theme-font:minor-fareast'>法定代表人：{{config('admin.our_info.hostname').str_repeat('&nbsp;',(int)(16-strlen(config('admin.our_info.hostname'))/3))}}法定代表人：{{$info->template_data['b_hostname']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 </div>
 
 </body>
-
+<script>
+    window.print()
+</script>
 </html>

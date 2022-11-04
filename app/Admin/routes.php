@@ -37,6 +37,7 @@ Route::group([
     $router->put('approvals/check' , 'ApprovalController@check')->name('approval.check');
     $router->resource('approvals', 'ApprovalController');
  
+    $router->resource('sale_back_orders', 'SaleBackOrderController');
     $router->resource('flows', 'FlowController');
     $router->resource('templates', 'TemplateController');
     $router->resource('messages', 'MessageController');

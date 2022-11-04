@@ -15,7 +15,7 @@ class ContractTradePrint extends RowAction
     /**
      * @return string
      */
-	protected $title = '<i class="feather icon-printer"></i>';
+    protected $title = '<i class="feather icon-printer"></i>';
 
     /**
      * Handle the action request.
@@ -27,21 +27,20 @@ class ContractTradePrint extends RowAction
     public function handle(Request $request)
     {
         // dump($this->getKey());
-        
+
         $obj = FrameContract::find($this->getKey());
-        
         return $this->response()
             // ->success('Processed successfully: '.$this->getKey())
-            ->redirect(route('order.contractPrint' , [$this->getKey(),'type'=>'trade','slug'=>$obj->template->slug]));
+            ->redirect(route('order.contractPrint', [$this->getKey(), 'type' => 'trade']));
     }
 
     /**
-	 * @return string|array|void
-	 */
-	public function confirm()
-	{
-		// return ['Confirm?', 'contents'];
-	}
+     * @return string|array|void
+     */
+    public function confirm()
+    {
+        // return ['Confirm?', 'contents'];
+    }
 
     /**
      * @param Model|Authenticatable|HasPermissions|null $user

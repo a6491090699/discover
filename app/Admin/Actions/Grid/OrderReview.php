@@ -69,15 +69,22 @@ class OrderReview extends AbstractTool
     {
         $id         = $request->input('id');
         $model      = $request->input('model');
+        $model2      = $request->input('model2');
         $modelClass = "\\App\Models\\" . $model;
+        $modelClass2 = "\\App\Models\\" . $model2;
         $table = $request->input('table');
 
-        if (! class_exists($modelClass)) {
+        if ( (!class_exists($modelClass))  &&  (!class_exists($modelClass2))) {
             throw new ApiRequestException("参数错误！");
         }
 
-        $this->model = $modelClass::find($id);
-
+        if(class_exists($modelClass)){
+            $this->model = $modelClass::find($id);
+        }
+        if(class_exists($modelClass2)){
+            $this->model = $modelClass2::find($id);
+        }
+        
         $check_func = Str::camel($table . "_check");
 
         if ($table !== "inventory_order") {
@@ -108,6 +115,45 @@ class OrderReview extends AbstractTool
         }
         if ($this->model->items()->where('should_num', 0)->count()) {
             throw new \Exception('明细数量不能为0！');
+        }
+    }
+    
+    public function storeInCheck():void
+    {
+        if ($this->model->items->count() === 0) {
+            throw new \Exception('订单明细不能为空！');
+        }
+        if ($this->model->items()->where('actual_num', 0)->count()) {
+            throw new \Exception('明细数量不能为0！');
+        }
+    }
+    public function storeOutCheck():void
+    {
+        if ($this->model->items->count() === 0) {
+            throw new \Exception('订单明细不能为空！');
+        }
+        if ($this->model->items()->where('actual_num', 0)->count()) {
+            throw new \Exception('明细数量不能为0！');
+        }
+    }
+
+    public function purchaseOrderBackCheck():void
+    {
+        if ($this->model->items->count() === 0) {
+            throw new \Exception('订单明细不能为空！');
+        }
+        if ($this->model->items()->where('back_num', 0)->count()) {
+            throw new \Exception('退回数量不能为0！');
+        }
+    }
+
+    public function saleBackOrderCheck():void
+    {
+        if ($this->model->items->count() === 0) {
+            throw new \Exception('订单明细不能为空！');
+        }
+        if ($this->model->items()->where('should_num', 0)->count()) {
+            throw new \Exception('退回数量不能为0！');
         }
     }
 
@@ -204,6 +250,7 @@ HTML;
         return [
             'table'         => $this->getTable(),
             'model'         => $this->getModel(),
+            'model2'         => admin_controller_name(),
             'review_status' => $this->review_status,
             'id' => request()->route()->parameter($this->getTable()),
         ];

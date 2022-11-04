@@ -38,6 +38,18 @@ class StoreOut extends Model
         self::TYPE_OTHER_OUT => '其他出库',
     ];
 
+    const STATUS_COLOR = [
+        self::STATUS_OUT      => 'success',
+        self::STATUS_NOT_OUT    => 'yellow',
+    ];
+
+    const REVIEW_STATUS_COLOR = [
+        self::REVIEW_STATUS_WAIT     => "gray",
+        self::REVIEW_STATUS_OK       => "success",
+        self::REVIEW_STATUS_REREVIEW => "red",
+    ];
+
+
 
     protected $table = 'store_outs';
     protected $guarded = [];

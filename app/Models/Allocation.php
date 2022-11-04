@@ -17,4 +17,9 @@ class Allocation extends Model
         self::STATUS_DOING => '正在进行',
         self::STATUS_DONE => '已完成',
     ];
+
+    public function scopeReview($query)
+    {
+        return $query->where('review_status', 1);
+    }
 }

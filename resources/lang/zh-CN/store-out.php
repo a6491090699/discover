@@ -14,6 +14,7 @@ return [
         'total_money' => '出库金额',
         'car_number' => '车牌号或柜号',
         'delivery_id' => '物流单号',
+        'review_status' => '审核状态',
     ],
     'options' => [
     ],

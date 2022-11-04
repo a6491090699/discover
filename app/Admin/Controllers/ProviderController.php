@@ -26,19 +26,23 @@ class ProviderController extends AdminController
             $grid->column('address');
             $grid->column('status')->using(ModelsProvider::STATUS_LIST);
             $grid->column('link');
-            $grid->column('contact_department');
-            $grid->column('contact_email');
-            $grid->column('phone');
-            $grid->column('contact_tel');
-            $grid->column('bank_title');
-            $grid->column('bank_name');
-            $grid->column('bank_account');
-            $grid->column('bank_top');
+            // $grid->column('contact_department');
+            // $grid->column('contact_email');
+            // $grid->column('phone');
+            // $grid->column('contact_tel');
+            // $grid->column('bank_title');
+            // $grid->column('bank_name');
+            // $grid->column('bank_account');
+            // $grid->column('bank_top');
             $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
+            // $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
+                
+                $filter->like('name');
+                $filter->equal('type')->select(ModelsProvider::TYPE_LIST);
+                $filter->equal('status')->select(ModelsProvider::STATUS_LIST);
+                $filter->equal('sn');
         
             });
         });

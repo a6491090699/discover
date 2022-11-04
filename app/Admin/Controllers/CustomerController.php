@@ -33,13 +33,16 @@ class CustomerController extends AdminController
     {
         return Grid::make(new Customer(), function (Grid $grid) {
             $grid->column('id')->sortable();
-            $grid->column('link')->emp();
+            // $grid->column('link')->emp();
             $grid->column('name')->emp();
-            $grid->column('other')->emp();
+            // $grid->column('other')->emp();
             $grid->column('status')->using(CustomerModel::STATUS_LIST);
-            $grid->column('phone');
+            // $grid->column('phone');
             $grid->column('created_at');
             $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('id');
+                $filter->like('name');
+                $filter->equal('status')->select(CustomerModel::STATUS_LIST);
             });
         });
     }

@@ -34,10 +34,14 @@ class StoreController extends AdminController
             // $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
         
-            // $grid->filter(function (Grid\Filter $filter) {
-            //     $filter->equal('id');
+            $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('id');
+                $filter->equal('sn');
+                $filter->like('title');
+                $filter->equal('tel');
         
-            // });
+            });
+            
             $grid->selector(function (Grid\Tools\Selector $selector) {
                 $selector->select('store_company_id', '仓库公司', StoreCompany::pluck('title','id')->toArray());
             });

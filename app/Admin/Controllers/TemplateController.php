@@ -22,15 +22,20 @@ class TemplateController extends AdminController
         return Grid::make(new Template(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('title');
-            $grid->column('slug');
+            $grid->column('slug','模板页面文件名')->display(function($slug){
+                return $slug.'.blade.php';
+            });
             $grid->column('type','类型')->using(ModelsTemplate::TYPE_LIST);
             // $grid->column('fields');
-            $grid->column('status')->using(['禁用','启用']);
+            $grid->column('status')->using(ModelsTemplate::STATUS_LIST);
             $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->like('title');
+                $filter->equal('type')->select(ModelsTemplate::TYPE_LIST);
+                $filter->equal('status')->select(ModelsTemplate::STATUS_LIST);
             });
         });
     }

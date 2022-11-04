@@ -9,6 +9,7 @@ use App\Services\RoleService;
 use App\Models\Allocation;
 use App\Models\PurchaseOrderBack;
 use App\Models\PurchaseOrderModel;
+use App\Models\SaleBackOrder;
 use App\Models\SaleInOrderModel;
 use App\Models\SaleOrderModel;
 use App\Models\StoreIn;
@@ -67,7 +68,7 @@ class PubController extends Controller
         $val = $request->get('q');
         switch ($val) {
             case StoreIn::TYPE_BACK:
-                $list = SaleInOrderModel::where('status', SaleInOrderModel::STATUS_WAIT)->review()->get(['id', 'order_no as text']);
+                $list = SaleBackOrder::where('status', SaleBackOrder::STATUS_WAIT)->review()->get(['id', 'sn as text']);
                 break;
             case StoreIn::TYPE_BUY:
                 $list = PurchaseOrderModel::where('status', PurchaseOrderModel::STATUS_WAIT)->review()->get(['id', 'order_no as text']);
@@ -95,7 +96,7 @@ class PubController extends Controller
         $val = $request->get('q');
         switch ($val) {
             case StoreIn::TYPE_BACK:
-                $list = SaleInOrderModel::whereIn('status', [SaleInOrderModel::STATUS_WAIT, SaleInOrderModel::STATUS_PART_ARRIVE, SaleInOrderModel::STATUS_ARRIVE])->review()->get(['id', 'order_no as text']);
+                $list = SaleBackOrder::whereIn('status', [SaleBackOrder::STATUS_WAIT, SaleBackOrder::STATUS_PART_ARRIVE, SaleBackOrder::STATUS_ARRIVE])->review()->get(['id', 'sn as text']);
                 break;
             case StoreIn::TYPE_BUY:
                 $list = PurchaseOrderModel::whereIn('status', [PurchaseOrderModel::STATUS_WAIT, PurchaseOrderModel::STATUS_PART_ARRIVE, PurchaseOrderModel::STATUS_ARRIVE])->review()->get(['id', 'order_no as text']);

@@ -73,5 +73,10 @@ class SkuStockBatchModel extends BaseModel
         return $this->belongsTo(Store::class, 'store_id');
     }
 
+    public function storeIn()
+    {
+        return $this->belongsTo(StoreIn::class , 'batch_no' ,'sn');
+    }
+
     
 }

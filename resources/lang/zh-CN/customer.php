@@ -14,7 +14,7 @@
 
 return [
     'labels' => [
-        'Customer' => '客户档案',
+        'Customer' => '客户',
     ],
     'fields' => [
         'link' => '联系人',

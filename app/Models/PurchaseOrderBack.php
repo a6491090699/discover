@@ -36,4 +36,9 @@ class PurchaseOrderBack extends SaleBaseModel
     {
         return $this->morphOne(StoreOut::class ,'order');
     }
+
+    public function purchaseOrder()
+    {
+        return $this->belongsTo(PurchaseOrderModel::class);
+    }
 }

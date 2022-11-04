@@ -33,6 +33,7 @@ use App\Models\PurchaseInOrderModel;
 use App\Models\PurchaseItemModel;
 use App\Models\PurchaseOrderBack;
 use App\Models\PurchaseOrderModel;
+use App\Models\SaleBackOrder;
 use App\Models\SaleInOrderModel;
 use App\Models\SaleOrderModel;
 use App\Models\SaleOutBatchModel;
@@ -138,6 +139,8 @@ class AppServiceProvider extends ServiceProvider
             'allocations' => Allocation::class,
             'purchase_order_backs' => PurchaseOrderBack::class,
             'sale_out_order' => SaleOrderModel::class,
+            'sale_back_orders'=> SaleBackOrder::class
+            
         ]);
 
     }

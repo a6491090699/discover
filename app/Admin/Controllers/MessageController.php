@@ -24,7 +24,8 @@ class MessageController extends AdminController
             $grid->column('from_uid')->using(AdminUser::pluck('name','id')->toArray());
             // $grid->column('to_uid');
             $grid->column('content');
-            $grid->column('is_read')->using(['未读', '已读'])->dot(['primary', 'success']);
+            // $grid->column('is_read')->using(['未读', '已读'])->dot(['primary', 'success']);
+            $grid->column('is_read')->switch();
             // $grid->column('type');
             $grid->column('to_url')->link();
             $grid->column('created_at');

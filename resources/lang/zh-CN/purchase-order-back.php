@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'PurchaseOrderBack' => 'PurchaseOrderBack',
+        'PurchaseOrderBack' => '采购退货',
     ],
     'fields' => [
         'sn' => '退货单号',
@@ -11,6 +11,7 @@ return [
         'supplier_id' => '供应商',
         'back_money' => '退货金额',
         'other' => '其他字段',
+        'status' => '状态',
     ],
     'options' => [
     ],

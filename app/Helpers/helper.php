@@ -279,8 +279,11 @@ function list_to_tree($list, $pk = 'id', $pid = 'pid', $child = '_child', $root 
     return $tree;
 }
 
-function up_pinyin_money($money)
+function up_pinyin_money($money = '')
 {
+    if (empty($money)) {
+        return '';
+    }
     $chinese = Money::toChinese($money);
     return $chinese;
 }

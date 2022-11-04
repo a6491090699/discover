@@ -281,51 +281,48 @@ line-height:150%'><o:p></o:p></span></b></p>
 <p class=MsoNormal align=center style='text-align:center;line-height:150%'><span
 lang=EN-US style='font-size:12.0pt;line-height:150%;mso-bidi-font-weight:bold'><o:p>&nbsp;</o:p></span></p>
 
-<p class=MsoNormal align=right style='margin-right:56.0pt;text-align:right;
+<p class=MsoNormal align=right style='margin-right:0.0pt;text-align:right;
 line-height:150%'><span lang=EN-US style='font-size:14.0pt;line-height:150%;
 font-family:宋体'><span
-style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-spacerun:yes'>
 </span></span><span style='font-size:12.0pt;line-height:150%;font-family:宋体;
-mso-ascii-theme-font:minor-fareast;mso-hansi-theme-font:minor-fareast'>合同编号<span
-lang=EN-US>:</span></span><span lang=EN-US style='font-size:12.0pt;line-height:
+mso-ascii-theme-font:minor-fareast;mso-hansi-theme-font:minor-fareast'>合同编号：</span><span lang=EN-US style='font-size:12.0pt;line-height:
 150%;font-family:宋体;mso-ascii-theme-font:minor-fareast;mso-fareast-theme-font:
-minor-fareast;mso-hansi-theme-font:minor-fareast'><o:p></o:p></span></p>
+minor-fareast;mso-hansi-theme-font:minor-fareast'>{{$info->template_data['sn']??''}}<o:p></o:p></span></p>
 
-<p class=MsoNormal align=right style='margin-right:56.0pt;text-align:right;
+<p class=MsoNormal align=right style='margin-right:0.0pt;text-align:right;
 line-height:150%'><span lang=EN-US style='font-size:12.0pt;line-height:150%;
 font-family:宋体;mso-ascii-theme-font:minor-fareast;mso-hansi-theme-font:minor-fareast'><span
-style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-spacerun:yes'>
 </span></span><span style='font-size:12.0pt;line-height:150%;font-family:宋体;
-mso-ascii-theme-font:minor-fareast;mso-hansi-theme-font:minor-fareast'>签订日期：<span
-lang=EN-US><o:p></o:p></span></span></p>
+mso-ascii-theme-font:minor-fareast;mso-hansi-theme-font:minor-fareast'>签订日期：{{$info->template_data['sign_at']??''}}</p>
 
-<p class=MsoNormal align=right style='margin-right:56.0pt;text-align:right;
+<p class=MsoNormal align=right style='margin-right:0.0pt;text-align:right;
 line-height:150%'><span lang=EN-US style='font-size:12.0pt;line-height:150%;
 font-family:宋体;mso-ascii-theme-font:minor-fareast;mso-hansi-theme-font:minor-fareast'><span
-style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-spacerun:yes'>
 </span></span><span style='font-size:12.0pt;line-height:150%;font-family:宋体;
-mso-ascii-theme-font:minor-fareast;mso-hansi-theme-font:minor-fareast'>签订地点：<span
-lang=EN-US><o:p></o:p></span></span></p>
+mso-ascii-theme-font:minor-fareast;mso-hansi-theme-font:minor-fareast'>签订地点：{{$info->template_data['sign_address']??''}}</span></p>
 
 <p class=MsoNormal style='line-height:150%;layout-grid-mode:char;mso-layout-grid-align:
 none'><span style='font-size:12.0pt;line-height:150%;font-family:宋体;mso-ascii-theme-font:
-minor-fareast;mso-hansi-theme-font:minor-fareast'>甲方：{{$info->template_data['a_name']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast;mso-hansi-theme-font:minor-fareast'>甲方：{{$info->template_data['a_name']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='line-height:150%;layout-grid-mode:char;mso-layout-grid-align:
 none'><span style='font-size:12.0pt;line-height:150%;font-family:宋体;mso-ascii-theme-font:
-minor-fareast;mso-hansi-theme-font:minor-fareast'>公司地址：{{$info->template_data['a_address']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast;mso-hansi-theme-font:minor-fareast'>公司地址：{{$info->template_data['a_address']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='line-height:150%;layout-grid-mode:char;mso-layout-grid-align:
 none'><span style='font-size:12.0pt;line-height:150%;font-family:宋体;mso-ascii-theme-font:
-minor-fareast;mso-hansi-theme-font:minor-fareast'>法定代表人： {{$info->template_data['a_hostname']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast;mso-hansi-theme-font:minor-fareast'>法定代表人： {{$info->template_data['a_hostname']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='line-height:150%;layout-grid-mode:char;mso-layout-grid-align:
 none'><span style='font-size:12.0pt;line-height:150%;font-family:宋体;mso-ascii-theme-font:
-minor-fareast;mso-hansi-theme-font:minor-fareast'>开户行：{{$info->template_data['a_bank']}}<span lang=EN-US><o:p></o:p></span></span></p>
+minor-fareast;mso-hansi-theme-font:minor-fareast'>开户行：{{$info->template_data['a_bank']??''}}<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='line-height:150%;layout-grid-mode:char;mso-layout-grid-align:
 none'><span style='font-size:12.0pt;line-height:150%;font-family:宋体;mso-ascii-theme-font:
-minor-fareast;mso-hansi-theme-font:minor-fareast'>账号：{{$info->template_data['a_bank_account']}}</span><span
+minor-fareast;mso-hansi-theme-font:minor-fareast'>账号：{{$info->template_data['a_bank_account']??''}}</span><span
 lang=EN-US style='font-size:12.0pt;line-height:150%;font-family:宋体;mso-bidi-font-family:
 宋体;color:black;mso-bidi-language:ZH-TW'><o:p></o:p></span></p>
 
@@ -361,16 +358,16 @@ none'><span lang=EN-US style='font-size:12.0pt;line-height:150%;font-family:
 <p class=MsoNormal style='text-indent:24.0pt;mso-char-indent-count:2.0;
 line-height:120%'><span style='font-size:12.0pt;line-height:120%;font-family:
 宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>鉴于：甲方作为委托方，委托乙方以乙方的名义代理销售</span><span
-lang=EN-US style='font-size:12.0pt;line-height:120%'>{{$info->template_data['goods_name']}}</span><span
+lang=EN-US style='font-size:12.0pt;line-height:120%'>{{$info->template_data['goods_name']??''}}</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman";mso-hansi-font-family:"Times New Roman"'>。经充分、友好协商，甲、乙双方就乙方处理甲方委托事务的一般性约定达成如下协议，代销货物数量、代销价格、甲方选定客户（以下统称“买家”）及其交（提）货时间等专属性约定以甲乙双方的约定以及双方另行签订</span><span
-lang=EN-US style='font-size:12.0pt;line-height:120%'>{{$info->template_data['goods_name']}}</span><span
+lang=EN-US style='font-size:12.0pt;line-height:120%'>{{$info->template_data['goods_name']??''}}</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman";mso-hansi-font-family:"Times New Roman"'>购销合同（合同编号：</span><span
-lang=EN-US style='font-size:12.0pt;line-height:120%'>{{$info->template_data['bs_sn']}} ,</span><span
+lang=EN-US style='font-size:12.0pt;line-height:120%'>{{$info->template_data['bs_sn']??''}} ,</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman";mso-hansi-font-family:"Times New Roman"'>以下统称“购销合同”）为准，乙方与买家之间的约定以乙方与买家之间签订的</span><span
-lang=EN-US style='font-size:12.0pt;line-height:120%'>{{$info->template_data['goods_name']}}</span><span
+lang=EN-US style='font-size:12.0pt;line-height:120%'>{{$info->template_data['goods_name']??''}}</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman";mso-hansi-font-family:"Times New Roman"'>采购合同（以下统称“采购合同”）为准。</span><span
 lang=EN-US style='font-size:12.0pt;line-height:120%'><o:p></o:p></span></p>
@@ -420,7 +417,7 @@ line-height:120%'><o:p></o:p></span></b></p>
 line-height:120%'><span lang=EN-US style='font-size:12.0pt;line-height:120%'>1</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman"'>、甲、乙双方另行签署</span><span lang=EN-US style='font-size:12.0pt;
-line-height:120%'>{{$info->template_data['goods_name']}}</span><span style='font-size:12.0pt;line-height:120%;
+line-height:120%'>{{$info->template_data['goods_name']??''}}</span><span style='font-size:12.0pt;line-height:120%;
 font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
 "Times New Roman"'>购销合同</span><span style='font-size:12.0pt;line-height:120%;
 font-family:宋体;mso-ascii-font-family:"Times New Roman"'>。乙方按照购销合同的约定，向甲方支付相应款项。根据甲乙双方约定乙方与甲方选定的买家签署</span><span
@@ -433,12 +430,12 @@ line-height:120%;mso-hansi-font-family:宋体'><o:p></o:p></span></p>
 line-height:120%'><span lang=EN-US style='font-size:12.0pt;line-height:120%;
 mso-hansi-font-family:宋体'>2</span><span style='font-size:12.0pt;line-height:
 120%;font-family:宋体;mso-ascii-font-family:"Times New Roman"'>、在双方结清款项前，若货物的国内市场参照价格（以</span><span
-lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['market_url']}}</span><span
+lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['market_url']??''}}</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman"'>为参考）低于购销合同暂定价</span><span lang=EN-US style='font-size:12.0pt;
-line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['down_market_rate']}}%</span><span style='font-size:
+line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['down_market_rate']??''}}%</span><span style='font-size:
 12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:"Times New Roman"'>以上（含</span><span
-lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['down_market_rate']}}%</span><span
+lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['down_market_rate']??''}}%</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman"'>）的，乙方有权要求甲方支付跌价保证金（跌价保证金为国内市场参照价格与购销合同暂定价的差额乘以未提货煤炭数量），乙方确认指数后向甲方发送支付跌价保证金的通知，甲方应自收到通知之日起</span><span
 lang=EN-US style='font-size:12.0pt;line-height:120%'>2</span><span
@@ -456,7 +453,7 @@ mso-hansi-font-family:宋体'>3</span><span style='font-size:12.0pt;line-height:
 lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->zhanyong_rate/12*100}}%/</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman"'>月的标准以实际天数向乙方支付资金占用费，并计至买家向乙方付清所有货款之日止，或计至基准日（乙方向甲方支付第一笔费用之日简称为“基准日”，下同。）起第</span><span
-lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['jzr_3']}}</span><span
+lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['jzr_3']??''}}</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman"'>天止。</span><span lang=EN-US style='font-size:12.0pt;
 line-height:120%;mso-hansi-font-family:宋体'><o:p></o:p></span></p>
@@ -476,7 +473,7 @@ lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体
 line-height:120%'><span lang=EN-US style='font-size:12.0pt;line-height:120%;
 mso-hansi-font-family:宋体'>5</span><span style='font-size:12.0pt;line-height:
 120%;font-family:宋体;mso-ascii-font-family:"Times New Roman"'>、若甲方指定买家超过基准日</span><span
-lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['jzr_5']}}</span><span
+lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['jzr_5']??''}}</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman"'>天未向乙方付清全部款项的（包括甲方指定买家已明显不可能付款的情形），乙方有权要求甲方无条件退回乙方已支付的所有款项，且甲方需自行向甲方指定客户追索货物，乙方应积极配合但无需承担货物追索未果的责任。</span><span
 lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'><o:p></o:p></span></p>
@@ -494,10 +491,10 @@ lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体
 line-height:120%'><span lang=EN-US style='font-size:12.0pt;line-height:120%;
 mso-hansi-font-family:宋体'>5.2 </span><span style='font-size:12.0pt;line-height:
 120%;font-family:宋体;mso-ascii-font-family:"Times New Roman"'>若超过基准日</span><span
-lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['jzr_52']}}</span><span
+lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['jzr_52']??''}}</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman"'>天后乙方未要求甲方退回乙方已支付的所有款项，甲方需向乙方支付第</span><span lang=EN-US
-style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['jzr_52']}}</span><span
+style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>{{$info->template_data['jzr_52']??''}}</span><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
 "Times New Roman"'>天起自买家付清所有货款之日的违约金，违约金的标准按照买家应支付给乙方所有款项的日万分之四（不含税）。在此期间，乙方随时有权要求甲方退回乙方已支付的所有款项并支付已产生的资金占用费，同时按照本协议</span><span
 lang=EN-US style='font-size:12.0pt;line-height:120%;mso-hansi-font-family:宋体'>5.1</span><span
@@ -702,7 +699,7 @@ line-height:120%'><span lang=EN-US style='font-size:12.0pt;line-height:120%'><o:
 <p class=MsoNormal style='margin-left:327.0pt;mso-para-margin-left:2.0gd;
 text-indent:-306.0pt;mso-char-indent-count:-25.5;line-height:120%'><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
-"Times New Roman";mso-hansi-font-family:"Times New Roman"'>甲方（盖章）：{{$info->template_data['a_name']}}</span><span
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>甲方（盖章）：{{$info->template_data['a_name']??''}}</span><span
 style='font-size:12.0pt;line-height:120%'> <span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='margin-left:327.0pt;mso-para-margin-left:2.0gd;
@@ -714,7 +711,7 @@ style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&
 <p class=MsoNormal style='margin-left:327.0pt;mso-para-margin-left:2.0gd;
 text-indent:-306.0pt;mso-char-indent-count:-25.5;line-height:120%'><span
 style='font-size:12.0pt;line-height:120%;font-family:宋体;mso-ascii-font-family:
-"Times New Roman";mso-hansi-font-family:"Times New Roman"'>法人代表（签字）：{{$info->template_data['a_hostname']}}</span><span
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>法人代表（签字）：{{$info->template_data['a_hostname']??''}}</span><span
 style='font-size:12.0pt;line-height:120%'> <span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='margin-left:327.0pt;mso-para-margin-left:2.0gd;
@@ -780,5 +777,7 @@ page-break-after:avoid;mso-outline-level:2'><span lang=EN-US style='font-size:
 </div>
 
 </body>
-
+<script>
+    window.print()
+</script>
 </html>

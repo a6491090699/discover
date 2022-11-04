@@ -131,14 +131,17 @@
             <div class="stl_05 stl_06">
                 <div class="stl_01" style="left:11.2937em;top:6.6522em;"><span class="stl_07 stl_08 stl_09">漳州商贸集团有限公司合同会签审批表 &nbsp;</span></div>
                 <div class="stl_01" style="left:25.4511em;top:10.3878em;"><span class="stl_10 stl_08 stl_09">合同编号 &nbsp;</span></div>
-                <div class="stl_01" style="left:32.5824em;top:10.3419em;"><span class="stl_11 stl_12 stl_13">123213213sdfd-asbv &nbsp;</span></div>
+                <div class="stl_01" style="left:32.5824em;top:10.3419em;"><span class="stl_11 stl_12 stl_13">{{$param['sn']??''}} &nbsp;</span></div>
                 <div class="stl_01" style="left:5.2064em;top:10.427em;"><span class="stl_10 stl_08 stl_09">合同名称 &nbsp;</span></div>
-                <div class="stl_01" style="left:14.8403em;top:10.3538em;"><span class="stl_14 stl_08 stl_09">12321312321ABC &nbsp;</span></div>
-                <div class="stl_01" style="left:14.4279em;top:13.3913em;"><span class="stl_10 stl_08 stl_09">是否的是非得失发多少是的佛挡杀佛都是都是发多少第三方水电费 &nbsp;</span></div>
-                <div class="stl_01" style="left:14.4279em;top:14.6113em;"><span class="stl_10 stl_08 stl_09">发</span></div>
+                <div class="stl_01" style="left:14.8403em;top:10.3538em;"><span class="stl_14 stl_08 stl_09">{{$param['contract_name']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:14.4279em;top:13.3913em;"><span class="stl_10 stl_08 stl_09">
+                    @for($i=0;$i<strlen($param['content']??'')/78;$i++)
+                    {{substr($param['content'] , $i*78 , 78)}}<br>
+                    @endfor 
+                    &nbsp;</span></div>
                 <div class="stl_01" style="left:5.2064em;top:16.3022em;"><span class="stl_10 stl_08 stl_09">合同内容及利润测算 &nbsp;</span></div>
-                <div class="stl_01" style="left:14.4279em;top:20.7755em;"><span class="stl_10 stl_08 stl_09">的是非得失水电费的是非得 &nbsp;</span></div>
-                <div class="stl_01" style="left:37.2101em;top:21.9885em;"><span class="stl_10 stl_08 stl_09">签字：梵蒂冈 &nbsp;</span></div>
+                <div class="stl_01" style="left:14.4279em;top:20.7755em;"><span class="stl_10 stl_08 stl_09">{{$param['tip_jbywy']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:37.2101em;top:21.9885em;"><span class="stl_10 stl_08 stl_09">签字：{{$param['jbywy']??''}} &nbsp;</span></div>
                 <div class="stl_01" style="left:5.2064em;top:22.5627em;"><span class="stl_10 stl_08 stl_09">经办业务员 &nbsp;</span></div>
                 <div class="stl_01" style="left:5.2064em;top:27.6996em;"><span class="stl_10 stl_08 stl_09">贸易部意见 &nbsp;</span></div>
                 <div class="stl_01" style="left:5.2064em;top:32.8364em;"><span class="stl_10 stl_08 stl_09">风控部意见 &nbsp;</span></div>
@@ -146,25 +149,25 @@
                 <div class="stl_01" style="left:5.2064em;top:43.1101em;"><span class="stl_10 stl_08 stl_09">副总经理意见 &nbsp;</span></div>
                 <div class="stl_01" style="left:5.2064em;top:48.247em;"><span class="stl_10 stl_08 stl_09">总经理审批 &nbsp;</span></div>
                 <div class="stl_01" style="left:5.2064em;top:53.3838em;"><span class="stl_10 stl_08 stl_09">董事长审批 &nbsp;</span></div>
-                <div class="stl_01" style="left:35.5431em;top:23.2268em;"><span class="stl_11 stl_12 stl_09">2022</span><span class="stl_10 stl_08 stl_09">年</span><span class="stl_11 stl_12 stl_09">11</span><span class="stl_10 stl_08 stl_09">月</span><span class="stl_11 stl_12 stl_15">12</span><span class="stl_10 stl_08 stl_15">日 &nbsp;</span></div>
-                <div class="stl_01" style="left:14.4279em;top:25.9124em;"><span class="stl_10 stl_08 stl_09">的是非得失水电费的是非得 &nbsp;</span></div>
-                <div class="stl_01" style="left:37.2101em;top:27.1253em;"><span class="stl_10 stl_08 stl_09">签字：梵蒂冈 &nbsp;</span></div>
-                <div class="stl_01" style="left:35.8209em;top:28.3636em;"><span class="stl_11 stl_12 stl_09">2022</span><span class="stl_10 stl_08 stl_09">年</span><span class="stl_11 stl_12 stl_09">11</span><span class="stl_10 stl_08 stl_09">月</span><span class="stl_11 stl_12 stl_15">12</span><span class="stl_10 stl_08 stl_15">日 &nbsp;</span></div>
-                <div class="stl_01" style="left:14.4279em;top:31.0492em;"><span class="stl_10 stl_08 stl_09">的是非得失水电费的是非得 &nbsp;</span></div>
-                <div class="stl_01" style="left:37.2101em;top:32.2622em;"><span class="stl_10 stl_08 stl_09">签字：梵蒂冈 &nbsp;</span></div>
-                <div class="stl_01" style="left:35.8209em;top:33.5005em;"><span class="stl_11 stl_12 stl_09">2022</span><span class="stl_10 stl_08 stl_09">年</span><span class="stl_11 stl_12 stl_09">11</span><span class="stl_10 stl_08 stl_09">月</span><span class="stl_11 stl_12 stl_15">12</span><span class="stl_10 stl_08 stl_15">日 &nbsp;</span></div>
-                <div class="stl_01" style="left:14.4279em;top:36.1861em;"><span class="stl_10 stl_08 stl_09">的是非得失水电费的是非得 &nbsp;</span></div>
-                <div class="stl_01" style="left:37.2101em;top:37.399em;"><span class="stl_10 stl_08 stl_09">签字：梵蒂冈 &nbsp;</span></div>
-                <div class="stl_01" style="left:35.8209em;top:38.6373em;"><span class="stl_11 stl_12 stl_09">2022</span><span class="stl_10 stl_08 stl_09">年</span><span class="stl_11 stl_12 stl_09">11</span><span class="stl_10 stl_08 stl_09">月</span><span class="stl_11 stl_12 stl_15">12</span><span class="stl_10 stl_08 stl_15">日 &nbsp;</span></div>
-                <div class="stl_01" style="left:14.4279em;top:41.3229em;"><span class="stl_10 stl_08 stl_09">的是非得失水电费的是非得 &nbsp;</span></div>
-                <div class="stl_01" style="left:37.2101em;top:42.5358em;"><span class="stl_10 stl_08 stl_09">签字：梵蒂冈 &nbsp;</span></div>
-                <div class="stl_01" style="left:35.8209em;top:43.7741em;"><span class="stl_11 stl_12 stl_09">2022</span><span class="stl_10 stl_08 stl_09">年</span><span class="stl_11 stl_12 stl_09">11</span><span class="stl_10 stl_08 stl_09">月</span><span class="stl_11 stl_12 stl_15">12</span><span class="stl_10 stl_08 stl_15">日 &nbsp;</span></div>
-                <div class="stl_01" style="left:14.4279em;top:46.4598em;"><span class="stl_10 stl_08 stl_09">的是非得失水电费的是非得 &nbsp;</span></div>
-                <div class="stl_01" style="left:37.2101em;top:47.6727em;"><span class="stl_10 stl_08 stl_09">签字：梵蒂冈 &nbsp;</span></div>
-                <div class="stl_01" style="left:35.8209em;top:48.911em;"><span class="stl_11 stl_12 stl_09">2022</span><span class="stl_10 stl_08 stl_09">年</span><span class="stl_11 stl_12 stl_09">11</span><span class="stl_10 stl_08 stl_09">月</span><span class="stl_11 stl_12 stl_15">12</span><span class="stl_10 stl_08 stl_15">日 &nbsp;</span></div>
-                <div class="stl_01" style="left:14.4279em;top:51.5966em;"><span class="stl_10 stl_08 stl_09">的是非得失水电费的是非得 &nbsp;</span></div>
-                <div class="stl_01" style="left:37.2101em;top:52.8095em;"><span class="stl_10 stl_08 stl_09">签字：梵蒂冈 &nbsp;</span></div>
-                <div class="stl_01" style="left:35.8209em;top:54.0478em;"><span class="stl_11 stl_12 stl_09">2022</span><span class="stl_10 stl_08 stl_09">年</span><span class="stl_11 stl_12 stl_09">11</span><span class="stl_10 stl_08 stl_09">月</span><span class="stl_11 stl_12 stl_15">12</span><span class="stl_10 stl_08 stl_15">日 &nbsp;</span></div>
+                <div class="stl_01" style="left:35.5431em;top:23.2268em;"><span class="stl_11 stl_12 stl_09">{{$param['day_jbywy']??'__年__月__日'}}</span></div>
+                <div class="stl_01" style="left:14.4279em;top:25.9124em;"><span class="stl_10 stl_08 stl_09">{{$param['tip_myb']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:37.2101em;top:27.1253em;"><span class="stl_10 stl_08 stl_09">签字：{{$param['myb']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:35.8209em;top:28.3636em;"><span class="stl_11 stl_12 stl_09">{{$param['day_myb']??'__年__月__日'}}</span></div>
+                <div class="stl_01" style="left:14.4279em;top:31.0492em;"><span class="stl_10 stl_08 stl_09">{{$param['tip_fkb']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:37.2101em;top:32.2622em;"><span class="stl_10 stl_08 stl_09">签字：{{$param['fkb']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:35.8209em;top:33.5005em;"><span class="stl_11 stl_12 stl_09">{{$param['day_fkb']??'__年__月__日'}}</span></div>
+                <div class="stl_01" style="left:14.4279em;top:36.1861em;"><span class="stl_10 stl_08 stl_09">{{$param['tip_cwb']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:37.2101em;top:37.399em;"><span class="stl_10 stl_08 stl_09">签字：{{$param['cwb']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:35.8209em;top:38.6373em;"><span class="stl_11 stl_12 stl_09">{{$param['day_cwb']??'__年__月__日'}}</span></div>
+                <div class="stl_01" style="left:14.4279em;top:41.3229em;"><span class="stl_10 stl_08 stl_09">{{$param['tip_fzjl']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:37.2101em;top:42.5358em;"><span class="stl_10 stl_08 stl_09">签字：{{$param['fzjl']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:35.8209em;top:43.7741em;"><span class="stl_11 stl_12 stl_09">{{$param['day_fzjl']??'__年__月__日'}}</span></div>
+                <div class="stl_01" style="left:14.4279em;top:46.4598em;"><span class="stl_10 stl_08 stl_09">{{$param['tip_zjl']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:37.2101em;top:47.6727em;"><span class="stl_10 stl_08 stl_09">签字：{{$param['zjl']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:35.8209em;top:48.911em;"><span class="stl_11 stl_12 stl_09">{{$param['day_zjl']??'__年__月__日'}}</span></div>
+                <div class="stl_01" style="left:14.4279em;top:51.5966em;"><span class="stl_10 stl_08 stl_09">{{$param['tip_dsz']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:37.2101em;top:52.8095em;"><span class="stl_10 stl_08 stl_09">签字：{{$param['dsz']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:35.8209em;top:54.0478em;"><span class="stl_11 stl_12 stl_09">{{$param['day_dsz']??'__年__月__日'}}</span></div>
             </div>
         </div>
     </div>

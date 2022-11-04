@@ -15,9 +15,16 @@ class Template extends Model
     const TYPE_HETONG = 2;
     const TYPE_AGREEMENT = 3;
     const TYPE_LIST = [
-        self::TYPE_SHENPI =>'审批单模板',
+        self::TYPE_SHENPI =>'审批票证模板',
         self::TYPE_HETONG =>'合同模板',
         self::TYPE_AGREEMENT =>'框架协议模板',
+    ];
+
+    const STATUS_OPEN = 1;
+    const STATUS_CLOSE = 0;
+    const STATUS_LIST = [
+        self::STATUS_CLOSE =>'禁用',
+        self::STATUS_OPEN =>'启用',
     ];
 
 

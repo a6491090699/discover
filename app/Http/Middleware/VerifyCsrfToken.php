@@ -27,6 +27,8 @@ class VerifyCsrfToken extends Middleware
         //
         'admin/auth/menu',
         'admin/auth/permissions',
-        'api/pub/*'
+        'api/pub/*',
+        'admin/dcat-api/value',
+        'admin/messages/*',
     ];
 }

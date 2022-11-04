@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\OrderReview;
 use App\Admin\Repositories\StoreOut;
 use App\Admin\Repositories\StoreOutItem;
 use App\Models\Delivery;
@@ -23,10 +24,14 @@ class StoreOutController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new StoreOut(), function (Grid $grid) {
+        return Grid::make(new StoreOut(['store']), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('sn');
             $grid->column('out_at');
+            $grid->column('store.title','仓库');
+            $grid->column('status')->using(ModelsStoreOut::STATUS_LIST)->label(ModelsStoreOut::STATUS_COLOR);
+            $grid->column('review_status')->using(ModelsStoreOut::REVIEW_STATUS)->label(ModelsStoreOut::REVIEW_STATUS_COLOR);
+            $grid->column('car_number');
             // $grid->column('store_id');
             // $grid->column('type');
             // $grid->column('order_id');
@@ -36,10 +41,24 @@ class StoreOutController extends AdminController
             // $grid->column('car_number');
             // $grid->column('delivery_id');
             $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
+            // $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->equal('sn');
+                $filter->equal('store_id')->select(Store::pluck('title','id')->toArray());
+                $filter->equal('status')->select(ModelsStoreOut::STATUS_LIST);
+                $filter->equal('review_status')->select(ModelsStoreOut::REVIEW_STATUS);
+                $filter->whereBetween('out_at', function ($q) {
+                    $start = $this->input['start'] ?? null;
+                    $end = $this->input['end'] ?? null;
+                    if($start){
+                        $q->where('out_at' ,'>=' , $start);
+                    }
+                    if($end){
+                        $q->where('out_at' ,'<=' , $end);
+                    }
+                })->datetime(); 
         
             });
         });
@@ -81,11 +100,11 @@ class StoreOutController extends AdminController
         return Form::make(new StoreOut(), function (Form $form) {
             $form->display('id');
             $form->text('sn')->readOnly();
-            $form->datetime('out_at');
-            $form->select('store_id')->options(Store::pluck('title','id'));
-            $form->select('order_type')->options(ModelsStoreOut::TYPE_LIST)->load('order_id',route('pub.multi-orders'));
-            $form->select('order_id');
-            $form->select('status')->options(ModelsStoreOut::STATUS_LIST);
+            $form->datetime('out_at')->required();
+            $form->select('store_id')->options(Store::pluck('title','id'))->required();
+            $form->select('order_type')->options(ModelsStoreOut::TYPE_LIST)->load('order_id',route('pub.multi-orders'))->required();
+            $form->select('order_id')->required();
+            $form->select('status')->options(ModelsStoreOut::STATUS_LIST)->required();
             $form->hidden('total_money');
             $form->text('car_number');
             $form->select('delivery_id')->options(Delivery::pluck('sn', 'id'));
@@ -127,6 +146,19 @@ class StoreOutController extends AdminController
     protected function setItems($id)
     {
         return Grid::make(new StoreOutItem(['sku', 'product']), function (Grid $grid) use ($id) {
+            $order = ModelsStoreOut::find($id);
+            
+            // $grid->tools(OrderPrint::make());
+            
+            if ($order && $order->review_status !== ModelsStoreOut::REVIEW_STATUS_OK) {
+                $grid->tools(OrderReview::make(show_order_review($order->review_status)));
+                // $grid->tools(OrderDelete::make());
+                // $grid->tools(BatchCreatePro::make());
+            }
+            $grid->disableActions();
+            $grid->disablePagination();
+            $grid->disableCreateButton();
+            $grid->disableBatchDelete();
             $grid->setName('items');
             $store_in = ModelsStoreOut::find($id);
             $grid->model()->where('store_out_id', $id);
@@ -135,10 +167,10 @@ class StoreOutController extends AdminController
             $grid->column('product.unit.name', '单位');
             $grid->column('product.type_str', '类型');
             $grid->column('actual_num', '数量')->if(function () use ($store_in) {
-                return $store_in->status !==  ModelsStoreOut::STATUS_OUT;
+                return $store_in->review_status !==  ModelsStoreOut::REVIEW_STATUS_OK;
             })->edit();
             $grid->column('price', '单价')->if(function () use ($store_in) {
-                return $store_in->status !==  ModelsStoreOut::STATUS_OUT;
+                return $store_in->review_status !==  ModelsStoreOut::REVIEW_STATUS_OK;
             })->edit();
             $grid->column("_", '合计')->display(function () {
                 return bcmul($this->actual_num, $this->price, 2);

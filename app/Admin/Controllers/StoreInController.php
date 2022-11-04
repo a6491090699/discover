@@ -2,6 +2,10 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\BatchCreatePro;
+use App\Admin\Actions\Grid\OrderDelete;
+use App\Admin\Actions\Grid\OrderPrint;
+use App\Admin\Actions\Grid\OrderReview;
 use App\Admin\Repositories\StoreIn;
 use App\Admin\Repositories\StoreInItem;
 use App\Models\Allocation;
@@ -26,19 +30,35 @@ class StoreInController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new StoreIn(), function (Grid $grid) {
+        return Grid::make(new StoreIn(['store']), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('sn');
             $grid->column('in_at');
-            // $grid->column('store_id');
+            $grid->column('store.title','仓库');
+            $grid->column('status')->using(ModelsStoreIn::STATUS_LIST)->label(ModelsStoreIn::STATUS_COLOR);
+            $grid->column('review_status')->using(ModelsStoreIn::REVIEW_STATUS)->label(ModelsStoreIn::REVIEW_STATUS_COLOR);
             // $grid->column('total_money');
-            // $grid->column('car_number');
+            $grid->column('car_number');
             // $grid->column('delivery_id');
             $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
+            // $grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->equal('sn');
+                $filter->equal('store_id')->select(Store::pluck('title','id')->toArray());
+                $filter->equal('status')->select(ModelsStoreIn::STATUS_LIST);
+                $filter->equal('review_status')->select(ModelsStoreIn::REVIEW_STATUS);
+                $filter->whereBetween('in_at', function ($q) {
+                    $start = $this->input['start'] ?? null;
+                    $end = $this->input['end'] ?? null;
+                    if($start){
+                        $q->where('in_at' ,'>=' , $start);
+                    }
+                    if($end){
+                        $q->where('in_at' ,'<=' , $end);
+                    }
+                })->datetime(); 
             });
         });
     }
@@ -76,21 +96,21 @@ class StoreInController extends AdminController
         return Form::make(new StoreIn(['order']), function (Form $form) {
             $form->display('id');
             $form->text('sn')->readOnly();
-            $form->datetime('in_at');
-            $form->select('store_id')->options(Store::pluck('title', 'id'));
+            $form->datetime('in_at')->required();
+            $form->select('store_id')->options(Store::pluck('title', 'id'))->required();
             if ($form->isCreating()) {
                 $form->select('order_type' ,'类型')->options(ModelsStoreIn::TYPE_LIST)
-                    ->load('order_id', route('pub.multi-orders'));
+                    ->load('order_id', route('pub.multi-orders'))->required();
             }
             if ($form->isEditing()) {
                 $form->select('order_type' ,'类型')->options(ModelsStoreIn::TYPE_LIST)
                     ->load('order_id', route('pub.multi-orders'));
             }
 
-            $form->select('order_id', '关联单号');
+            $form->select('order_id', '关联单号')->required();
             $form->select('delivery_id')->options(Delivery::pluck('sn', 'id'));
-            $form->select('status', '状态')->options(ModelsStoreIn::STATUS_LIST);
-            $form->select('review_status', '审核状态')->options(ModelsStoreIn::REVIEW_STATUS);
+            $form->select('status', '状态')->options(ModelsStoreIn::STATUS_LIST)->default(ModelsStoreIn::STATUS_NOT_IN)->required();
+            // $form->select('review_status', '审核状态')->options(ModelsStoreIn::REVIEW_STATUS);
             $form->hidden('total_money');
             $form->text('car_number');
             if ($form->isCreating()) {
@@ -132,6 +152,20 @@ class StoreInController extends AdminController
     protected function setItems($id)
     {
         return Grid::make(new StoreInItem(['sku', 'product']), function (Grid $grid) use ($id) {
+            $order = ModelsStoreIn::find($id);
+            
+            // $grid->tools(OrderPrint::make());
+            
+            if ($order && $order->review_status !== ModelsStoreIn::REVIEW_STATUS_OK) {
+                $grid->tools(OrderReview::make(show_order_review($order->review_status)));
+                // $grid->tools(OrderDelete::make());
+                // $grid->tools(BatchCreatePro::make());
+            }
+            $grid->disableActions();
+            $grid->disablePagination();
+            $grid->disableCreateButton();
+            $grid->disableBatchDelete();
+
             $grid->setName('items');
             $store_in = ModelsStoreIn::find($id);
             $grid->model()->where('store_in_id', $id);
@@ -140,10 +174,10 @@ class StoreInController extends AdminController
             $grid->column('product.unit.name', '单位');
             $grid->column('product.type_str', '类型');
             $grid->column('actual_num', '数量')->if(function () use ($store_in) {
-                return $store_in->status !==  ModelsStoreIn::STATUS_IN;
+                return $store_in->review_status !==  ModelsStoreIn::REVIEW_STATUS_OK;
             })->edit();
             $grid->column('price', '单价')->if(function () use ($store_in) {
-                return $store_in->status !==  ModelsStoreIn::STATUS_IN;
+                return $store_in->review_status !==  ModelsStoreIn::REVIEW_STATUS_OK;
             })->edit();
             $grid->column("_", '合计')->display(function () {
                 return bcmul($this->actual_num, $this->price, 2);

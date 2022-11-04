@@ -100,7 +100,8 @@ class PrintController extends Controller
             case 'trade':
                 $info = FrameContract::find($id);
                 $info->template_data = json_decode($info->template_data, true);
-                $temp = $dir . '.' . $request->input('slug');
+                // $temp = $dir . '.' . $request->input('slug');
+                $temp = $dir . '.' . $info->template->slug;
                 break;
         }
         //yytodo 修改sale_order表  字段跟最近的purchase_order表类似 看笔记        

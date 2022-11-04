@@ -121,10 +121,10 @@
         <div class="stl_view">
             <div class="stl_05 stl_06">
                 <div class="stl_01" style="left:28.1254em;top:10.4098em;"><span class="stl_07 stl_08 stl_09">董事长 &nbsp;</span></div>
-                <div class="stl_01" style="left:34.6053em;top:10.4098em;"><span class="stl_07 stl_08 stl_09">的是非 &nbsp;</span></div>
-                <div class="stl_01" style="left:34.6053em;top:12.9782em;"><span class="stl_07 stl_08 stl_09">放的地 &nbsp;</span></div>
-                <div class="stl_01" style="left:34.6053em;top:15.5466em;"><span class="stl_07 stl_08 stl_09">第三方 &nbsp;</span></div>
-                <div class="stl_01" style="left:34.6053em;top:18.115em;"><span class="stl_07 stl_08 stl_09">他热狗 &nbsp;</span></div>
+                <div class="stl_01" style="left:34.6053em;top:10.4098em;"><span class="stl_07 stl_08 stl_09">{{$param['dsz']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:34.6053em;top:12.9782em;"><span class="stl_07 stl_08 stl_09">{{$param['fgld']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:34.6053em;top:15.5466em;"><span class="stl_07 stl_08 stl_09">{{$param['zkjs']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:34.6053em;top:18.115em;"><span class="stl_07 stl_08 stl_09">{{$param['cwjl']??''}} &nbsp;</span></div>
                 <div class="stl_01" style="left:41.8687em;top:11.2466em;"><span class="stl_07 stl_08 stl_09">付</span></div>
                 <div class="stl_01" style="left:41.8687em;top:12.4666em;"><span class="stl_07 stl_08 stl_09">款</span></div>
                 <div class="stl_01" style="left:41.8687em;top:13.6866em;"><span class="stl_07 stl_08 stl_09">类</span></div>
@@ -151,7 +151,8 @@
                 <div class="stl_01" style="left:3.4626em;top:30.1609em;"><span class="stl_11 stl_08 stl_09">单</span></div>
                 <div class="stl_01" style="left:41.1187em;top:15.4845em;"><span class="stl_07 stl_08 stl_09">3</span></div>
                 <div class="stl_01" style="left:40.8687em;top:16.7045em;"><span class="stl_07 stl_08 stl_09">·</span></div>
-                <div class="stl_01" style="left:40.9229em;top:17.9345em;"><span class="stl_12 stl_13 stl_09">√</span></div>
+                {{-- <div class="stl_01" style="left:40.9229em;top:17.9345em;"><span class="stl_12 stl_13 stl_09">√</span></div> --}}
+                <div class="stl_01" style="left:40.9229em;top:17.9345em;"><span class="stl_12 stl_13 stl_09">□</span></div>
                 <div class="stl_01" style="left:40.8687em;top:19.2087em;"><span class="stl_07 stl_08 stl_09">冲</span></div>
                 <div class="stl_01" style="left:40.8687em;top:20.4287em;"><span class="stl_07 stl_08 stl_09">暂</span></div>
                 <div class="stl_01" style="left:40.8687em;top:21.6487em;"><span class="stl_07 stl_08 stl_09">借</span></div>
@@ -161,9 +162,9 @@
                 <div class="stl_01" style="left:41.8687em;top:21.0066em;"><span class="stl_07 stl_08 stl_09">现</span></div>
                 <div class="stl_01" style="left:41.8687em;top:22.2266em;"><span class="stl_07 stl_08 stl_09">金</span></div>
                 <div class="stl_01" style="left:28.6254em;top:20.6834em;"><span class="stl_07 stl_08 stl_09">会计 &nbsp;</span></div>
-                <div class="stl_01" style="left:34.6053em;top:20.6834em;"><span class="stl_07 stl_08 stl_09">电饭锅 &nbsp;</span></div>
-                <div class="stl_01" style="left:34.6053em;top:23.1641em;"><span class="stl_07 stl_08 stl_09">上次测 &nbsp;</span></div>
-                <div class="stl_01" style="left:34.6053em;top:25.557em;"><span class="stl_07 stl_08 stl_09">不长不 &nbsp;</span></div>
+                <div class="stl_01" style="left:34.6053em;top:20.6834em;"><span class="stl_07 stl_08 stl_09">{{$param['kj']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:34.6053em;top:23.1641em;"><span class="stl_07 stl_08 stl_09">{{$param['bmjl']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:34.6053em;top:25.557em;"><span class="stl_07 stl_08 stl_09">{{$param['jbry']??''}} &nbsp;</span></div>
                 <div class="stl_01" style="left:27.6254em;top:23.1641em;"><span class="stl_07 stl_08 stl_09">部门经理 &nbsp;</span></div>
                 <div class="stl_01" style="left:27.6254em;top:25.557em;"><span class="stl_07 stl_08 stl_09">经办人员 &nbsp;</span></div>
                 <div class="stl_01" style="left:41.1187em;top:24.0887em;"><span class="stl_07 stl_08 stl_09">4</span></div>
@@ -176,11 +177,11 @@
                 <div class="stl_01" style="left:41.8687em;top:27.1066em;"><span class="stl_07 stl_08 stl_09">□</span></div>
                 <div class="stl_01" style="left:41.8687em;top:28.3266em;"><span class="stl_07 stl_08 stl_09">汇</span></div>
                 <div class="stl_01" style="left:41.8687em;top:29.5466em;"><span class="stl_07 stl_08 stl_09">款</span></div>
-                <div class="stl_01" style="left:5.9282em;top:27.9499em;"><span class="stl_07 stl_08 stl_09">合计（大写）： 壹佰壹拾壹万壹仟壹佰壹拾壹元壹角壹分 </span><span class="stl_14 stl_08 stl_09">￥：123456 &nbsp;</span></div>
-                <div class="stl_01" style="left:6.4737em;top:30.3428em;"><span class="stl_07 stl_08 stl_09" style="word-spacing:0.3783em;">受款人 水电费东山风动石放水电费 &nbsp;</span></div>
+                <div class="stl_01" style="left:5.9282em;top:27.9499em;"><span class="stl_07 stl_08 stl_09">合计（大写）： {{up_pinyin_money($param['price'])??''}} </span><span class="stl_14 stl_08 stl_09">￥：{{$param['price']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:6.4737em;top:30.3428em;"><span class="stl_07 stl_08 stl_09" style="word-spacing:0.3783em;">受款人 {{$param['skr']??''}} &nbsp;</span></div>
                 <div class="stl_01" style="left:6.4737em;top:32.8235em;"><span class="stl_07 stl_08 stl_09" style="word-spacing:0.5em;">账 号 &nbsp;</span></div>
-                <div class="stl_01" style="left:12.1071em;top:32.8235em;"><span class="stl_07 stl_08 stl_09">1234545678798 &nbsp;</span></div>
-                <div class="stl_01" style="left:21.2716em;top:32.8235em;"><span class="stl_07 stl_08 stl_09" style="word-spacing:0.4095em;">开户行 的是非得失 &nbsp;</span></div>
+                <div class="stl_01" style="left:12.1071em;top:32.8235em;"><span class="stl_07 stl_08 stl_09">{{$param['bank_account']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:21.2716em;top:32.8235em;"><span class="stl_07 stl_08 stl_09" style="word-spacing:0.4095em;">开户行 {{$param['bank']??''}} &nbsp;</span></div>
             </div>
         </div>
     </div>

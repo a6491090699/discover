@@ -29,13 +29,24 @@ class StoreIn extends Model
 
     const TYPE_DIAOBO = 'allocations';
     const TYPE_BUY = 'purchase_order';
-    const TYPE_BACK = 'sale_in_order';
+    const TYPE_BACK = 'sale_back_orders';
     const TYPE_OTHER = 'other';
     const TYPE_LIST = [
         self::TYPE_DIAOBO => '调拨入库',
         self::TYPE_BUY => '采购入库',
         self::TYPE_BACK => '客户退货入库',
         self::TYPE_OTHER => '其他入库',
+    ];
+
+    const STATUS_COLOR = [
+        self::STATUS_IN      => 'success',
+        self::STATUS_NOT_IN    => 'yellow',
+    ];
+
+    const REVIEW_STATUS_COLOR = [
+        self::REVIEW_STATUS_WAIT     => "gray",
+        self::REVIEW_STATUS_OK       => "success",
+        self::REVIEW_STATUS_REREVIEW => "red",
     ];
 
 

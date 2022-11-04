@@ -77,8 +77,6 @@ use Illuminate\Support\Facades\Route;
 // //dcat接口
 // Route::prefix('pub')->group(function () {
 //     //菜单列表
-//     Route::get('orders' , 'PubController@orders')->name('pub.orders');
-//     Route::get('multi-orders' , 'PubController@multiOrders')->name('pub.multi-orders');
 
     
 // });
@@ -86,5 +84,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('pub')->group(function () {
     
     Route::post('message-read' , 'PubController@messageRead')->name('pub.messageRead');
+    Route::get('multi-orders' , 'PubController@multiOrders')->name('pub.multi-orders');
+    Route::get('orders' , 'PubController@orders')->name('pub.orders');
     
 });

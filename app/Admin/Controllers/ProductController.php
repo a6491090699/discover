@@ -38,13 +38,14 @@ class ProductController extends AdminController
             $grid->column('id')->sortable();
             $grid->column('item_no')->emp();
             $grid->column('name')->emp();
-            $grid->column('py_code')->emp();
+            // $grid->column('py_code')->emp();
             $grid->column('type', '类型')->using(ProductModel::TYPE);
             $grid->column('unit.name', '单位')->emp();
             $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
+            // $grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
+                $filter->like('name');
             });
         });
     }
@@ -70,6 +71,7 @@ class ProductController extends AdminController
             $grid->tools(BatchCreateProSave::make());
 
             $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('id');
             });
         });
     }

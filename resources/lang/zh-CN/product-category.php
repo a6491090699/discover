@@ -1,12 +1,12 @@
 <?php 
 return [
     'labels' => [
-        'ProductCategory' => 'ProductCategory',
+        'ProductCategory' => '产品类别',
     ],
     'fields' => [
-        'title' => 'title',
-        'parent_id' => 'parent_id',
-        'order' => 'order',
+        'title' => '类名',
+        'parent_id' => '父ID',
+        'order' => '排序',
     ],
     'options' => [
     ],

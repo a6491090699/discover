@@ -83,7 +83,9 @@ class Approval extends EloquentRepository
                 $approval->check_status = Model::STATUS_SUCCESS;
             } else {
                 $approval->check_step_sort = $approval->check_step_sort + 1;
+                $approval->check_status = Model::STATUS_ING;
                 $approval->next_user_id = $approval->check_user_ids[$approval->check_step_sort];
+                
                 //发送通知
                 app(Message::class)->add($approval->user_id, $approval->next_user_id, '您有新审批单未审批', 2, route('approvals.index', ['dtype' => 1]));
             }

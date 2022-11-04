@@ -1,7 +1,7 @@
 <?php 
 return [
     'labels' => [
-        'Provider' => 'Provider',
+        'Provider' => '服务商',
     ],
     'fields' => [
         'name' => '服务商名称',

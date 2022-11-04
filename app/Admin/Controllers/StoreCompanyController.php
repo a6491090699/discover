@@ -27,11 +27,11 @@ class StoreCompanyController extends AdminController
             $grid->column('bank');
             $grid->column('bank_account');
             $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
+            // $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-        
+                $filter->like('title');
             });
         });
     }
@@ -68,14 +68,14 @@ class StoreCompanyController extends AdminController
     {
         return Form::make(new StoreCompany(), function (Form $form) {
             $form->display('id');
-            $form->text('title');
-            $form->text('short_title');
-            $form->text('address');
-            $form->text('charge_man');
-            $form->text('tel');
-            $form->text('tax_code');
-            $form->text('bank');
-            $form->text('bank_account');
+            $form->text('title')->required();
+            $form->text('short_title')->required();
+            $form->text('address')->required();
+            $form->text('charge_man')->required();
+            $form->text('tel')->required();
+            $form->text('tax_code')->required();
+            $form->text('bank')->required();
+            $form->text('bank_account')->required();
         
             $form->display('created_at');
             $form->display('updated_at');

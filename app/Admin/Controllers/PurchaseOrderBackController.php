@@ -2,8 +2,13 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\BatchCreatePro;
+use App\Admin\Actions\Grid\OrderDelete;
+use App\Admin\Actions\Grid\OrderPrint;
+use App\Admin\Actions\Grid\OrderReview;
 use App\Admin\Repositories\PurchaseBackItem;
 use App\Admin\Repositories\PurchaseOrderBack;
+use App\Admin\Repositories\Supplier;
 use App\Models\ProductModel;
 use App\Models\PurchaseOrderBack as ModelsPurchaseOrderBack;
 use App\Models\PurchaseOrderModel;
@@ -18,10 +23,6 @@ use Illuminate\Support\Fluent;
 
 class PurchaseOrderBackController extends AdminController
 {
-    public function title()
-    {
-        return '采购退货';
-    }
     /**
      * Make a grid builder.
      *
@@ -29,18 +30,19 @@ class PurchaseOrderBackController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new PurchaseOrderBack(), function (Grid $grid) {
+        return Grid::make(new PurchaseOrderBack(['purchaseOrder', 'purchaseOrder.supplier']), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('sn');
-            $grid->column('back_at');
-            $grid->column('purchase_order_id');
-            $grid->column('store_id');
-            $grid->column('supplier_id');
+            $grid->column('purchaseOrder.order_no', '采购合同号');
+            // $grid->column('store_id')->using(Store::pluck('title','id')->toArray());
+            $grid->column('purchaseOrder.supplier.name', '供应商');
             $grid->column('back_money');
-            $grid->column('status')->using(['未发货', '已发货']);
+            $grid->column('status')->using(ModelsPurchaseOrderBack::STATUS)->label(ModelsPurchaseOrderBack::STATUS_COLOR);
+            $grid->column('review_status')->using(ModelsPurchaseOrderBack::REVIEW_STATUS)->label(ModelsPurchaseOrderBack::REVIEW_STATUS_COLOR);
             // $grid->column('other');
+            $grid->column('back_at');
             $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
+            // $grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
@@ -81,12 +83,13 @@ class PurchaseOrderBackController extends AdminController
         return Form::make(new PurchaseOrderBack(), function (Form $form) {
             $form->display('id');
             $form->text('sn')->readOnly();
-            $form->datetime('back_at');
-            $form->select('purchase_order_id')->options(PurchaseOrderModel::receive()->pluck('order_no', 'id'));
+            $form->datetime('back_at')->required();
+            $form->select('purchase_order_id')->options(PurchaseOrderModel::receive()->pluck('order_no', 'id'))->required();
             $form->select('store_id')->options(Store::pluck('title', 'id'));
-            $form->select('supplier_id')->options(SupplierModel::pluck('name', 'id'));
-            $form->select('status', '状态')->options(['未发货', '已发货']);
-            $form->hidden('back_money')->default(0);
+            // $form->select('supplier_id')->options(SupplierModel::pluck('name', 'id'));
+            $form->select('status', '状态')->options(ModelsPurchaseOrderBack::STATUS)->required();
+            // $form->select('review_status', '审核状态')->options(ModelsPurchaseOrderBack::REVIEW_STATUS)->required();
+            $form->hidden('back_money')->default(0)->required();
 
             $form->display('created_at');
             $form->display('updated_at');
@@ -134,8 +137,21 @@ class PurchaseOrderBackController extends AdminController
     protected function setItems($id)
     {
         return Grid::make(new PurchaseBackItem(['sku', 'product']), function (Grid $grid) use ($id) {
-            $grid->setName('items');
             $order = ModelsPurchaseOrderBack::find($id);
+            
+            // $grid->tools(OrderPrint::make());
+            
+            if ($order && $order->review_status !== ModelsPurchaseOrderBack::REVIEW_STATUS_OK) {
+                $grid->tools(OrderReview::make(show_order_review($order->review_status)));
+                // $grid->tools(OrderDelete::make());
+                // $grid->tools(BatchCreatePro::make());
+            }
+            $grid->disableActions();
+            $grid->disablePagination();
+            $grid->disableCreateButton();
+            $grid->disableBatchDelete();
+
+            $grid->setName('items');
             $grid->model()->where('purchase_order_back_id', $id);
 
             $grid->column('product.name', '产品名称');
@@ -160,4 +176,6 @@ class PurchaseOrderBackController extends AdminController
             });
         });
     }
+
+    
 }

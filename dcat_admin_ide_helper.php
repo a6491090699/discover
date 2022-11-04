@@ -30,10 +30,15 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection start_at
      * @property Grid\Column|Collection end_at
      * @property Grid\Column|Collection month
+     * @property Grid\Column|Collection type
+     * @property Grid\Column|Collection detail
+     * @property Grid\Column|Collection is_enabled
      * @property Grid\Column|Collection parent_id
      * @property Grid\Column|Collection order
      * @property Grid\Column|Collection icon
      * @property Grid\Column|Collection uri
+     * @property Grid\Column|Collection extension
+     * @property Grid\Column|Collection show
      * @property Grid\Column|Collection user_id
      * @property Grid\Column|Collection path
      * @property Grid\Column|Collection method
@@ -45,6 +50,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection http_method
      * @property Grid\Column|Collection http_path
      * @property Grid\Column|Collection role_id
+     * @property Grid\Column|Collection value
      * @property Grid\Column|Collection username
      * @property Grid\Column|Collection password
      * @property Grid\Column|Collection avatar
@@ -83,6 +89,15 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection approval_type_id
      * @property Grid\Column|Collection desc
      * @property Grid\Column|Collection check_users
+     * @property Grid\Column|Collection flow_id
+     * @property Grid\Column|Collection content
+     * @property Grid\Column|Collection remark
+     * @property Grid\Column|Collection check_step_sort
+     * @property Grid\Column|Collection check_user_ids
+     * @property Grid\Column|Collection flow_user_ids
+     * @property Grid\Column|Collection check_status
+     * @property Grid\Column|Collection last_user_id
+     * @property Grid\Column|Collection next_user_id
      * @property Grid\Column|Collection attr_id
      * @property Grid\Column|Collection pay_at
      * @property Grid\Column|Collection fee_type_id
@@ -153,8 +168,6 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection arrived_at
      * @property Grid\Column|Collection money
      * @property Grid\Column|Collection enclosure
-     * @property Grid\Column|Collection content
-     * @property Grid\Column|Collection type
      * @property Grid\Column|Collection reply
      * @property Grid\Column|Collection connection
      * @property Grid\Column|Collection queue
@@ -163,6 +176,14 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection failed_at
      * @property Grid\Column|Collection has_caozuo
      * @property Grid\Column|Collection has_zhanyong
+     * @property Grid\Column|Collection approval_id
+     * @property Grid\Column|Collection step_id
+     * @property Grid\Column|Collection check_user_id
+     * @property Grid\Column|Collection flow_uid
+     * @property Grid\Column|Collection sort
+     * @property Grid\Column|Collection check_type
+     * @property Grid\Column|Collection flow_list
+     * @property Grid\Column|Collection template_id
      * @property Grid\Column|Collection products
      * @property Grid\Column|Collection year_rate
      * @property Grid\Column|Collection caozuo_rate
@@ -177,6 +198,7 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection money_sc
      * @property Grid\Column|Collection money_other
      * @property Grid\Column|Collection pics
+     * @property Grid\Column|Collection template_data
      * @property Grid\Column|Collection position_id
      * @property Grid\Column|Collection batch_no
      * @property Grid\Column|Collection diff_num
@@ -213,20 +235,25 @@ namespace Dcat\Admin {
      * @property Grid\Column|Collection supplier_id
      * @property Grid\Column|Collection finished_at
      * @property Grid\Column|Collection apply_at
-     * @property Grid\Column|Collection check_status
      * @property Grid\Column|Collection frame_contract_id
      * @property Grid\Column|Collection sign_at
      * @property Grid\Column|Collection sign_man
      * @property Grid\Column|Collection advance_charge_money
+     * @property Grid\Column|Collection receive_deadline
+     * @property Grid\Column|Collection store_id
+     * @property Grid\Column|Collection objection_days
+     * @property Grid\Column|Collection liquidated_damage_rate
      * @property Grid\Column|Collection accountant_id
      * @property Grid\Column|Collection settlement_at
      * @property Grid\Column|Collection back_at
-     * @property Grid\Column|Collection store_id
      * @property Grid\Column|Collection back_money
      * @property Grid\Column|Collection return_num
      * @property Grid\Column|Collection address_id
      * @property Grid\Column|Collection total_money_cn
      * @property Grid\Column|Collection params
+     * @property Grid\Column|Collection deposit_deadline
+     * @property Grid\Column|Collection last_money_deadline
+     * @property Grid\Column|Collection bond_rate
      * @property Grid\Column|Collection profit
      * @property Grid\Column|Collection sale_order_id
      * @property Grid\Column|Collection statement_order_id
@@ -287,10 +314,15 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection start_at(string $label = null)
      * @method Grid\Column|Collection end_at(string $label = null)
      * @method Grid\Column|Collection month(string $label = null)
+     * @method Grid\Column|Collection type(string $label = null)
+     * @method Grid\Column|Collection detail(string $label = null)
+     * @method Grid\Column|Collection is_enabled(string $label = null)
      * @method Grid\Column|Collection parent_id(string $label = null)
      * @method Grid\Column|Collection order(string $label = null)
      * @method Grid\Column|Collection icon(string $label = null)
      * @method Grid\Column|Collection uri(string $label = null)
+     * @method Grid\Column|Collection extension(string $label = null)
+     * @method Grid\Column|Collection show(string $label = null)
      * @method Grid\Column|Collection user_id(string $label = null)
      * @method Grid\Column|Collection path(string $label = null)
      * @method Grid\Column|Collection method(string $label = null)
@@ -302,6 +334,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection http_method(string $label = null)
      * @method Grid\Column|Collection http_path(string $label = null)
      * @method Grid\Column|Collection role_id(string $label = null)
+     * @method Grid\Column|Collection value(string $label = null)
      * @method Grid\Column|Collection username(string $label = null)
      * @method Grid\Column|Collection password(string $label = null)
      * @method Grid\Column|Collection avatar(string $label = null)
@@ -340,6 +373,15 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection approval_type_id(string $label = null)
      * @method Grid\Column|Collection desc(string $label = null)
      * @method Grid\Column|Collection check_users(string $label = null)
+     * @method Grid\Column|Collection flow_id(string $label = null)
+     * @method Grid\Column|Collection content(string $label = null)
+     * @method Grid\Column|Collection remark(string $label = null)
+     * @method Grid\Column|Collection check_step_sort(string $label = null)
+     * @method Grid\Column|Collection check_user_ids(string $label = null)
+     * @method Grid\Column|Collection flow_user_ids(string $label = null)
+     * @method Grid\Column|Collection check_status(string $label = null)
+     * @method Grid\Column|Collection last_user_id(string $label = null)
+     * @method Grid\Column|Collection next_user_id(string $label = null)
      * @method Grid\Column|Collection attr_id(string $label = null)
      * @method Grid\Column|Collection pay_at(string $label = null)
      * @method Grid\Column|Collection fee_type_id(string $label = null)
@@ -410,8 +452,6 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection arrived_at(string $label = null)
      * @method Grid\Column|Collection money(string $label = null)
      * @method Grid\Column|Collection enclosure(string $label = null)
-     * @method Grid\Column|Collection content(string $label = null)
-     * @method Grid\Column|Collection type(string $label = null)
      * @method Grid\Column|Collection reply(string $label = null)
      * @method Grid\Column|Collection connection(string $label = null)
      * @method Grid\Column|Collection queue(string $label = null)
@@ -420,6 +460,14 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection failed_at(string $label = null)
      * @method Grid\Column|Collection has_caozuo(string $label = null)
      * @method Grid\Column|Collection has_zhanyong(string $label = null)
+     * @method Grid\Column|Collection approval_id(string $label = null)
+     * @method Grid\Column|Collection step_id(string $label = null)
+     * @method Grid\Column|Collection check_user_id(string $label = null)
+     * @method Grid\Column|Collection flow_uid(string $label = null)
+     * @method Grid\Column|Collection sort(string $label = null)
+     * @method Grid\Column|Collection check_type(string $label = null)
+     * @method Grid\Column|Collection flow_list(string $label = null)
+     * @method Grid\Column|Collection template_id(string $label = null)
      * @method Grid\Column|Collection products(string $label = null)
      * @method Grid\Column|Collection year_rate(string $label = null)
      * @method Grid\Column|Collection caozuo_rate(string $label = null)
@@ -434,6 +482,7 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection money_sc(string $label = null)
      * @method Grid\Column|Collection money_other(string $label = null)
      * @method Grid\Column|Collection pics(string $label = null)
+     * @method Grid\Column|Collection template_data(string $label = null)
      * @method Grid\Column|Collection position_id(string $label = null)
      * @method Grid\Column|Collection batch_no(string $label = null)
      * @method Grid\Column|Collection diff_num(string $label = null)
@@ -470,20 +519,25 @@ namespace Dcat\Admin {
      * @method Grid\Column|Collection supplier_id(string $label = null)
      * @method Grid\Column|Collection finished_at(string $label = null)
      * @method Grid\Column|Collection apply_at(string $label = null)
-     * @method Grid\Column|Collection check_status(string $label = null)
      * @method Grid\Column|Collection frame_contract_id(string $label = null)
      * @method Grid\Column|Collection sign_at(string $label = null)
      * @method Grid\Column|Collection sign_man(string $label = null)
      * @method Grid\Column|Collection advance_charge_money(string $label = null)
+     * @method Grid\Column|Collection receive_deadline(string $label = null)
+     * @method Grid\Column|Collection store_id(string $label = null)
+     * @method Grid\Column|Collection objection_days(string $label = null)
+     * @method Grid\Column|Collection liquidated_damage_rate(string $label = null)
      * @method Grid\Column|Collection accountant_id(string $label = null)
      * @method Grid\Column|Collection settlement_at(string $label = null)
      * @method Grid\Column|Collection back_at(string $label = null)
-     * @method Grid\Column|Collection store_id(string $label = null)
      * @method Grid\Column|Collection back_money(string $label = null)
      * @method Grid\Column|Collection return_num(string $label = null)
      * @method Grid\Column|Collection address_id(string $label = null)
      * @method Grid\Column|Collection total_money_cn(string $label = null)
      * @method Grid\Column|Collection params(string $label = null)
+     * @method Grid\Column|Collection deposit_deadline(string $label = null)
+     * @method Grid\Column|Collection last_money_deadline(string $label = null)
+     * @method Grid\Column|Collection bond_rate(string $label = null)
      * @method Grid\Column|Collection profit(string $label = null)
      * @method Grid\Column|Collection sale_order_id(string $label = null)
      * @method Grid\Column|Collection statement_order_id(string $label = null)
@@ -549,10 +603,15 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection start_at
      * @property Show\Field|Collection end_at
      * @property Show\Field|Collection month
+     * @property Show\Field|Collection type
+     * @property Show\Field|Collection detail
+     * @property Show\Field|Collection is_enabled
      * @property Show\Field|Collection parent_id
      * @property Show\Field|Collection order
      * @property Show\Field|Collection icon
      * @property Show\Field|Collection uri
+     * @property Show\Field|Collection extension
+     * @property Show\Field|Collection show
      * @property Show\Field|Collection user_id
      * @property Show\Field|Collection path
      * @property Show\Field|Collection method
@@ -564,6 +623,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection http_method
      * @property Show\Field|Collection http_path
      * @property Show\Field|Collection role_id
+     * @property Show\Field|Collection value
      * @property Show\Field|Collection username
      * @property Show\Field|Collection password
      * @property Show\Field|Collection avatar
@@ -602,6 +662,15 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection approval_type_id
      * @property Show\Field|Collection desc
      * @property Show\Field|Collection check_users
+     * @property Show\Field|Collection flow_id
+     * @property Show\Field|Collection content
+     * @property Show\Field|Collection remark
+     * @property Show\Field|Collection check_step_sort
+     * @property Show\Field|Collection check_user_ids
+     * @property Show\Field|Collection flow_user_ids
+     * @property Show\Field|Collection check_status
+     * @property Show\Field|Collection last_user_id
+     * @property Show\Field|Collection next_user_id
      * @property Show\Field|Collection attr_id
      * @property Show\Field|Collection pay_at
      * @property Show\Field|Collection fee_type_id
@@ -672,8 +741,6 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection arrived_at
      * @property Show\Field|Collection money
      * @property Show\Field|Collection enclosure
-     * @property Show\Field|Collection content
-     * @property Show\Field|Collection type
      * @property Show\Field|Collection reply
      * @property Show\Field|Collection connection
      * @property Show\Field|Collection queue
@@ -682,6 +749,14 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection failed_at
      * @property Show\Field|Collection has_caozuo
      * @property Show\Field|Collection has_zhanyong
+     * @property Show\Field|Collection approval_id
+     * @property Show\Field|Collection step_id
+     * @property Show\Field|Collection check_user_id
+     * @property Show\Field|Collection flow_uid
+     * @property Show\Field|Collection sort
+     * @property Show\Field|Collection check_type
+     * @property Show\Field|Collection flow_list
+     * @property Show\Field|Collection template_id
      * @property Show\Field|Collection products
      * @property Show\Field|Collection year_rate
      * @property Show\Field|Collection caozuo_rate
@@ -696,6 +771,7 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection money_sc
      * @property Show\Field|Collection money_other
      * @property Show\Field|Collection pics
+     * @property Show\Field|Collection template_data
      * @property Show\Field|Collection position_id
      * @property Show\Field|Collection batch_no
      * @property Show\Field|Collection diff_num
@@ -732,20 +808,25 @@ namespace Dcat\Admin {
      * @property Show\Field|Collection supplier_id
      * @property Show\Field|Collection finished_at
      * @property Show\Field|Collection apply_at
-     * @property Show\Field|Collection check_status
      * @property Show\Field|Collection frame_contract_id
      * @property Show\Field|Collection sign_at
      * @property Show\Field|Collection sign_man
      * @property Show\Field|Collection advance_charge_money
+     * @property Show\Field|Collection receive_deadline
+     * @property Show\Field|Collection store_id
+     * @property Show\Field|Collection objection_days
+     * @property Show\Field|Collection liquidated_damage_rate
      * @property Show\Field|Collection accountant_id
      * @property Show\Field|Collection settlement_at
      * @property Show\Field|Collection back_at
-     * @property Show\Field|Collection store_id
      * @property Show\Field|Collection back_money
      * @property Show\Field|Collection return_num
      * @property Show\Field|Collection address_id
      * @property Show\Field|Collection total_money_cn
      * @property Show\Field|Collection params
+     * @property Show\Field|Collection deposit_deadline
+     * @property Show\Field|Collection last_money_deadline
+     * @property Show\Field|Collection bond_rate
      * @property Show\Field|Collection profit
      * @property Show\Field|Collection sale_order_id
      * @property Show\Field|Collection statement_order_id
@@ -806,10 +887,15 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection start_at(string $label = null)
      * @method Show\Field|Collection end_at(string $label = null)
      * @method Show\Field|Collection month(string $label = null)
+     * @method Show\Field|Collection type(string $label = null)
+     * @method Show\Field|Collection detail(string $label = null)
+     * @method Show\Field|Collection is_enabled(string $label = null)
      * @method Show\Field|Collection parent_id(string $label = null)
      * @method Show\Field|Collection order(string $label = null)
      * @method Show\Field|Collection icon(string $label = null)
      * @method Show\Field|Collection uri(string $label = null)
+     * @method Show\Field|Collection extension(string $label = null)
+     * @method Show\Field|Collection show(string $label = null)
      * @method Show\Field|Collection user_id(string $label = null)
      * @method Show\Field|Collection path(string $label = null)
      * @method Show\Field|Collection method(string $label = null)
@@ -821,6 +907,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection http_method(string $label = null)
      * @method Show\Field|Collection http_path(string $label = null)
      * @method Show\Field|Collection role_id(string $label = null)
+     * @method Show\Field|Collection value(string $label = null)
      * @method Show\Field|Collection username(string $label = null)
      * @method Show\Field|Collection password(string $label = null)
      * @method Show\Field|Collection avatar(string $label = null)
@@ -859,6 +946,15 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection approval_type_id(string $label = null)
      * @method Show\Field|Collection desc(string $label = null)
      * @method Show\Field|Collection check_users(string $label = null)
+     * @method Show\Field|Collection flow_id(string $label = null)
+     * @method Show\Field|Collection content(string $label = null)
+     * @method Show\Field|Collection remark(string $label = null)
+     * @method Show\Field|Collection check_step_sort(string $label = null)
+     * @method Show\Field|Collection check_user_ids(string $label = null)
+     * @method Show\Field|Collection flow_user_ids(string $label = null)
+     * @method Show\Field|Collection check_status(string $label = null)
+     * @method Show\Field|Collection last_user_id(string $label = null)
+     * @method Show\Field|Collection next_user_id(string $label = null)
      * @method Show\Field|Collection attr_id(string $label = null)
      * @method Show\Field|Collection pay_at(string $label = null)
      * @method Show\Field|Collection fee_type_id(string $label = null)
@@ -929,8 +1025,6 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection arrived_at(string $label = null)
      * @method Show\Field|Collection money(string $label = null)
      * @method Show\Field|Collection enclosure(string $label = null)
-     * @method Show\Field|Collection content(string $label = null)
-     * @method Show\Field|Collection type(string $label = null)
      * @method Show\Field|Collection reply(string $label = null)
      * @method Show\Field|Collection connection(string $label = null)
      * @method Show\Field|Collection queue(string $label = null)
@@ -939,6 +1033,14 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection failed_at(string $label = null)
      * @method Show\Field|Collection has_caozuo(string $label = null)
      * @method Show\Field|Collection has_zhanyong(string $label = null)
+     * @method Show\Field|Collection approval_id(string $label = null)
+     * @method Show\Field|Collection step_id(string $label = null)
+     * @method Show\Field|Collection check_user_id(string $label = null)
+     * @method Show\Field|Collection flow_uid(string $label = null)
+     * @method Show\Field|Collection sort(string $label = null)
+     * @method Show\Field|Collection check_type(string $label = null)
+     * @method Show\Field|Collection flow_list(string $label = null)
+     * @method Show\Field|Collection template_id(string $label = null)
      * @method Show\Field|Collection products(string $label = null)
      * @method Show\Field|Collection year_rate(string $label = null)
      * @method Show\Field|Collection caozuo_rate(string $label = null)
@@ -953,6 +1055,7 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection money_sc(string $label = null)
      * @method Show\Field|Collection money_other(string $label = null)
      * @method Show\Field|Collection pics(string $label = null)
+     * @method Show\Field|Collection template_data(string $label = null)
      * @method Show\Field|Collection position_id(string $label = null)
      * @method Show\Field|Collection batch_no(string $label = null)
      * @method Show\Field|Collection diff_num(string $label = null)
@@ -989,20 +1092,25 @@ namespace Dcat\Admin {
      * @method Show\Field|Collection supplier_id(string $label = null)
      * @method Show\Field|Collection finished_at(string $label = null)
      * @method Show\Field|Collection apply_at(string $label = null)
-     * @method Show\Field|Collection check_status(string $label = null)
      * @method Show\Field|Collection frame_contract_id(string $label = null)
      * @method Show\Field|Collection sign_at(string $label = null)
      * @method Show\Field|Collection sign_man(string $label = null)
      * @method Show\Field|Collection advance_charge_money(string $label = null)
+     * @method Show\Field|Collection receive_deadline(string $label = null)
+     * @method Show\Field|Collection store_id(string $label = null)
+     * @method Show\Field|Collection objection_days(string $label = null)
+     * @method Show\Field|Collection liquidated_damage_rate(string $label = null)
      * @method Show\Field|Collection accountant_id(string $label = null)
      * @method Show\Field|Collection settlement_at(string $label = null)
      * @method Show\Field|Collection back_at(string $label = null)
-     * @method Show\Field|Collection store_id(string $label = null)
      * @method Show\Field|Collection back_money(string $label = null)
      * @method Show\Field|Collection return_num(string $label = null)
      * @method Show\Field|Collection address_id(string $label = null)
      * @method Show\Field|Collection total_money_cn(string $label = null)
      * @method Show\Field|Collection params(string $label = null)
+     * @method Show\Field|Collection deposit_deadline(string $label = null)
+     * @method Show\Field|Collection last_money_deadline(string $label = null)
+     * @method Show\Field|Collection bond_rate(string $label = null)
      * @method Show\Field|Collection profit(string $label = null)
      * @method Show\Field|Collection sale_order_id(string $label = null)
      * @method Show\Field|Collection statement_order_id(string $label = null)

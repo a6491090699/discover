@@ -20,13 +20,14 @@ class ProductCategoryController extends AdminController
         return Grid::make(new ProductCategory(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('title');
-            $grid->column('parent_id');
-            $grid->column('order');
+            // $grid->column('parent_id');
+            // $grid->column('order');
             $grid->column('created_at');
-            $grid->column('updated_at')->sortable();
+            // $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->like('title');
         
             });
         });

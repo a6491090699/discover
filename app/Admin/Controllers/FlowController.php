@@ -75,7 +75,7 @@ class FlowController extends AdminController
                 //     $table->text('field','字段');
                 // });
             });
-            $form->select('template_id', '审批模板')->options(Template::pluck('title', 'id')->toarray());
+            $form->select('template_id', '审批模板')->options(Template::where('type',Template::TYPE_SHENPI)->pluck('title', 'id')->toarray());
             $form->text('remark');
             $form->display('created_at');
             $form->display('updated_at');

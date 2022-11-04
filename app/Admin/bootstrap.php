@@ -49,12 +49,18 @@ Grid::resolving(function (Grid $grid) {
     $grid->disableBatchDelete();
     $grid->actions(function (\Dcat\Admin\Grid\Displayers\Actions $actions) {
         $actions->disableView();
-        $actions->disableDelete();
+        // $actions->disableDelete();
         $actions->disableEdit();
     });
     $grid->option("dialog_form_area", ["70%", "80%"]);
+    $grid->filter(function(Grid\Filter $filter){
+        $filter->rightSide();
+        $filter->expand(false);
+    });
 });
-
+Form::resolving(function(Form $form){
+    // $form->disableResetButton()
+});
 Form\Field::macro('enableHorizontal', function () {
     $this->horizontal = true;
     return $this;

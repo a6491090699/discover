@@ -120,7 +120,7 @@ class StockHistoryModel extends BaseModel
     const OT_SCRAP_TYPE = 8;
     const OT_CHECK_IN_TYPE = 9;
     const OT_CHECK_OUT_TYPE = 10;
-    const OT_SALE_IN_TYPE = 'sale_in_order';
+    const OT_SALE_IN_TYPE = 'sale_back_orders';
     const OT_OTHER_IN = 'other_in';
     const OT_OTHER_OUT = 'other_out';
 

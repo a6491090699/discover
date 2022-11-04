@@ -119,23 +119,23 @@
                 <div class="stl_01" style="left:7.7357em;top:9.7602em;"><span class="stl_10 stl_08 stl_11">申请关证日期 &nbsp;</span></div>
                 <div class="stl_01" style="left:8.5357em;top:12.0946em;"><span class="stl_10 stl_08 stl_11">信用证号 &nbsp;</span></div>
                 <div class="stl_01" style="left:28.9998em;top:9.7602em;"><span class="stl_10 stl_08 stl_11">开证银行 &nbsp;</span></div>
-                <div class="stl_01" style="left:17.8112em;top:9.7174em;"><span class="stl_12 stl_08 stl_11">2022年11月11日 &nbsp;</span></div>
-                <div class="stl_01" style="left:18.2462em;top:12.0519em;"><span class="stl_12 stl_08 stl_09">123456798444 &nbsp;</span></div>
-                <div class="stl_01" style="left:38.2777em;top:9.7174em;"><span class="stl_12 stl_08 stl_09">招商银行 &nbsp;</span></div>
+                <div class="stl_01" style="left:17.8112em;top:9.7174em;"><span class="stl_12 stl_08 stl_11">{{$param['close_at']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:18.2462em;top:12.0519em;"><span class="stl_12 stl_08 stl_09">{{$param['sn']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:38.2777em;top:9.7174em;"><span class="stl_12 stl_08 stl_09">{{$param['bank']??''}} &nbsp;</span></div>
                 <div class="stl_01" style="left:28.9998em;top:12.0946em;"><span class="stl_10 stl_08 stl_11">外合同号 &nbsp;</span></div>
                 <div class="stl_01" style="left:29.3998em;top:14.429em;"><span class="stl_10 stl_08 stl_09">到期日 &nbsp;</span></div>
-                <div class="stl_01" style="left:36.5377em;top:12.0519em;"><span class="stl_12 stl_08 stl_09">1234567890231220 &nbsp;</span></div>
-                <div class="stl_01" style="left:36.9727em;top:14.3863em;"><span class="stl_12 stl_08 stl_11">2022年11月11日 &nbsp;</span></div>
+                <div class="stl_01" style="left:36.5377em;top:12.0519em;"><span class="stl_12 stl_08 stl_09">{{$param['out_sn']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:36.9727em;top:14.3863em;"><span class="stl_12 stl_08 stl_11">{{$param['expired_at']??''}} &nbsp;</span></div>
                 <div class="stl_01" style="left:8.5357em;top:14.429em;"><span class="stl_10 stl_08 stl_11">开证日期 &nbsp;</span></div>
-                <div class="stl_01" style="left:17.8112em;top:14.3863em;"><span class="stl_12 stl_08 stl_11">2022年11月11日 &nbsp;</span></div>
+                <div class="stl_01" style="left:17.8112em;top:14.3863em;"><span class="stl_12 stl_08 stl_11">{{$param['open_at']??''}} &nbsp;</span></div>
                 <div class="stl_01" style="left:8.5357em;top:16.7634em;"><span class="stl_10 stl_08 stl_11">合同金额 &nbsp;</span></div>
-                <div class="stl_01" style="left:26.7941em;top:16.7207em;"><span class="stl_12 stl_08 stl_09">2132132132132220 &nbsp;</span></div>
-                <div class="stl_01" style="left:6.7357em;top:19.2397em;"><span class="stl_13 stl_08 stl_11" style="word-spacing:-0em;">总会计师： 对对对 &nbsp;</span></div>
-                <div class="stl_01" style="left:7.0907em;top:21.815em;"><span class="stl_12 stl_08 stl_11">单证部：对对对 &nbsp;</span></div>
-                <div class="stl_01" style="left:21.4242em;top:19.197em;"><span class="stl_12 stl_08 stl_09" style="word-spacing:-0.1359em;">财务经理： 多发点 &nbsp;</span></div>
-                <div class="stl_01" style="left:35.4088em;top:19.197em;"><span class="stl_12 stl_08 stl_09">会计：水电费 &nbsp;</span></div>
-                <div class="stl_01" style="left:21.4242em;top:21.815em;"><span class="stl_12 stl_08 stl_09" style="word-spacing:-0.1359em;">部门经理： 电放费 &nbsp;</span></div>
-                <div class="stl_01" style="left:35.4088em;top:21.815em;"><span class="stl_12 stl_08 stl_09">经办人：东山风 &nbsp;</span></div>
+                <div class="stl_01" style="left:26.7941em;top:16.7207em;"><span class="stl_12 stl_08 stl_09">{{$param['money']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:6.7357em;top:19.2397em;"><span class="stl_13 stl_08 stl_11" style="word-spacing:-0em;">总会计师： {{$param['zkjs']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:7.0907em;top:21.815em;"><span class="stl_12 stl_08 stl_11">单证部：{{$param['dzb']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:21.4242em;top:19.197em;"><span class="stl_12 stl_08 stl_09" style="word-spacing:-0.1359em;">财务经理： {{$param['cwb']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:35.4088em;top:19.197em;"><span class="stl_12 stl_08 stl_09">会计：{{$param['kj']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:21.4242em;top:21.815em;"><span class="stl_12 stl_08 stl_09" style="word-spacing:-0.1359em;">部门经理： {{$param['bmjl']??''}} &nbsp;</span></div>
+                <div class="stl_01" style="left:35.4088em;top:21.815em;"><span class="stl_12 stl_08 stl_09">经办人：{{$param['jbr']??''}} &nbsp;</span></div>
             </div>
         </div>
     </div>

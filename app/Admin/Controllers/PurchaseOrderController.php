@@ -43,17 +43,23 @@ class PurchaseOrderController extends OrderController
             $grid->column('id')->sortable();
             //            $grid->column('check_status')->using(PurchaseOrderModel::CHECK_STATUS);
             $grid->column('order_no');
-            $grid->column('other')->emp();
+            // $grid->column('other')->emp();
             $grid->column('status', '状态')->using(PurchaseOrderModel::STATUS)->label(PurchaseOrderModel::STATUS_COLOR);
             $grid->column('review_status', '审核状态')->using(PurchaseOrderModel::REVIEW_STATUS)->label(PurchaseOrderModel::REVIEW_STATUS_COLOR);
             $grid->column('supplier.name', '供应商名称')->emp();
-            $grid->column('user.username', '创建用户');
+            $grid->column('user.username', '创建人');
             $grid->column('created_at');
-            $grid->column('finished_at')->emp();
-            $grid->tools(BatchOrderPrint::make());
+            // $grid->column('finished_at')->emp();
+            // $grid->tools(BatchOrderPrint::make());
             $grid->disableQuickEditButton();
             $grid->actions(new EditOrder());
             $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('id');
+                $filter->equal('order_no');
+                $filter->like('supplier.name','供应商名称');
+                $filter->like('user.username','创建人');
+                $filter->equal('status')->select(PurchaseOrderModel::STATUS);
+                $filter->equal('review_status')->select(PurchaseOrderModel::REVIEW_STATUS);
             });
         });
     }

@@ -50,10 +50,15 @@ class SaleOrderController extends OrderController
             $grid->column('finished_at', "完成日期")->emp();
 
             $grid->disableQuickEditButton();
-            $grid->tools(BatchOrderPrint::make());
+            // $grid->tools(BatchOrderPrint::make());
             $grid->actions(EditOrder::make());
 
             $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('id');
+                $filter->like('customer.name','客户名称');
+                $filter->equal('order_no');
+                $filter->equal('status','单据状态')->select($this->oredr_model::STATUS);
+                $filter->equal('review_status','审核状态')->select($this->oredr_model::REVIEW_STATUS);
             });
         });
     }
