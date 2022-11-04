@@ -76,25 +76,22 @@ class StoreOutObserver
     {
         if ($storeOut->isDirty('status')
             && (int)$storeOut->status === StoreOut::STATUS_OUT
-            // && (int)$storeOut->review_status === StoreOut::REVIEW_STATUS_OK
+            && (int)$storeOut->review_status === StoreOut::REVIEW_STATUS_OK
         ) {
-            
             $storeOut->items->each(function (StoreOutItem $storeOutItem) use ($storeOut) {
                 
                 StockHistoryModel::create([
                     'sku_id'          => $storeOutItem->sku_id,
                     'out_position_id' => 0,
                     'store_id'       => $storeOut->store_id,
-                    'order_id'        => $storeOut->order_id,
-                    'order_type'      => $storeOut->order_type,
+                    // 'order_id'        => $storeOut->order_id,
+                    // 'order_type'      => $storeOut->order_type,
                     'cost_price'      => 0,
                     'type'            => StockHistoryModel::STORE_OUT_TYPE,
                     'flag'            => StockHistoryModel::OUT,
                     'with_order_no'   => $storeOut->sn,
-                    'init_num'        => 0,
                     'out_num'         => $storeOutItem->actual_num,
                     'out_price'       => $storeOutItem->price,
-                    'balance_num'     => $storeOutItem->actual_num,
                     'user_id'         => Admin::user()->id,
                 ]);
             });

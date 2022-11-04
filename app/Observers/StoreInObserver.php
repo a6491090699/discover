@@ -77,7 +77,7 @@ class StoreInObserver
         if (
             $storeIn->isDirty('status')
             && (int)$storeIn->status === StoreIn::STATUS_IN
-            // && (int)$storeIn->review_status === StoreIn::REVIEW_STATUS_OK
+            && (int)$storeIn->review_status === StoreIn::REVIEW_STATUS_OK
         ) {
             $storeIn->items->each(function (StoreInItem $storeInItem) use ($storeIn) {
                 $init_num = SkuStockModel::query()
@@ -91,9 +91,10 @@ class StoreInObserver
                     'store_id'       => $storeIn->store_id,
                     'cost_price'     => $storeInItem->price,
                     'type'           => StockHistoryModel::IN_STOCK_PUCHASE,
-                    'order_type'     => $storeIn->order_type,
+                    // 'order_type'     => $storeIn->order_type, //关联采购-销售-盘点合同字段
+                    // 'order_id'       => $storeIn->order_id, //关联采购-销售-盘点合同字段
                     'flag'           => StockHistoryModel::IN,
-                    'with_order_no'  => $storeIn->sn,
+                    'with_order_no'  => $storeIn->sn,   //出库入库盘点单号
                     'init_num'       => $init_num ?? 0,
                     'in_num'         => $storeInItem->actual_num,
                     'in_price'       => $storeInItem->price,

@@ -60,6 +60,7 @@ class InventoryOrderObserver
                     'user_id' => Admin::user()->id,
                     'percent' => $item->stock_batch->percent,
                     'batch_no' => $item->stock_batch->batch_no,
+                    'store_id' => $item->stock_batch->store_id,
                 ]);
             });
 

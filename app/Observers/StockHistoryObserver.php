@@ -22,6 +22,7 @@ class StockHistoryObserver
 {
     public function saved(StockHistoryModel $stockHistoryModel): void
     {
+        //yytodo  http://discover.test/admin/store_outs  出库模块 编辑出库状态报错 
         switch ($stockHistoryModel->type) {
                 // 采购入库单
             case StockHistoryModel::IN_STOCK_PUCHASE:
@@ -39,6 +40,7 @@ class StockHistoryObserver
                 ]);
                 break;
             case StockHistoryModel::INVENTORY_TYPE:
+                //盘点  yytodo
                 $skuStockBatch = SkuStockBatchModel::updateOrCreate(
                     [
                         'position_id' => $stockHistoryModel->in_position_id,

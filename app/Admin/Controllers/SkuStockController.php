@@ -46,6 +46,7 @@ class SkuStockController extends AdminController
 //            $grid->column('updated_at')->sortable();
             $grid->disableRowSelector();
             $grid->filter(function (Grid\Filter $filter) {
+                // $filter->like('sku.product.name','产品名称');
                 $filter->where("product_name", function (Builder $query) {
                     $query->whereHasIn("sku.product", function (Builder $query) {
                         $query->where(function (Builder $query) {
@@ -54,14 +55,14 @@ class SkuStockController extends AdminController
                             $query->orWhere('item_no', 'like', $this->getValue()."%");
                         });
                     });
-                }, "关键字")->placeholder("产品名称，拼音码，编号")->width(3);
+                }, "关键字")->placeholder("产品名称，拼音码，编号");
                 $filter->group('num', function ($group) {
                     $group->gt('大于');
                     $group->lt('小于');
                     $group->nlt('不小于');
                     $group->ngt('不大于');
                     $group->equal('等于');
-                })->width(3);
+                });
             });
             $grid->disableActions();
             $grid->disableCreateButton();

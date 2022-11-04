@@ -14,6 +14,7 @@
 
 namespace App\Models;
 
+use App\Admin\Repositories\StockHistory;
 use App\Traits\HasStandard;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -73,10 +74,15 @@ class SkuStockBatchModel extends BaseModel
         return $this->belongsTo(Store::class, 'store_id');
     }
 
-    public function storeIn()
+    public function stockHistory()
     {
-        return $this->belongsTo(StoreIn::class , 'batch_no' ,'sn');
+        return $this->belongsTo(StockHistory::class , 'batch_no' ,'with_order_no');
     }
+
+    // public function storeIn()
+    // {
+    //     return $this->belongsTo(StoreIn::class , 'batch_no' ,'sn');
+    // }
 
     
 }
