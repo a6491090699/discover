@@ -22,7 +22,6 @@ class StockHistoryObserver
 {
     public function saved(StockHistoryModel $stockHistoryModel): void
     {
-        //yytodo  http://discover.test/admin/store_outs  出库模块 编辑出库状态报错 
         switch ($stockHistoryModel->type) {
                 // 采购入库单
             case StockHistoryModel::IN_STOCK_PUCHASE:

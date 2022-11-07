@@ -45,12 +45,19 @@ class SaleOrder extends EloquentRepository
         return $this->eloquentClass::pluck('order_no', 'id')->toArray();
     }
 
+    /**
+     * (废弃)
+     *
+     * @param [type] $data
+     * @return void
+     */
     public function calculateFee($data)
     {
         $order = $this->eloquentClass::find($data['sale_order_id']);
         $fee_type = FeeType::where('id', $data['fee_type_id'])->first();
         $caozuo_rate = $order->frameContract->caozuo_rate;
         $zhanyong_rate = $order->frameContract->zhanyong_rate;
+        //第一笔货款的起始时间 为计息起点
         $pre_pay = $order->purchaseOrder->payLog()->where('fee_type_id', 1)->first();
         $time_range = Carbon::create($data['pay_at'])->diffInMonths($pre_pay->pay_at);
         $updates = [];

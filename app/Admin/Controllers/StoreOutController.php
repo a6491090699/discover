@@ -104,7 +104,20 @@ class StoreOutController extends AdminController
             $form->select('store_id')->options(Store::pluck('title','id'))->required();
             $form->select('order_type')->options(ModelsStoreOut::TYPE_LIST)->load('order_id',route('pub.multi-orders'))->required();
             $form->select('order_id')->required();
-            $form->select('status')->options(ModelsStoreOut::STATUS_LIST)->required();
+            if($form->isCreating()){
+                $form->hidden('status')->value(ModelsStoreOut::STATUS_NOT_OUT);
+            }
+            
+            if($form->isEditing() && $form->model()->review_status == ModelsStoreOut::REVIEW_STATUS_OK ){
+                if($form->model()->status == ModelsStoreOut::STATUS_NOT_OUT){
+                    $form->select('status')->options(ModelsStoreOut::STATUS_LIST)->required();
+                }else{
+                    $form->select('status')->options(ModelsStoreOut::STATUS_LIST)->disable();
+                    $form->saving(function($form){
+                        $form->deleteInput('status');
+                    });
+                }
+            }
             $form->hidden('total_money');
             $form->text('car_number');
             $form->select('delivery_id')->options(Delivery::pluck('sn', 'id'));

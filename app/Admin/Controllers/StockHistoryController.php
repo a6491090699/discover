@@ -83,8 +83,8 @@ class StockHistoryController extends AdminController
                 $filter->like('with_order_no');
                 $filter->equal('type')->select(StockHistoryModel::TYPE);
                 $filter->equal('flag')->select(StockHistoryModel::FLAG);
-                $filter->like('percent', "含绒量")->decimal();
-                $filter->equal('standard', "检验标准")->select(SkuStockBatchModel::STANDARD);
+                // $filter->like('percent', "含绒量")->decimal();
+                // $filter->equal('standard', "检验标准")->select(SkuStockBatchModel::STANDARD);
                 $filter->like('batch_no', "批次号");
             });
         });

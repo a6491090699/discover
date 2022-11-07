@@ -20,14 +20,13 @@ class DeliveryController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Delivery(), function (Grid $grid) {
+        return Grid::make(new Delivery(['order']), function (Grid $grid) {
             $grid->column('id')->sortable();
-            // $grid->column('order_id');
-            // $grid->column('order_type');
+            $grid->column('order_type')->using(ModelsDelivery::TYPE_LIST);
             $grid->column('sn');
             $grid->column('send_at');
-            $grid->column('arrived_at');
-            $grid->column('status');
+            // $grid->column('arrived_at');
+            $grid->column('status')->using(ModelsDelivery::STATUS_LIST);
             $grid->column('money');
             // $grid->column('enclosure');
             $grid->column('created_at');
@@ -35,6 +34,8 @@ class DeliveryController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->equal('sn');
+                $filter->equal('status')->select(ModelsDelivery::STATUS_LIST);
             });
         });
     }
@@ -72,26 +73,33 @@ class DeliveryController extends AdminController
     {
         return Form::make(new Delivery(), function (Form $form) {
             $form->display('id');
-            $form->hidden('order_id');
-            $form->select('order_type')->options([
-                'purchase_order' => '采购合同',
-                'sale_out_order' => '销售合同',
-            ])->when('purchase_order', function ($form) {
-                $form->select('order_id_list1', '关联合同号')->options(PurchaseOrderModel::pluck('order_no', 'id'));
-            })->when('sale_out_order', function ($form) {
-                $form->select('order_id_list2', '关联合同号')->options(SaleOutOrderModel::pluck('order_no', 'id'));
-            });
-            $form->text('sn');
-            $form->text('company', '物流公司');
-            $form->datetime('send_at');
-            $form->datetime('arrived_at');
-            $form->select('status')->options(ModelsDelivery::STATUS_LIST);
-            $form->decimal('money');
+
+            // $form->select('order_type')->options([
+            //     'purchase_order' => '采购合同',
+            //     'sale_out_order' => '销售合同',
+            // ])->when('purchase_order', function ($form) {
+            //     $form->select('order_id_list1', '关联合同号')->options(PurchaseOrderModel::pluck('order_no', 'id'));
+            // })->when('sale_out_order', function ($form) {
+            //     $form->select('order_id_list2', '关联合同号')->options(SaleOutOrderModel::pluck('order_no', 'id'));
+            // })->required();
+            // $form->hidden('order_id');
+
+            $form->select('order_type', '类型')->options(ModelsDelivery::TYPE_LIST)
+                ->load('order_id', route('pub.multi-orders'))->required();
+            $form->select('order_id', '关联单号')->required();
+            $form->text('sn')->required();
+            $form->text('company', '物流公司')->required();
+            $form->datetime('send_at')->required();
+            if ($form->isEditing()) {
+                $form->datetime('arrived_at');
+            }
+            $form->select('status')->options(ModelsDelivery::STATUS_LIST)->required();
+            $form->decimal('money')->required();
             $form->file('enclosure');
             $form->saving(function ($form) {
-                $form->order_id = $form->order_id_list1 ? $form->order_id_list1 : $form->order_id_list2;
-                $form->deleteInput('order_id_list1'); 
-                $form->deleteInput('order_id_list2'); 
+                // $form->order_id = $form->order_id_list1 ? $form->order_id_list1 : $form->order_id_list2;
+                $form->deleteInput('order_id_list1');
+                $form->deleteInput('order_id_list2');
             });
 
             $form->display('created_at');

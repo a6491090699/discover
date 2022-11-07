@@ -15,6 +15,7 @@
 return [
     'labels' => [
         'StockHistory' => '库存往来',
+        'stock-historys' => '库存往来',
     ],
     'fields' => [
         'balance_num' => '结余库存',

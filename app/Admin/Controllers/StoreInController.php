@@ -34,7 +34,7 @@ class StoreInController extends AdminController
             $grid->column('id')->sortable();
             $grid->column('sn');
             $grid->column('in_at');
-            $grid->column('store.title','仓库');
+            $grid->column('store.title', '仓库');
             $grid->column('status')->using(ModelsStoreIn::STATUS_LIST)->label(ModelsStoreIn::STATUS_COLOR);
             $grid->column('review_status')->using(ModelsStoreIn::REVIEW_STATUS)->label(ModelsStoreIn::REVIEW_STATUS_COLOR);
             // $grid->column('total_money');
@@ -46,19 +46,19 @@ class StoreInController extends AdminController
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
                 $filter->equal('sn');
-                $filter->equal('store_id')->select(Store::pluck('title','id')->toArray());
+                $filter->equal('store_id')->select(Store::pluck('title', 'id')->toArray());
                 $filter->equal('status')->select(ModelsStoreIn::STATUS_LIST);
                 $filter->equal('review_status')->select(ModelsStoreIn::REVIEW_STATUS);
                 $filter->whereBetween('in_at', function ($q) {
                     $start = $this->input['start'] ?? null;
                     $end = $this->input['end'] ?? null;
-                    if($start){
-                        $q->where('in_at' ,'>=' , $start);
+                    if ($start) {
+                        $q->where('in_at', '>=', $start);
                     }
-                    if($end){
-                        $q->where('in_at' ,'<=' , $end);
+                    if ($end) {
+                        $q->where('in_at', '<=', $end);
                     }
-                })->datetime(); 
+                })->datetime();
             });
         });
     }
@@ -92,25 +92,36 @@ class StoreInController extends AdminController
      */
     protected function form()
     {
-        app(StoreIn::class)->ifAllIn(1);
         return Form::make(new StoreIn(['order']), function (Form $form) {
             $form->display('id');
             $form->text('sn')->readOnly();
             $form->datetime('in_at')->required();
             $form->select('store_id')->options(Store::pluck('title', 'id'))->required();
             if ($form->isCreating()) {
-                $form->select('order_type' ,'类型')->options(ModelsStoreIn::TYPE_LIST)
+                $form->select('order_type', '类型')->options(ModelsStoreIn::TYPE_LIST)
                     ->load('order_id', route('pub.multi-orders'))->required();
             }
             if ($form->isEditing()) {
-                $form->select('order_type' ,'类型')->options(ModelsStoreIn::TYPE_LIST)
+                $form->select('order_type', '类型')->options(ModelsStoreIn::TYPE_LIST)
                     ->load('order_id', route('pub.multi-orders'));
             }
 
             $form->select('order_id', '关联单号')->required();
             $form->select('delivery_id')->options(Delivery::pluck('sn', 'id'));
-            $form->select('status', '状态')->options(ModelsStoreIn::STATUS_LIST)->default(ModelsStoreIn::STATUS_NOT_IN)->required();
-            // $form->select('review_status', '审核状态')->options(ModelsStoreIn::REVIEW_STATUS);
+            if ($form->isCreating()) {
+                $form->hidden('status', '状态')->value(ModelsStoreIn::STATUS_NOT_IN);
+            }
+
+            if ($form->isEditing() && $form->model()->review_status == ModelsStoreIn::REVIEW_STATUS_OK) {
+                if ($form->model()->status == ModelsStoreIn::STATUS_NOT_IN) {
+                    $form->select('status')->options(ModelsStoreIn::STATUS_LIST)->required();
+                } else {
+                    $form->select('status')->options(ModelsStoreIn::STATUS_LIST)->disable();
+                    $form->saving(function ($form) {
+                        $form->deleteInput('status');
+                    });
+                }
+            }
             $form->hidden('total_money');
             $form->text('car_number');
             if ($form->isCreating()) {
@@ -153,9 +164,9 @@ class StoreInController extends AdminController
     {
         return Grid::make(new StoreInItem(['sku', 'product']), function (Grid $grid) use ($id) {
             $order = ModelsStoreIn::find($id);
-            
+
             // $grid->tools(OrderPrint::make());
-            
+
             if ($order && $order->review_status !== ModelsStoreIn::REVIEW_STATUS_OK) {
                 $grid->tools(OrderReview::make(show_order_review($order->review_status)));
                 // $grid->tools(OrderDelete::make());

@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'Flow' => '审批流程',
+        'flows' => '审批流程',
     ],
     'fields' => [
         'check_type' => '类型',

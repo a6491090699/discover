@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'Store' => '仓库列表',
+        'stores' => '仓库列表',
     ],
     'fields' => [
         'store_company_id' => '所属公司',

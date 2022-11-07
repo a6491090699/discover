@@ -136,6 +136,11 @@ class PurchaseOrderModel extends PurchaseBaseModel
         return $this->morphMany(StoreIn::class ,'order');
     }
 
+    public function delivery()
+    {
+        return $this->morphMany(Delivery::class ,'order');
+    }
+
     public function payLog()
     {
         return $this->hasMany(BuyPayLog::class , 'purchase_order_id');

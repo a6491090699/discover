@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'StoreOut' => '出库列表',
+        'store_outs' => '出库列表',
     ],
     'fields' => [
         'sn' => '出库单号',

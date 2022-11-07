@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'Approval' => '审批列表',
+        'approvals' => '审批列表',
     ],
     'fields' => [
         'title' => '标题',

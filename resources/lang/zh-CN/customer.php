@@ -15,6 +15,7 @@
 return [
     'labels' => [
         'Customer' => '客户',
+        'customers' => '客户',
     ],
     'fields' => [
         'link' => '联系人',

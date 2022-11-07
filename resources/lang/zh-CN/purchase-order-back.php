@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'PurchaseOrderBack' => '采购退货',
+        'purchase_order_backs' => '采购退货',
     ],
     'fields' => [
         'sn' => '退货单号',

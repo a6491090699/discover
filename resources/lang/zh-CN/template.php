@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'Template' => '模板',
+        'templates' => '模板',
     ],
     'fields' => [
         'title' => '标题',

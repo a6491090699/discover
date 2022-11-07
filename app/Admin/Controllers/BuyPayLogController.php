@@ -29,7 +29,7 @@ class BuyPayLogController extends AdminController
         return Grid::make(new BuyPayLog(['purchaseOrder.supplier']), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('sn');
-            $grid->column('fee_type_id', '费用类型')->using(app(FeeType::class)->selectItems());
+            $grid->column('fee_type_id')->using(app(FeeType::class)->selectItems());
             $grid->column('purchase_order_id')->using(app(PurchaseOrder::class)->selectItems());
 
             $grid->column('pay_at');
@@ -47,6 +47,11 @@ class BuyPayLogController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->equal('sn');
+                $filter->equal('fee_type_id')->select(app(FeeType::class)->selectItems());
+                $filter->equal('purchase_order_id')->select(app(PurchaseOrder::class)->selectItems());
+                $filter->equal('purchaseOrder.supplier_id')->select(app(Supplier::class)->selectItems());
+
             });
         });
     }

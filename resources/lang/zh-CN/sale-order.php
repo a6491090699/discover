@@ -15,6 +15,7 @@
 return [
     'labels' => [
         'SaleOrder' => '客户要货单',
+        'sale-orders'=>'客户要货单',
     ],
 
     'fields' => [

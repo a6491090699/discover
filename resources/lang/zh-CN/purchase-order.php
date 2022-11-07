@@ -15,6 +15,7 @@
 return [
     'labels' => [
         'PurchaseOrder' => '采购订单',
+        'purchase-orders' => '采购订单',
     ],
     'fields' => [
         'order_no' => '订单单号',

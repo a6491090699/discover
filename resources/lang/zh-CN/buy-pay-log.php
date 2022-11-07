@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'BuyPayLog' => '采购付款记录',
+        'buy_pay_logs' => '采购付款记录',
     ],
     'fields' => [
         'sn' => '单号',
@@ -13,6 +14,7 @@ return [
         'pay_method' => '支付方式',
         'purchase_order_id' => '采购单',
         'other' => '备注',
+        'fee_type_id'=>'费用类型',
     ],
     'options' => [
     ],

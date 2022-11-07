@@ -15,6 +15,7 @@
 return [
     'labels' => [
         'SkuStock' => '产品库存',
+        'sku-stocks' => '产品库存',
     ],
     'fields' => [
         'num' => '产品库存',

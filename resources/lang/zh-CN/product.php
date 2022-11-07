@@ -15,6 +15,7 @@
 return [
     'labels' => [
         'Product' => '产品',
+        'products' => '产品',
     ],
     'fields' => [
         'item_no' => '产品编号',

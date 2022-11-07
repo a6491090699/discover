@@ -15,6 +15,7 @@
 return [
     'labels' => [
         'Inventory' => '盘点任务',
+        'inventorys' => '盘点任务',
     ],
     'fields' => [
         'order_no' => '盘点批次号',

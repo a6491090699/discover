@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'FrameContract' => '框架合同',
+        'frame_contracts' => '框架合同',
     ],
     'fields' => [
         'sn' => '合同编号',

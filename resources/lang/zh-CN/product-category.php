@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'ProductCategory' => '产品类别',
+        'product_categories' => '产品类别',
     ],
     'fields' => [
         'title' => '类名',

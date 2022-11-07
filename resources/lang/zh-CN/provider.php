@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'Provider' => '服务商',
+        'providers' => '服务商',
     ],
     'fields' => [
         'name' => '服务商名称',

@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'FeeType' => '费用类型',
+        'fee_types' => '费用类型',
     ],
     'fields' => [
         'title' => '费用类型',

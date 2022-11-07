@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'Company' => '公司',
+        'companies' => '公司',
     ],
     'fields' => [
         'title' => '公司名称',

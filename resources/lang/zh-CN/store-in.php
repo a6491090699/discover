@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'StoreIn' => '入库列表',
+        'store_ins' => '入库列表',
     ],
     'fields' => [
         'sn' => '入库单号',

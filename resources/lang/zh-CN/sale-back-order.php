@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'SaleBackOrder' => '客户退货',
+        'sale_back_orders' => '客户退货',
     ],
     'fields' => [
         'sn' => '编号',

@@ -15,6 +15,7 @@
 return [
     'labels' => [
         'Supplier' => '供应商',
+        'suppliers' => '供应商',
     ],
     'fields' => [
         'link' => '联系人',

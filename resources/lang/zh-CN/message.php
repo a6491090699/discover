@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'Message' => '我的站内通知',
+        'messages' => '我的站内通知',
     ],
     'fields' => [
         'from_uid' => '发送方',

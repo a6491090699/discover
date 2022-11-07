@@ -15,6 +15,7 @@
 return [
     'labels' => [
         'InventoryOrder' => '盘点单据',
+        'inventory-orders' => '盘点单据',
     ],
     'fields' => [
         'order_no' => '订单单号',

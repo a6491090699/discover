@@ -29,7 +29,7 @@
         <li class="breadcrumb-item"><a href="{{ admin_url('/') }}"><i class="fa fa-dashboard"></i> {{admin_trans('admin.home')}}</a></li>
         @for($i = 2; $i <= ($len = count(Request::segments())); $i++)
             <li class="breadcrumb-item">
-                @if($i == $len) <a href=""> @endif
+                @if($i == $len) <a href="" data-yytest="{{Request::segment($i)}}"> @endif
                 {{admin_trans_label(Request::segment($i))}}
                 @if($i == $len) </a> @endif
             </li>

@@ -3,7 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\Customer;
-use App\Admin\Repositories\FeeType as RepositoriesFeeType;
+use App\Admin\Repositories\FeeType;
 use App\Admin\Repositories\SaleOrder;
 use App\Admin\Repositories\SellPayLog;
 use App\Models\SellPayLog as ModelsSellPayLog;
@@ -14,10 +14,6 @@ use Dcat\Admin\Controllers\AdminController;
 
 class SellPayLogController extends AdminController
 {
-    public function title()
-    {
-        return '销售单回款记录';
-    }
     /**
      * Make a grid builder.
      *
@@ -25,13 +21,13 @@ class SellPayLogController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new SellPayLog(), function (Grid $grid) {
+        return Grid::make(new SellPayLog(['saleOrder.customer']), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('sn');
             $grid->column('sale_order_id')->using(app(SaleOrder::class)->selectItems());
-            $grid->column('fee_type_id', '费用类型')->using(app(RepositoriesFeeType::class)->selectItems());
+            $grid->column('fee_type_id')->using(app(FeeType::class)->selectItems());
             $grid->column('pay_at');
-            $grid->column('customer_id')->using(app(Customer::class)->selectItems());
+            $grid->column('saleOrder.customer.name');
             // $grid->column('contract_money');
             // $grid->column('unpay_money');
             // $grid->column('this_time_money');
@@ -43,6 +39,10 @@ class SellPayLogController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->equal('sn');
+                $filter->equal('fee_type_id')->select(app(FeeType::class)->selectItems());
+                $filter->equal('sale_order_id')->select(app(SaleOrder::class)->selectItems());
+                $filter->equal('saleOrder.customer_id','客户')->select(app(Customer::class)->selectItems());
             });
         });
     }
@@ -83,16 +83,16 @@ class SellPayLogController extends AdminController
     {
         return Form::make(new SellPayLog(), function (Form $form) {
             $form->display('id');
-            $form->select('fee_type_id', '费用类型')->options(app(RepositoriesFeeType::class)->selectItems());
-            $form->select('sale_order_id')->options(app(SaleOrder::class)->selectItems());
-            $form->text('sn')->default(build_order_no('BPL'));
-            $form->datetime('pay_at');
+            $form->select('fee_type_id', '费用类型')->options(app(FeeType::class)->selectItems())->required();
+            $form->select('sale_order_id')->options(app(SaleOrder::class)->selectItems())->required();
+            $form->text('sn')->default(create_uniqid_sn('BPL'))->required();
+            $form->datetime('pay_at')->required();
             // $form->datetime('check_at','核算时间');
-            $form->select('customer_id')->options(app(Customer::class)->selectItems());
+            // $form->select('customer_id')->options(app(Customer::class)->selectItems());
             // $form->decimal('contract_money');
             // $form->decimal('unpay_money');
-            $form->decimal('this_time_money');
-            $form->select('pay_method')->options(ModelsSellPayLog::PAY_METHOD_LIST);
+            $form->decimal('this_time_money')->required();
+            $form->select('pay_method')->options(ModelsSellPayLog::PAY_METHOD_LIST)->required();
             $form->file('enclosure');
             $form->text('other');
 
@@ -101,7 +101,9 @@ class SellPayLogController extends AdminController
 
             $form->saved(function ($form) {
                 //计算费用
-                app(SaleOrder::class)->calculateFee($form->model());
+                $updates = $form->updates();
+                increment_uniqid_sn('BPL');
+                // app(SaleOrder::class)->calculateFee($updates);
             });
         });
     }

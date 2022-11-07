@@ -122,10 +122,10 @@ class SaleOrderModel extends SaleBaseModel
         return $this->morphOne(StoreOut::class, 'order');
     }
 
-    public function purchaseOrder()
-    {
-        return $this->belongsTo(PurchaseOrderModel::class);
-    }
+    // public function purchaseOrder()
+    // {
+    //     return $this->belongsTo(PurchaseOrderModel::class);
+    // }
 
     public function frameContract()
     {

@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'Invoice' => '发票',
+        'invoices' => '发票',
     ],
     'fields' => [
         'paylog_type' => 'paylog_type',

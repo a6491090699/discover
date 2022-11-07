@@ -76,7 +76,7 @@ class SkuStockBatchModel extends BaseModel
 
     public function stockHistory()
     {
-        return $this->belongsTo(StockHistory::class , 'batch_no' ,'with_order_no');
+        return $this->belongsTo(StockHistoryModel::class , 'batch_no' ,'with_order_no');
     }
 
     // public function storeIn()

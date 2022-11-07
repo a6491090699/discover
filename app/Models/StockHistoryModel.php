@@ -186,4 +186,5 @@ class StockHistoryModel extends BaseModel
     {
         return $this->belongsTo(ProductSkuModel::class, 'sku_id');
     }
+    
 }

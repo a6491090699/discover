@@ -2,6 +2,7 @@
 return [
     'labels' => [
         'Department' => '职位',
+        'departments' => '职位',
     ],
     'fields' => [
         'company_id' => '公司id',

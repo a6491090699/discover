@@ -1,7 +1,8 @@
-<?php 
+<?php
 return [
     'labels' => [
-        'SellPayLog' => 'SellPayLog',
+        'SellPayLog' => '销售单回款记录',
+        'sell_pay_logs'=>'销售单回款记录'
     ],
     'fields' => [
         'sn' => '回款单号',
@@ -14,7 +15,7 @@ return [
         'enclosure' => '附件',
         'other' => '备注',
         'sale_order_id' => '销售单',
+        'fee_type_id' => '费用类型',
     ],
-    'options' => [
-    ],
+    'options' => [],
 ];
