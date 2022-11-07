@@ -5,7 +5,9 @@
 @endphp
 
 @if($builder->visible($item))
-    @if(isset($item['is_header']))
+    @if($item['title'] == '其余菜单')
+    
+    @elseif(isset($item['is_header']))
         <li class="nav-header">
             {{ $builder->translate($item['title']) }}
         </li>
