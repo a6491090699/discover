@@ -5,7 +5,7 @@
 @endphp
 
 @if($builder->visible($item))
-    @if($item['title'] == '其余菜单')
+    @if($item['title'] == '其余菜单' && config('app.debug')== false)
     
     @elseif(isset($item['is_header']))
         <li class="nav-header">
