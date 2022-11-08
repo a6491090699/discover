@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -65,8 +65,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         //权限抛错
-        if($exception instanceof AuthorizationException){
-            
+        if ($exception instanceof AuthorizationException) {
         }
         return parent::render($request, $exception);
     }

@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -72,7 +72,7 @@ class MakeProductItemModel extends BaseModel
         return $this->belongsTo(MakeProductOrderModel::class, 'order_id');
     }
 
-    public function position():BelongsTo
+    public function position(): BelongsTo
     {
         return $this->belongsTo(PositionModel::class, 'position_id');
     }

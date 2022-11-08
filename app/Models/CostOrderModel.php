@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -81,7 +81,7 @@ class CostOrderModel extends BaseModel
 
     protected $with = ['accountant_item'];
 
-    public function items():HasMany
+    public function items(): HasMany
     {
         return $this->hasMany(CostItemModel::class, 'order_id');
     }
@@ -96,7 +96,7 @@ class CostOrderModel extends BaseModel
         return self::CATEGORY[$this->category];
     }
 
-    public function getCompanyStrAttribute():string
+    public function getCompanyStrAttribute(): string
     {
         if ($this->category === self::CATEGORY_SUPPLIER) {
             return SupplierModel::query()->where('id', $this->company_id)->value('name');
@@ -107,12 +107,12 @@ class CostOrderModel extends BaseModel
     /**
      * @return string
      */
-    public function getYearMonthAttribute():string
+    public function getYearMonthAttribute(): string
     {
         return $this->accountant_item->year_month;
     }
 
-    public function accountant_item():BelongsTo
+    public function accountant_item(): BelongsTo
     {
         return $this->belongsTo(AccountantDateItemModel::class, 'accountant_item_id');
     }

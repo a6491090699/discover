@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -73,7 +73,7 @@ class MakeProductOrderController extends OrderController
             $row->width(6)->text('created_at', '业务日期')->default(now())->required()->readOnly();
         });
         $with_order = $this->order_repository->getWithOrder();
-        $form->row(function (Form\Row $row) use ($with_order,$form) {
+        $form->row(function (Form\Row $row) use ($with_order, $form) {
             $order = $this->order;
             $review_statu_ok = $this->oredr_model::REVIEW_STATUS_OK;
             if ($order && $order->review_status === $review_statu_ok) {
@@ -109,7 +109,7 @@ class MakeProductOrderController extends OrderController
                 $table->num('should_num', '计划入库数')->required();
                 $table->tableDecimal('price', '实际入库数')->default(0.00)->required();
                 $table->select('position_id', '入库位置')->options(PositionModel::orderBy('id', 'desc')->pluck('name', 'id'));
-                $table->ipt('batch_no', '批次号')->rem(8)->default("PC".date('Ymd'))->required();
+                $table->ipt('batch_no', '批次号')->rem(8)->default("PC" . date('Ymd'))->required();
             })->useTable()->width(12)->enableHorizontal();
         });
     }

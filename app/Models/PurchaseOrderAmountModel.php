@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -59,7 +59,7 @@ class PurchaseOrderAmountModel extends BaseModel
     ];
     protected $table = 'purchase_order_amount';
 
-    public function order():BelongsTo
+    public function order(): BelongsTo
     {
         return $this->belongsTo(PurchaseInOrderModel::class, 'order_id');
     }
@@ -69,7 +69,7 @@ class PurchaseOrderAmountModel extends BaseModel
         return $this->belongsTo(SupplierModel::class, 'supplier_id');
     }
 
-    public function accountant():BelongsTo
+    public function accountant(): BelongsTo
     {
         return $this->belongsTo(AccountantDateModel::class, 'accountant_id');
     }

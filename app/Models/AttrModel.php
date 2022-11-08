@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -46,7 +46,7 @@ class AttrModel extends BaseModel
 
     protected $table = 'attr';
 
-    public function values():HasMany
+    public function values(): HasMany
     {
         return $this->hasMany(AttrValueModel::class, 'attr_id');
     }

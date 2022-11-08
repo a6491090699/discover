@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -77,8 +77,8 @@ class SaleOrder extends EloquentRepository
         //支付记录
         $pay_logs = $order->payLog()->oldest('pay_at')->get();
         //出库记录
-        $store_out_logs = $order->storeOut()->where('status',StoreOut::STATUS_OUT)->oldest('out_at')->get();
-        
-        return compact('order','pay_logs','store_out_logs');
+        $store_out_logs = $order->storeOut()->where('status', StoreOut::STATUS_OUT)->oldest('out_at')->get();
+
+        return compact('order', 'pay_logs', 'store_out_logs');
     }
 }

@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -49,7 +49,7 @@ class AccountantDateModel extends BaseModel
         self::CUSTOMIZE => '自定义',
     ];
 
-    public function items():HasMany
+    public function items(): HasMany
     {
         return $this->hasMany(AccountantDateItemModel::class, 'accountant_date_id');
     }

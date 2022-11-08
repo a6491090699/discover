@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -89,14 +89,14 @@ class PrintController extends Controller
                 $info = SaleOrderModel::find($id);
                 $temp = $dir . '.sell';
                 break;
-            // case 'import':
-            //     $info = FrameContract::find($id);
-            //     $temp = $dir . '.import';
-            //     break;
-            // case 'domestic_trade':
-            //     $info = FrameContract::find($id);
-            //     $temp = $dir . '.domestic_trade';
-            //     break;
+                // case 'import':
+                //     $info = FrameContract::find($id);
+                //     $temp = $dir . '.import';
+                //     break;
+                // case 'domestic_trade':
+                //     $info = FrameContract::find($id);
+                //     $temp = $dir . '.domestic_trade';
+                //     break;
             case 'trade':
                 $info = FrameContract::find($id);
                 $info->template_data = json_decode($info->template_data, true);

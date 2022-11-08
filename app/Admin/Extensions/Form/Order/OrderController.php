@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -157,7 +157,7 @@ CSS
         $controller = $is_oredr ? admin_controller_name() : $this->item_name;
 
         $className = Str::replaceFirst('?', $controller, $subject);
-        if (! class_exists($className)) {
+        if (!class_exists($className)) {
             throw new Exception(Str::replaceFirst('?', $className, "? 不存在！"));
         }
         return $className;

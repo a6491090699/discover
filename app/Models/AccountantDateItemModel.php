@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -50,17 +50,17 @@ class AccountantDateItemModel extends BaseModel
 
     protected $with = ['accountant_date'];
 
-    public function accountant_date():BelongsTo
+    public function accountant_date(): BelongsTo
     {
         return $this->belongsTo(AccountantDateModel::class, 'accountant_date_id');
     }
 
-    public function getYearMonthAttribute():string
+    public function getYearMonthAttribute(): string
     {
         return $this->full_carbon->format("Y年m月");
     }
 
-    public function getFullCarbonAttribute():Carbon
+    public function getFullCarbonAttribute(): Carbon
     {
         return Carbon::create($this->accountant_date->year, $this->month);
     }

@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -90,7 +90,7 @@ class ApplyForOrderModel extends BaseModel
     /**
      * @return BelongsTo
      */
-    public function with_order():BelongsTo
+    public function with_order(): BelongsTo
     {
         return $this->belongsTo(TaskModel::class, 'with_id');
     }

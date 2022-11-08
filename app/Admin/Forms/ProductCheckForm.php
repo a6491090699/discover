@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -82,7 +82,7 @@ class ProductCheckForm extends Form implements LazyRenderable
             $row->width(4)->text('product_name', '产品名称')->value($skuStockBatch->sku->product->name)->readOnly();
             $row->width(4)->text('batch_no', '批次号')->value($skuStockBatch->batch_no)->readOnly();
 
-//
+            //
         });
         $this->row(function (Row $row) use ($skuStockBatch) {
             $row->width(4)->text('product_att', '属性')->value($skuStockBatch->sku->attr_value_ids_str)->readOnly();

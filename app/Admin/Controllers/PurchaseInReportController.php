@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -97,9 +97,9 @@ class PurchaseInReportController extends Controller
                 $filter->where("product_name", function (Builder $query) {
                     $query->whereHasIn("sku.product", function (Builder $query) {
                         $query->where(function (Builder $query) {
-                            $query->orWhere("name", "like", $this->getValue()."%");
-                            $query->orWhere("py_code", "like", $this->getValue()."%");
-                            $query->orWhere('item_no', 'like', $this->getValue()."%");
+                            $query->orWhere("name", "like", $this->getValue() . "%");
+                            $query->orWhere("py_code", "like", $this->getValue() . "%");
+                            $query->orWhere('item_no', 'like', $this->getValue() . "%");
                         });
                     });
                 }, "关键字")->placeholder("产品名称，拼音码，编号")->width(3);
@@ -194,9 +194,9 @@ class PurchaseInReportController extends Controller
                 $filter->where("product_name", function (Builder $query) {
                     $query->whereHasIn("sku.product", function (Builder $query) {
                         $query->where(function (Builder $query) {
-                            $query->orWhere("name", "like", $this->getValue()."%");
-                            $query->orWhere("py_code", "like", $this->getValue()."%");
-                            $query->orWhere('item_no', 'like', $this->getValue()."%");
+                            $query->orWhere("name", "like", $this->getValue() . "%");
+                            $query->orWhere("py_code", "like", $this->getValue() . "%");
+                            $query->orWhere('item_no', 'like', $this->getValue() . "%");
                         });
                     });
                 }, "关键字")->placeholder("产品名称，拼音码，编号")->width(3);
@@ -266,9 +266,9 @@ class PurchaseInReportController extends Controller
                 $filter->where("product_name", function (Builder $query) {
                     $query->whereHasIn("sku.product", function (Builder $query) {
                         $query->where(function (Builder $query) {
-                            $query->orWhere("name", "like", $this->getValue()."%");
-                            $query->orWhere("py_code", "like", $this->getValue()."%");
-                            $query->orWhere('item_no', 'like', $this->getValue()."%");
+                            $query->orWhere("name", "like", $this->getValue() . "%");
+                            $query->orWhere("py_code", "like", $this->getValue() . "%");
+                            $query->orWhere('item_no', 'like', $this->getValue() . "%");
                         });
                     });
                 }, "关键字")->placeholder("产品名称，拼音码，编号")->width(3);

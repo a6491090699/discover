@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -35,7 +35,8 @@ class InventoryOrderObserver
 
     public function saving(InventoryOrderModel $inventoryOrderModel): void
     {
-        if ($inventoryOrderModel->isDirty('review_status')
+        if (
+            $inventoryOrderModel->isDirty('review_status')
             && (int)$inventoryOrderModel->review_status === InventoryOrderModel::REVIEW_STATUS_OK
         ) {
             $inventoryOrderModel->items->each(function (InventoryItemModel $item) use ($inventoryOrderModel) {

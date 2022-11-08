@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -55,10 +55,10 @@ class SaleOrderController extends OrderController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
-                $filter->like('customer.name','客户名称');
+                $filter->like('customer.name', '客户名称');
                 $filter->equal('order_no');
-                $filter->equal('status','单据状态')->select($this->oredr_model::STATUS);
-                $filter->equal('review_status','审核状态')->select($this->oredr_model::REVIEW_STATUS);
+                $filter->equal('status', '单据状态')->select($this->oredr_model::STATUS);
+                $filter->equal('review_status', '审核状态')->select($this->oredr_model::REVIEW_STATUS);
             });
         });
     }

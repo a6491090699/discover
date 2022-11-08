@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -56,7 +56,7 @@ class SaleBaseModel extends BaseModel
     const TYPE_CHUKOU = 1;
     const TYPE_NEIMAO = 2;
     const TYPE_LIST = [
-        self::TYPE_CHUKOU =>'出口',
-        self::TYPE_NEIMAO =>'内贸',
+        self::TYPE_CHUKOU => '出口',
+        self::TYPE_NEIMAO => '内贸',
     ];
 }

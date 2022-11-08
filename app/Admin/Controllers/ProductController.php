@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -102,7 +102,7 @@ class ProductController extends AdminController
                     ->required();
                 $row->width(6)->hidden('type', '类型')->value(1);
                 $row->width(6)->select('product_category_id', '分类')
-                    ->options(ProductCategory::pluck('title','id'))
+                    ->options(ProductCategory::pluck('title', 'id'))
                     ->required();
             });
 

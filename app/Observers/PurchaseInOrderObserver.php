@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -83,7 +83,8 @@ class PurchaseInOrderObserver
      */
     public function saving(PurchaseInOrderModel $purchaseInOrderModel): void
     {
-        if ($purchaseInOrderModel->isDirty('review_status')
+        if (
+            $purchaseInOrderModel->isDirty('review_status')
             && (int)$purchaseInOrderModel->review_status === PurchaseInOrderModel::REVIEW_STATUS_OK
             && (int)$purchaseInOrderModel->status === PurchaseInOrderModel::STATUS_ARRIVE
         ) {

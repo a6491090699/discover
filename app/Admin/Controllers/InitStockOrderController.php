@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -79,7 +79,7 @@ class InitStockOrderController extends OrderController
                 $table->tableDecimal('actual_num', '期初库存')->default(0.00)->required();
                 $table->tableDecimal('cost_price', '成本单价')->default(0.00)->required();
                 $table->select('position_id', '入库位置')->options(PositionModel::orderBy('id', 'desc')->pluck('name', 'id'));
-                $table->ipt('batch_no', '批次号')->rem(8)->default("PC".date('Ymd'))->required();
+                $table->ipt('batch_no', '批次号')->rem(8)->default("PC" . date('Ymd'))->required();
             })->useTable()->width(12)->enableHorizontal();
         });
     }
@@ -93,7 +93,7 @@ class InitStockOrderController extends OrderController
         $grid->column('sku.product.unit.name', '单位');
         $grid->column('sku.product.type_str', '类型');
 
-        $grid->column('sku_id', '属性')->if(function () use ($order,$review_statu_ok) {
+        $grid->column('sku_id', '属性')->if(function () use ($order, $review_statu_ok) {
             return $order->review_status === $review_statu_ok;
         })->display(function () {
             return $this->sku['attr_value_ids_str'] ?? '';
@@ -110,7 +110,7 @@ class InitStockOrderController extends OrderController
             return InitStockOrderModel::STANDARD[$this->standard];
         })->else()->selectplus(InitStockOrderModel::STANDARD);
 
-        $grid->column('position_id', '入库位置')->if(function () use ($order,$review_statu_ok) {
+        $grid->column('position_id', '入库位置')->if(function () use ($order, $review_statu_ok) {
             return $order->review_status === $review_statu_ok;
         })->display(function ($val) {
             return PositionModel::whereId($val)->value('name') ?? '-';
@@ -118,14 +118,14 @@ class InitStockOrderController extends OrderController
             return PositionModel::orderBy('id', 'desc')->pluck('name', 'id');
         });
 
-        $grid->column('actual_num', '期初库存')->if(function () use ($order,$review_statu_ok) {
+        $grid->column('actual_num', '期初库存')->if(function () use ($order, $review_statu_ok) {
             return $order->review_status !== $review_statu_ok;
         })->edit();
-        $grid->column('cost_price', '成本单价')->if(function () use ($order,$review_statu_ok) {
+        $grid->column('cost_price', '成本单价')->if(function () use ($order, $review_statu_ok) {
             return $order->review_status !== $review_statu_ok;
         })->edit();
 
-        $grid->column('batch_no', '批次号')->if(function () use ($order,$review_statu_ok) {
+        $grid->column('batch_no', '批次号')->if(function () use ($order, $review_statu_ok) {
             return $order->review_status !== $review_statu_ok;
         })->edit();
     }

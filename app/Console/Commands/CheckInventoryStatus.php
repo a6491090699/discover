@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -64,7 +64,7 @@ class CheckInventoryStatus extends Command
 
                 if (
                     $inventoryModel->status === InventoryModel::STATUS_WAIT
-                    && ! now()->between($inventoryModel->start_at, $inventoryModel->end_at)
+                    && !now()->between($inventoryModel->start_at, $inventoryModel->end_at)
                 ) {
                     $inventoryModel->status = InventoryModel::STATUS_STOP;
                     $inventoryModel->saveOrFail();

@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -46,11 +46,11 @@ class DraweeController extends AdminController
     protected function form()
     {
         return Form::make(new Drawee(), function (Form $form) {
-//            $form->display('id');
+            //            $form->display('id');
             $form->text('name');
 
-//            $form->display('created_at');
-//            $form->display('updated_at');
+            //            $form->display('created_at');
+            //            $form->display('updated_at');
         });
     }
 }

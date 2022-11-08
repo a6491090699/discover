@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -55,7 +55,7 @@ class TaskObserver
             [
                 'should_num' => $taskModel->plan_num,
                 'actual_num' => $taskModel->plan_num,
-                'batch_no' => "PC".date('Ymd'),
+                'batch_no' => "PC" . date('Ymd'),
                 'percent' => $taskModel->percent,
                 'standard' => $taskModel->standard,
                 'sku_id' => $taskModel->sku_id,

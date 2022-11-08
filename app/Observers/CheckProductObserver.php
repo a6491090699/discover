@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -22,7 +22,7 @@ use Dcat\Admin\Admin;
 
 class CheckProductObserver
 {
-    public function creating(CheckProductModel $checkProductModel):void
+    public function creating(CheckProductModel $checkProductModel): void
     {
         $prevSkuStockBatchModel = SkuStockBatchModel::query()->findOrFail($checkProductModel->prev_sku_stock_batch_id);
         $prevStockNum = SkuStockModel::query()

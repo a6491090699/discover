@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -127,7 +127,7 @@ class InitSeeder extends Seeder
             ],
         ]);
 
-//        Role::first()->permissions()->save(Permission::first());
+        //        Role::first()->permissions()->save(Permission::first());
 
         // add default menus.
 

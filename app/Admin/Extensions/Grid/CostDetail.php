@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -32,7 +32,7 @@ class CostDetail extends LazyRenderable
                 $url = ($item->cost_type === CostItemModel::COST_TYPE_SALE) ? route('sale-out-orders.edit', $item->with_id) : route('purchase-in-orders.edit', $item->with_id);
                 $title = ($item->cost_type === CostItemModel::COST_TYPE_SALE) ? '客户出货单' : '采购入库单';
                 return [
-                    "<a class='edit-cost-with-order' data-title='{$title}' data-show-btn='{$showBtn}' href='javascript:void(0)' data-action=".$url.">$item->with_order_no</a>",
+                    "<a class='edit-cost-with-order' data-title='{$title}' data-show-btn='{$showBtn}' href='javascript:void(0)' data-action=" . $url . ">$item->with_order_no</a>",
                     $item->cost_type_str,
                     $item->should_amount,
                     $item->actual_amount,

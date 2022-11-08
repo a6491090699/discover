@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -31,7 +31,7 @@ class ApplyOfOrders extends LazyRenderable
             $showBtn = $applyForOrderModel->review_status === BaseModel::REVIEW_STATUS_OK ? 'no' : 'yes';
             return [
                 $key + 1,
-                "<a class='edit-apply-of-order' data-show-btn='{$showBtn}' href='javascript:void(0)' data-action=".route('apply-for-orders.edit', $applyForOrderModel->id).">$applyForOrderModel->order_no</a>",
+                "<a class='edit-apply-of-order' data-show-btn='{$showBtn}' href='javascript:void(0)' data-action=" . route('apply-for-orders.edit', $applyForOrderModel->id) . ">$applyForOrderModel->order_no</a>",
                 ApplyForOrderModel::REVIEW_STATUS[$applyForOrderModel->review_status],
                 $applyForOrderModel->created_at,
             ];

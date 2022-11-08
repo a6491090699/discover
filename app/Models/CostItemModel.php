@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -71,7 +71,7 @@ class CostItemModel extends BaseModel
         return self::COST_TYPE[$this->cost_type];
     }
 
-    public function order():BelongsTo
+    public function order(): BelongsTo
     {
         return $this->belongsTo(CostOrderModel::class, 'order_id');
     }

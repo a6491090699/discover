@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -32,13 +32,13 @@ class SkuStockBatchObserver
             $query->where('flag', StockHistoryModel::INVENTORY);
         })->where([
             'sku_id' => $skuStockBatchModel->sku_id,
-        ])->orderBy('id','desc')->get();
+        ])->orderBy('id', 'desc')->get();
         $pd_group = $pd->mapToGroups(function ($item, $key) {
             return [$item->stockHistory->batch_no => $item];
         })->toArray();
         $pd_order_no = $pd->pluck('batch_no')->toArray();
-        $link_in_order_no = StockHistoryModel::whereIn('with_order_no' , $pd_order_no)->pluck('batch_no')->toArray();
-        
+        $link_in_order_no = StockHistoryModel::whereIn('with_order_no', $pd_order_no)->pluck('batch_no')->toArray();
+
         //盘点单的数量  .. 有可能多张盘点单 
         $pd_num = 0;
         foreach ($pd_group as $item) {
@@ -55,7 +55,7 @@ class SkuStockBatchObserver
             $query->where('flag', StockHistoryModel::IN);
         })->where([
             'sku_id' => $skuStockBatchModel->sku_id,
-        ])->whereNotIn('batch_no',$link_in_order_no)->get();
+        ])->whereNotIn('batch_no', $link_in_order_no)->get();
         $in_num = $in->sum('num');
         $num = $pd_num + $in_num + $out_num;
         // $transfer = SkuStockBatchModel::query()->whereHas('stockHistory', function ($query) {

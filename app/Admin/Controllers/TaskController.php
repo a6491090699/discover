@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -41,15 +41,15 @@ class TaskController extends AdminController
             $grid->column('id')->sortable();
             $grid->column('order_no');
             $grid->column('info', '产品信息')->display(function () {
-                return $this->sku['product']['name']."|".$this->sku['attr_value_ids_str']."|".$this->percent."%|".$this->standard_str;
+                return $this->sku['product']['name'] . "|" . $this->sku['attr_value_ids_str'] . "|" . $this->percent . "%|" . $this->standard_str;
             });
             $grid->column('sum_cost_price', "领料总成本");
-//            $grid->column('craft.name', '生产工艺');
+            //            $grid->column('craft.name', '生产工艺');
             $grid->column('plan_num');
             $grid->column('finish_num');
             $grid->column('status_str', '状态')->label(TaskModel::STATUS_COLOR);
-//            $grid->column('other')->emp();
-//            $grid->column('user.name', "任务创建人");
+            //            $grid->column('other')->emp();
+            //            $grid->column('user.name', "任务创建人");
             $grid->column('operator_user.name', "生产人员");
             $grid->column("_id", "领料记录")->expand(ApplyOfOrders::make());
             $grid->column('created_at');
@@ -127,7 +127,7 @@ class TaskController extends AdminController
     {
         $task = TaskModel::query()->findOrFail($id);
         if ($task->status > TaskModel::STATUS_DRAW) {
-            throw new ApiUnAuthException("任务" .TaskModel::STATUS[$task->status]. "无法进行编辑");
+            throw new ApiUnAuthException("任务" . TaskModel::STATUS[$task->status] . "无法进行编辑");
         }
         return $this->form()->update($id);
     }

@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -71,7 +71,7 @@ class CustomerController extends AdminController
     protected function form()
     {
         return Form::make(new Customer(), function (Form $form) {
-            
+
             $form->text('name')->required();
             $form->text('short_title')->required();
             $form->text('link')->required();
@@ -82,16 +82,16 @@ class CustomerController extends AdminController
             // $form->multipleSelect('drawee', '付款人')->options($form->repository()->drawee())->customFormat(function (array $v) {
             //     return array_column($v, 'id');
             // });
-    //             $form->hasMany('address', '客户地址', function (Form\NestedForm $form) {
-    //                 $form->text('address', '地址')->required();
-    // //                $form->text('other')->default('')->saveAsString();
-    //             })->useTable();
+            //             $form->hasMany('address', '客户地址', function (Form\NestedForm $form) {
+            //                 $form->text('address', '地址')->required();
+            // //                $form->text('other')->default('')->saveAsString();
+            //             })->useTable();
 
             $form->text('sn')->value(create_uniqid_sn('customer'))->readonly()->required();
             $form->select('status')->options(CustomerModel::STATUS_LIST)->required();
 
             $form->text('address')->required();
-            $form->select('user_id')->options(AdminUser::pluck('name','id'));
+            $form->select('user_id')->options(AdminUser::pluck('name', 'id'));
             // $form->text('department')->required();
             $form->datetime('sign_start_at')->required();
             $form->datetime('sign_stop_at')->required();

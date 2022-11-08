@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -31,7 +31,7 @@ class ApplyForBatchObserver
             $costPrice =  bcadd($costPrice ?? 0, bcmul($applyForBatchModel->actual_num, $applyForBatchModel->stock_batch->cost_price, 5), 5);
             return $costPrice;
         });
-        ApplyForItemModel::query()->whereId($applyForBatchModel->item_id)->update(["actual_num" =>$applyForBatchs->sum('actual_num'), 'cost_price' => $costPrice]);
+        ApplyForItemModel::query()->whereId($applyForBatchModel->item_id)->update(["actual_num" => $applyForBatchs->sum('actual_num'), 'cost_price' => $costPrice]);
     }
 
     public function deleted(ApplyForBatchModel $applyForBatchModel): void

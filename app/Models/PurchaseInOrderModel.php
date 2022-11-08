@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -74,7 +74,7 @@ class PurchaseInOrderModel extends PurchaseBaseModel
     /**
      * @return BelongsTo
      */
-    public function with_order():BelongsTo
+    public function with_order(): BelongsTo
     {
         return $this->belongsTo(PurchaseOrderModel::class, 'with_id');
     }
@@ -106,7 +106,7 @@ class PurchaseInOrderModel extends PurchaseBaseModel
     /**
      * @return string
      */
-    public function getStatusStrAttribute():string
+    public function getStatusStrAttribute(): string
     {
         return self::STATUS[$this->status];
     }
@@ -114,7 +114,7 @@ class PurchaseInOrderModel extends PurchaseBaseModel
     /**
      * @return string
      */
-    public function getSupplierStrAttribute():string
+    public function getSupplierStrAttribute(): string
     {
         return $this->supplier->name;
     }

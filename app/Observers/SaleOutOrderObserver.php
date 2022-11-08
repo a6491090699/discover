@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -89,7 +89,8 @@ class SaleOutOrderObserver
 
     public function saving(SaleOutOrderModel $saleOutOrderModel): void
     {
-        if ($saleOutOrderModel->isDirty('review_status')
+        if (
+            $saleOutOrderModel->isDirty('review_status')
             && (int)$saleOutOrderModel->review_status === SaleOutOrderModel::REVIEW_STATUS_OK
             && (int)$saleOutOrderModel->status === SaleOutOrderModel::STATUS_SEND
         ) {

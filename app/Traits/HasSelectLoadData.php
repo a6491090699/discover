@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -26,7 +26,7 @@ trait HasSelectLoadData
      * @param string $text
      * @return array
      */
-    public function textIdtoArray(string $id, string $text):array
+    public function textIdtoArray(string $id, string $text): array
     {
         return $this->textid_array->map(function ($data) use ($id, $text) {
             return [

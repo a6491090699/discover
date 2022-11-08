@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -32,7 +32,8 @@ class ApplyForOrderObserver
 
     public function saving(ApplyForOrderModel $applyForOrderModel): void
     {
-        if ($applyForOrderModel->isDirty('review_status')
+        if (
+            $applyForOrderModel->isDirty('review_status')
             && (int)$applyForOrderModel->review_status === SaleOutOrderModel::REVIEW_STATUS_OK
         ) {
             $applyForOrderModel->items->each(function (ApplyForItemModel $applyForItemModel) use ($applyForOrderModel) {

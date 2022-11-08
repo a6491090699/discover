@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -85,7 +85,7 @@ class MonthSettlementController extends AdminController
             $customers = array_filter($request->input('customers'), function ($val) {
                 return $val !== null;
             });
-            if (! $customers) {
+            if (!$customers) {
                 throw new ApiRequestException("请选择要结算的客户 !");
             }
 
@@ -104,7 +104,7 @@ class MonthSettlementController extends AdminController
 
                 $totalAmount = $amounts->sum('should_amount');
 
-                DB::transaction(function () use ($customer,$accountantItemId, $totalAmount, $amounts) {
+                DB::transaction(function () use ($customer, $accountantItemId, $totalAmount, $amounts) {
                     $items = $amounts->map(function (SaleOrderAmountModel $amountModel) {
                         $amountModel->status = SaleOrderAmountModel::STATUS_OK;
                         $amountModel->saveOrFail();
@@ -134,7 +134,7 @@ class MonthSettlementController extends AdminController
             $suppliers = array_filter($request->input('suppliers'), function ($val) {
                 return $val !== null;
             });
-            if (! $suppliers) {
+            if (!$suppliers) {
                 throw new ApiRequestException("请选择要结算的供应商 !");
             }
             foreach ($suppliers as $supplier) {
@@ -150,7 +150,7 @@ class MonthSettlementController extends AdminController
                 }
                 $totalAmount = $amounts->sum('should_amount');
 
-                DB::transaction(function () use ($supplier,$accountantItemId, $totalAmount, $amounts) {
+                DB::transaction(function () use ($supplier, $accountantItemId, $totalAmount, $amounts) {
                     $items = $amounts->map(function (PurchaseOrderAmountModel $amountModel) {
                         $amountModel->status = PurchaseOrderAmountModel::STATUS_OK;
                         $amountModel->saveOrFail();

@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -39,7 +39,7 @@ use Illuminate\Support\Facades\Route;
 
 // //授权接口
 // Route::middleware(['auth:sanctum','api.permission'])->group(function () {
-    
+
 //     //系统模块
 //     Route::resource('auth/users','UserController');
 //     Route::resource('auth/permissions','PermissionController');
@@ -56,7 +56,7 @@ use Illuminate\Support\Facades\Route;
 //     Route::resource('providers', "ProviderController");
 //     Route::resource('customers', "CustomerController");
 //     Route::resource('frame_contracts', "FrameContractController");
-    
+
 // });
 
 // //用户必须接口 无需授权 需登录
@@ -71,20 +71,19 @@ use Illuminate\Support\Facades\Route;
 //     Route::get('urls' , 'PubController@urls');
 //     //站内信接口
 //     // Route::get('message' ,'PubController@me');
-    
+
 // });
 
 // //dcat接口
 // Route::prefix('pub')->group(function () {
 //     //菜单列表
 
-    
+
 // });
 
 Route::prefix('pub')->group(function () {
-    
-    Route::post('message-read' , 'PubController@messageRead')->name('pub.messageRead');
-    Route::get('multi-orders' , 'PubController@multiOrders')->name('pub.multi-orders');
-    Route::get('orders' , 'PubController@orders')->name('pub.orders');
-    
+
+    Route::post('message-read', 'PubController@messageRead')->name('pub.messageRead');
+    Route::get('multi-orders', 'PubController@multiOrders')->name('pub.multi-orders');
+    Route::get('orders', 'PubController@orders')->name('pub.orders');
 });

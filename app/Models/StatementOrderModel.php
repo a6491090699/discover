@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -69,7 +69,7 @@ class StatementOrderModel extends BaseModel
         self::CATEGORY_SUPPLIER => "供应商",
     ];
 
-    public function items():HasMany
+    public function items(): HasMany
     {
         return $this->hasMany(StatementItemModel::class, 'order_id');
     }
@@ -77,7 +77,7 @@ class StatementOrderModel extends BaseModel
     /**
      * @return string
      */
-    public function getCompanyNameAttribute():string
+    public function getCompanyNameAttribute(): string
     {
         if ($this->category === self::CATEGORY_SUPPLIER) {
             return SupplierModel::query()->where('id', $this->company_id)->value('name');

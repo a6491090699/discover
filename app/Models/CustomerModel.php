@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -96,7 +96,7 @@ class CustomerModel extends BaseModel
      *
      * @return void
      */
-    public function signatory() :BelongsTo
+    public function signatory(): BelongsTo
     {
         return $this->belongsTo(AdminUser::class, 'user_id');
     }

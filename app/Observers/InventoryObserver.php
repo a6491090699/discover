@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -38,8 +38,8 @@ class InventoryObserver
 
     public function deleting(InventoryModel $inventoryModel)
     {
-        if ($inventoryModel->status >=InventoryModel::STATUS_FINISH) {
-            throw new \Exception("当前盘点单据状态为".InventoryModel::STATUS[$inventoryModel->status]."无法删除！");
+        if ($inventoryModel->status >= InventoryModel::STATUS_FINISH) {
+            throw new \Exception("当前盘点单据状态为" . InventoryModel::STATUS[$inventoryModel->status] . "无法删除！");
         }
         $inventoryModel->order->delete();
     }

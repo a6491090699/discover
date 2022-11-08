@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -82,7 +82,7 @@ class InventoryModel extends BaseModel
         return $this->belongsTo(Administrator::class, 'user_id');
     }
 
-    public function order():HasOne
+    public function order(): HasOne
     {
         return $this->hasOne(InventoryOrderModel::class, 'with_id');
     }

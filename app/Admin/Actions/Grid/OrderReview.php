@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -61,7 +61,7 @@ class OrderReview extends AbstractTool
             });
             return $this->response()->success("单据{$title}成功！")->refresh();
         } catch (\Exception $exception) {
-            return $this->response()->error("单据{$title}失败！". $exception->getMessage());
+            return $this->response()->error("单据{$title}失败！" . $exception->getMessage());
         }
     }
 
@@ -74,17 +74,17 @@ class OrderReview extends AbstractTool
         $modelClass2 = "\\App\Models\\" . $model2;
         $table = $request->input('table');
 
-        if ( (!class_exists($modelClass))  &&  (!class_exists($modelClass2))) {
+        if ((!class_exists($modelClass))  &&  (!class_exists($modelClass2))) {
             throw new ApiRequestException("参数错误！");
         }
 
-        if(class_exists($modelClass)){
+        if (class_exists($modelClass)) {
             $this->model = $modelClass::find($id);
         }
-        if(class_exists($modelClass2)){
+        if (class_exists($modelClass2)) {
             $this->model = $modelClass2::find($id);
         }
-        
+
         $check_func = Str::camel($table . "_check");
 
         if ($table !== "inventory_order") {
@@ -108,7 +108,7 @@ class OrderReview extends AbstractTool
         }
     }
 
-    public function saleOrderCheck():void
+    public function saleOrderCheck(): void
     {
         if ($this->model->items->count() === 0) {
             throw new \Exception('订单明细不能为空！');
@@ -117,8 +117,8 @@ class OrderReview extends AbstractTool
             throw new \Exception('明细数量不能为0！');
         }
     }
-    
-    public function storeInCheck():void
+
+    public function storeInCheck(): void
     {
         if ($this->model->items->count() === 0) {
             throw new \Exception('订单明细不能为空！');
@@ -127,7 +127,7 @@ class OrderReview extends AbstractTool
             throw new \Exception('明细数量不能为0！');
         }
     }
-    public function storeOutCheck():void
+    public function storeOutCheck(): void
     {
         if ($this->model->items->count() === 0) {
             throw new \Exception('订单明细不能为空！');
@@ -137,7 +137,7 @@ class OrderReview extends AbstractTool
         }
     }
 
-    public function purchaseOrderBackCheck():void
+    public function purchaseOrderBackCheck(): void
     {
         if ($this->model->items->count() === 0) {
             throw new \Exception('订单明细不能为空！');
@@ -147,7 +147,7 @@ class OrderReview extends AbstractTool
         }
     }
 
-    public function saleBackOrderCheck():void
+    public function saleBackOrderCheck(): void
     {
         if ($this->model->items->count() === 0) {
             throw new \Exception('订单明细不能为空！');
@@ -157,7 +157,7 @@ class OrderReview extends AbstractTool
         }
     }
 
-    public function purchaseOrderCheck():void
+    public function purchaseOrderCheck(): void
     {
         if ($this->model->items->count() === 0) {
             throw new \Exception('订单明细不能为空！');
@@ -167,18 +167,18 @@ class OrderReview extends AbstractTool
         }
     }
 
-    public function statementOrderCheck():void
+    public function statementOrderCheck(): void
     {
         if ($this->model->items->count() === 0) {
             throw new \Exception('订单明细不能为空！');
         }
     }
 
-    public function applyForOrderCheck():void
+    public function applyForOrderCheck(): void
     {
         $taskStatus = $this->model->with_order->status;
         if ($taskStatus > TaskModel::STATUS_DRAW) {
-            throw new \Exception("任务状态为". TaskModel::STATUS[$taskStatus] .",无法完成审核");
+            throw new \Exception("任务状态为" . TaskModel::STATUS[$taskStatus] . ",无法完成审核");
         }
         if ($this->model->items->count() === 0) {
             throw new \Exception('订单明细不能为空！');
@@ -188,11 +188,11 @@ class OrderReview extends AbstractTool
         }
     }
 
-    public function makeProductOrderCheck():void
+    public function makeProductOrderCheck(): void
     {
         $taskStatus = $this->model->with_order->status;
         if ($taskStatus !== TaskModel::STATUS_DRAW) {
-            throw new \Exception("任务状态为". TaskModel::STATUS[$taskStatus] .",无法完成审核");
+            throw new \Exception("任务状态为" . TaskModel::STATUS[$taskStatus] . ",无法完成审核");
         }
 
         if ($this->model->items->count() === 0) {
@@ -203,14 +203,14 @@ class OrderReview extends AbstractTool
         }
     }
 
-    public function CostOrderCheck():void
+    public function CostOrderCheck(): void
     {
         if ($this->model->items->count() === 0) {
             throw new \Exception('订单明细不能为空！');
         }
     }
 
-    public function InventoryOrderCheck():void
+    public function InventoryOrderCheck(): void
     {
         $with_order = $this->model->with_order;
         if ($with_order->status !== InventoryModel::STATUS_WAIT) {
@@ -219,9 +219,9 @@ class OrderReview extends AbstractTool
         if ($this->model->items->count() === 0) {
             throw new \Exception('订单明细不能为空！');
         }
-//        if ($this->model->items()->where('actual_num', 0)->count()) {
-//            throw new \Exception('明细数量不能为0！');
-//        }
+        //        if ($this->model->items()->where('actual_num', 0)->count()) {
+        //            throw new \Exception('明细数量不能为0！');
+        //        }
     }
 
     /**
@@ -256,7 +256,7 @@ HTML;
         ];
     }
 
-    public function getTable():string
+    public function getTable(): string
     {
         return Str::snake(admin_controller_name());
     }

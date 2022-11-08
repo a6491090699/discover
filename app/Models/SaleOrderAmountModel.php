@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -68,17 +68,17 @@ class SaleOrderAmountModel extends BaseModel
         self::STATUS_OK => "success",
     ];
 
-    public function order():BelongsTo
+    public function order(): BelongsTo
     {
         return $this->belongsTo(SaleOutOrderModel::class, 'order_id');
     }
 
-    public function customer():BelongsTo
+    public function customer(): BelongsTo
     {
         return $this->belongsTo(CustomerModel::class, 'customer_id');
     }
 
-    public function accountant():BelongsTo
+    public function accountant(): BelongsTo
     {
         return $this->belongsTo(AccountantDateModel::class, 'accountant_id');
     }

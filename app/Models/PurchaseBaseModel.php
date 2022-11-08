@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -26,7 +26,7 @@ class PurchaseBaseModel extends BaseModel
 {
     const STATUS_WAIT = 0;
     const STATUS_ARRIVE = 1;
-//    const STATUS_FINISH = 2;
+    //    const STATUS_FINISH = 2;
     const STATUS_RETURNING = 3;
     const STATUS_RETURNED = 4;
     const STATUS_PART_ARRIVE = 5;

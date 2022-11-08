@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -56,8 +56,8 @@ class PurchaseOrderController extends OrderController
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
                 $filter->equal('order_no');
-                $filter->like('supplier.name','供应商名称');
-                $filter->like('user.username','创建人');
+                $filter->like('supplier.name', '供应商名称');
+                $filter->like('user.username', '创建人');
                 $filter->equal('status')->select(PurchaseOrderModel::STATUS);
                 $filter->equal('review_status')->select(PurchaseOrderModel::REVIEW_STATUS);
             });
@@ -129,7 +129,7 @@ class PurchaseOrderController extends OrderController
             $row->width(6)->decimal('liquidated_damage_rate', '违约金比例')->required();
         });
         $form->row(function (Form\Row $row) {
-            $row->width(6)->select('store_id', '入库仓库')->options(Store::pluck('title','id'))->required();
+            $row->width(6)->select('store_id', '入库仓库')->options(Store::pluck('title', 'id'))->required();
             $row->width(6)->decimal('advance_charge_money', '定金');
         });
 

@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -59,7 +59,7 @@ class InventoryItemModel extends BaseModel
     /**
      * @return BelongsTo
      */
-    public function stock_batch():BelongsTo
+    public function stock_batch(): BelongsTo
     {
         return $this->belongsTo(SkuStockBatchModel::class, 'stock_batch_id');
     }

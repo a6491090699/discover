@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -27,7 +27,7 @@ class Input extends Text
             ->defaultAttribute('id', $this->id)
             ->defaultAttribute('name', $this->getElementName())
             ->defaultAttribute('value', old($this->column, $this->value()))
-            ->defaultAttribute('class', 'form-control '.$this->getElementClassString())
+            ->defaultAttribute('class', 'form-control ' . $this->getElementClassString())
             ->defaultAttribute('style', "width: {$this->rem}rem")
             ->defaultAttribute('placeholder', $this->placeholder());
 
@@ -38,7 +38,7 @@ class Input extends Text
         return parent::render();
     }
 
-    public function rem(int $rem):self
+    public function rem(int $rem): self
     {
         $this->rem = $rem;
         return $this;

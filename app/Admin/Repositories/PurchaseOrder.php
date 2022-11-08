@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -38,8 +38,8 @@ class PurchaseOrder extends EloquentRepository
         //支付记录
         $pay_logs = $order->paylog()->oldest('pay_at')->get();
         //入库记录
-        $store_in_logs = $order->storeIn()->where('status',StoreIn::STATUS_IN)->oldest('in_at')->get();
-        
-        return compact('order','pay_logs','store_in_logs');
+        $store_in_logs = $order->storeIn()->where('status', StoreIn::STATUS_IN)->oldest('in_at')->get();
+
+        return compact('order', 'pay_logs', 'store_in_logs');
     }
 }

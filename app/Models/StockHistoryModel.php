@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -132,8 +132,8 @@ class StockHistoryModel extends BaseModel
         self::OT_TRANSFER_TYPE => "库存调拨",
         self::OT_STORE_OUT_TYPE => "销售出库",
         self::OT_SALE_IN_TYPE => "销售退货入库",
-        self::OT_OTHER_IN =>'其他入库',
-        self::OT_OTHER_OUT =>'其他出库',
+        self::OT_OTHER_IN => '其他入库',
+        self::OT_OTHER_OUT => '其他出库',
         self::OT_INIT_TYPE => "期初建账",
         self::OT_SCRAP_TYPE => '物料报废',
         self::OT_CHECK_IN_TYPE => '检验入库',
@@ -166,7 +166,7 @@ class StockHistoryModel extends BaseModel
     /**
      * @return BelongsTo
      */
-    public function in_position():BelongsTo
+    public function in_position(): BelongsTo
     {
         return $this->belongsTo(PositionModel::class, 'in_position_id');
     }
@@ -174,7 +174,7 @@ class StockHistoryModel extends BaseModel
     /**
      * @return BelongsTo
      */
-    public function out_position():BelongsTo
+    public function out_position(): BelongsTo
     {
         return $this->belongsTo(PositionModel::class, 'out_position_id');
     }
@@ -186,5 +186,4 @@ class StockHistoryModel extends BaseModel
     {
         return $this->belongsTo(ProductSkuModel::class, 'sku_id');
     }
-    
 }

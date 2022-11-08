@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -53,12 +53,12 @@ Grid::resolving(function (Grid $grid) {
         $actions->disableEdit();
     });
     $grid->option("dialog_form_area", ["70%", "80%"]);
-    $grid->filter(function(Grid\Filter $filter){
+    $grid->filter(function (Grid\Filter $filter) {
         $filter->rightSide();
         $filter->expand(false);
     });
 });
-Form::resolving(function(Form $form){
+Form::resolving(function (Form $form) {
     // $form->disableResetButton()
 });
 Form\Field::macro('enableHorizontal', function () {
@@ -98,29 +98,29 @@ app('view')->prependNamespace('admin', resource_path('views/vendor/laravel-admin
 
 Admin::navbar(function (Navbar $navbar) {
     // 切换主题
-//    $navbar->right(view('admin.switch-theme', [
-//        'map' => [
-//            'indigo'    => Dcat\Admin\Admin::color()->indigo(),
-//            'blue'      => '#5686d4',
-//            'blue-dark' => '#5686d4',
-//        ],
-//    ]));
+    //    $navbar->right(view('admin.switch-theme', [
+    //        'map' => [
+    //            'indigo'    => Dcat\Admin\Admin::color()->indigo(),
+    //            'blue'      => '#5686d4',
+    //            'blue-dark' => '#5686d4',
+    //        ],
+    //    ]));
     $method = config('admin.layout.horizontal_menu') ? 'left' : 'right';
 
-//     $navbar->$method(
-//         <<<HTML
-// <ul class="nav navbar-nav">
-//     <li class="nav-item">
-//         &nbsp;
-//         <a style="cursor: pointer" onclick="window.open('https://github.com/jqhph/dcat-admin-demo')">
-//             <i class="feather icon-github" style="font-size: 1.5rem"></i> DEMO源码下载
-//         </a> 
-//         &nbsp; &nbsp; 
-//     </li>
-// </ul> 
-// HTML
+    //     $navbar->$method(
+    //         <<<HTML
+    // <ul class="nav navbar-nav">
+    //     <li class="nav-item">
+    //         &nbsp;
+    //         <a style="cursor: pointer" onclick="window.open('https://github.com/jqhph/dcat-admin-demo')">
+    //             <i class="feather icon-github" style="font-size: 1.5rem"></i> DEMO源码下载
+    //         </a> 
+    //         &nbsp; &nbsp; 
+    //     </li>
+    // </ul> 
+    // HTML
 
-//     );
+    //     );
 
     // ajax请求不执行
     // if (! Dcat\Admin\Support\Helper::isAjaxRequest()) {
@@ -131,10 +131,10 @@ Admin::navbar(function (Navbar $navbar) {
     //$navbar->right(view('admin.navbar-2'));
 
     // 搜索框
-//     $navbar->right(
-//         <<<HTML
-// HTML
-//     );
+    //     $navbar->right(
+    //         <<<HTML
+    // HTML
+    //     );
     // 下拉面板
     $navbar->right(view('navbar.navbar'));
 });

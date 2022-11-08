@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -133,17 +133,17 @@ class PurchaseOrderModel extends PurchaseBaseModel
 
     public function storeIn()
     {
-        return $this->morphMany(StoreIn::class ,'order');
+        return $this->morphMany(StoreIn::class, 'order');
     }
 
     public function delivery()
     {
-        return $this->morphMany(Delivery::class ,'order');
+        return $this->morphMany(Delivery::class, 'order');
     }
 
     public function payLog()
     {
-        return $this->hasMany(BuyPayLog::class , 'purchase_order_id');
+        return $this->hasMany(BuyPayLog::class, 'purchase_order_id');
     }
 
     public function store()

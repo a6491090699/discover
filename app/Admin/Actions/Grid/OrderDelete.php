@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -32,7 +32,7 @@ class OrderDelete extends BatchAction
         $modelClass = "\\App\Models\\" . $model;
         $keys       = $this->getKey();
 
-        if (! class_exists($modelClass)) {
+        if (!class_exists($modelClass)) {
             throw new Exception("参数错误！");
         }
 

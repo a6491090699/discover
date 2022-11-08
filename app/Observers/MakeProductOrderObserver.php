@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -24,7 +24,8 @@ class MakeProductOrderObserver
 {
     public function saving(MakeProductOrderModel $makeProductOrderModel): void
     {
-        if ($makeProductOrderModel->isDirty('review_status')
+        if (
+            $makeProductOrderModel->isDirty('review_status')
             && (int)$makeProductOrderModel->review_status === MakeProductOrderModel::REVIEW_STATUS_OK
         ) {
             $item = $makeProductOrderModel->items;

@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -95,6 +95,6 @@ class ProductObserver
      */
     public function creating(ProductModel $productModel): void
     {
-//        $productModel->create_user_id = Admin::user()->id;
+        //        $productModel->create_user_id = Admin::user()->id;
     }
 }

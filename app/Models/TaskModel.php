@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -112,7 +112,7 @@ class TaskModel extends BaseModel
      * @param $key
      * @return string
      */
-    public function getStatusStrAttribute():string
+    public function getStatusStrAttribute(): string
     {
         return self::STATUS[$this->status];
     }
@@ -141,7 +141,7 @@ class TaskModel extends BaseModel
     /**
      * @return HasMany
      */
-    public function apply_orders():HasMany
+    public function apply_orders(): HasMany
     {
         return $this->hasMany(ApplyForOrderModel::class, 'with_id');
     }
@@ -149,7 +149,7 @@ class TaskModel extends BaseModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function make_product_order():HasOne
+    public function make_product_order(): HasOne
     {
         return $this->hasOne(MakeProductOrderModel::class, 'with_id');
     }
@@ -157,7 +157,7 @@ class TaskModel extends BaseModel
     /**
      * @return float
      */
-    public function getSumCostPriceAttribute():float
+    public function getSumCostPriceAttribute(): float
     {
         return ApplyForItemModel::query()->whereHas('order', function (Builder $builder) {
             $builder->where('review_status', ApplyForOrderModel::REVIEW_STATUS_OK);

@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -33,7 +33,7 @@ class StatementDetail extends LazyRenderable
                 $title = "费用单";
 
                 return [
-                    "<a class='edit-statement-order' data-title='{$title}' data-show-btn='{$showBtn}' href='javascript:void(0)' data-action=".$url.">{$item->cost_order->order_no}</a>",
+                    "<a class='edit-statement-order' data-title='{$title}' data-show-btn='{$showBtn}' href='javascript:void(0)' data-action=" . $url . ">{$item->cost_order->order_no}</a>",
                     $item->order_amount,
                     $item->already_actual_amount,
                     $item->already_discount_amount,

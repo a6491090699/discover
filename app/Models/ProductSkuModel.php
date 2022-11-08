@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -37,7 +37,7 @@ class ProductSkuModel extends BaseModel
     protected $table = 'product_sku';
     public $timestamps = false;
 
-//    protected $with = ['product'];
+    //    protected $with = ['product'];
 
     protected $appends = ['attr_value_ids_str'];
 
@@ -48,7 +48,7 @@ class ProductSkuModel extends BaseModel
 
     public function getAttrValueIdsStrAttribute(): string
     {
-        if (! $this->attr_value_ids) {
+        if (!$this->attr_value_ids) {
             return '';
         }
         return AttrValueModel::getAttrValues()->only(explode(',', $this->attr_value_ids))->implode(',');

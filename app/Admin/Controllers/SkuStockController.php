@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -42,17 +42,17 @@ class SkuStockController extends AdminController
             $grid->column('batch_num', '批次库存')->modal(function () {
                 return SkuStockBatchTable::make(['sku_id' => $this->sku_id]);
             });
-//            $grid->column('created_at');
-//            $grid->column('updated_at')->sortable();
+            //            $grid->column('created_at');
+            //            $grid->column('updated_at')->sortable();
             $grid->disableRowSelector();
             $grid->filter(function (Grid\Filter $filter) {
                 // $filter->like('sku.product.name','产品名称');
                 $filter->where("product_name", function (Builder $query) {
                     $query->whereHasIn("sku.product", function (Builder $query) {
                         $query->where(function (Builder $query) {
-                            $query->orWhere("name", "like", $this->getValue()."%");
-                            $query->orWhere("py_code", "like", $this->getValue()."%");
-                            $query->orWhere('item_no', 'like', $this->getValue()."%");
+                            $query->orWhere("name", "like", $this->getValue() . "%");
+                            $query->orWhere("py_code", "like", $this->getValue() . "%");
+                            $query->orWhere('item_no', 'like', $this->getValue() . "%");
                         });
                     });
                 }, "关键字")->placeholder("产品名称，拼音码，编号");

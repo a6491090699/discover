@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -150,11 +150,11 @@ class StatementOrderController extends OrderController
         })->display(function ($val) {
             return $val;
         })->else()->edit();
-//        $grid->column('cost_type', "费用类型")->using(CostItemModel::COST_TYPE);
-//        $grid->column('_', '订单详情')->expand(function () {
-//            return CostItemOrderDetail::make(['with_id' => $this->with_id, 'cost_type' => $this->cost_type]);
-//        });
-//        $grid->column('should_amount', '费用金额');
+        //        $grid->column('cost_type', "费用类型")->using(CostItemModel::COST_TYPE);
+        //        $grid->column('_', '订单详情')->expand(function () {
+        //            return CostItemOrderDetail::make(['with_id' => $this->with_id, 'cost_type' => $this->cost_type]);
+        //        });
+        //        $grid->column('should_amount', '费用金额');
     }
 
     public function creating(Form &$form): void

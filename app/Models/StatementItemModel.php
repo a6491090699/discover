@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -51,12 +51,12 @@ class StatementItemModel extends BaseModel
     /**
      * @return BelongsTo
      */
-    public function cost_order():BelongsTo
+    public function cost_order(): BelongsTo
     {
         return $this->belongsTo(CostOrderModel::class, 'statement_order_id');
     }
 
-    public function order():BelongsTo
+    public function order(): BelongsTo
     {
         return $this->belongsTo(StatementOrderModel::class, 'order_id');
     }
@@ -64,7 +64,7 @@ class StatementItemModel extends BaseModel
     /**
      * @return float
      */
-    public function getRemainingSumAttribute():float
+    public function getRemainingSumAttribute(): float
     {
         $res = bcsub($this->should_amount, bcadd($this->actual_amount, $this->discount_amount, 5), 2);
         return $res > 0 ? $res : 0;

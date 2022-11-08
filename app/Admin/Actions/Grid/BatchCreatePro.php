@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -72,7 +72,7 @@ JS;
         return admin_controller_name() . 'Model';
     }
 
-    public function getOrderId():int
+    public function getOrderId(): int
     {
         return request()->route()->parameter($this->getTable());
     }

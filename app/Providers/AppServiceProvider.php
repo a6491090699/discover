@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -139,9 +139,8 @@ class AppServiceProvider extends ServiceProvider
             'allocations' => Allocation::class,
             'purchase_order_backs' => PurchaseOrderBack::class,
             'sale_out_order' => SaleOrderModel::class,
-            'sale_back_orders'=> SaleBackOrder::class
-            
-        ]);
+            'sale_back_orders' => SaleBackOrder::class
 
+        ]);
     }
 }

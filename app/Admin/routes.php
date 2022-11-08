@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -32,11 +32,11 @@ Route::group([
     $router->get('api/get-customer-address', 'ApiController@getCustomerAddress')->name('api.customer.address.find');
     $router->get('api/get-customer-drawee', 'ApiController@getCustomerDrawee')->name('api.customer.drawee.find');
 
-    $router->any('approvals/check/{id}' , 'ApprovalController@checkInfo')->name('approval.checkInfo');
+    $router->any('approvals/check/{id}', 'ApprovalController@checkInfo')->name('approval.checkInfo');
     // $router->post('approvals/check' , 'ApprovalController@check')->name('approval.check');
-    $router->put('approvals/check' , 'ApprovalController@check')->name('approval.check');
+    $router->put('approvals/check', 'ApprovalController@check')->name('approval.check');
     $router->resource('approvals', 'ApprovalController');
- 
+
     $router->resource('sale_back_orders', 'SaleBackOrderController');
     $router->resource('flows', 'FlowController');
     $router->resource('templates', 'TemplateController');
@@ -92,7 +92,7 @@ Route::group([
     $router->get('prints-contract/{id}', 'PrintController@contractPrint')->name('order.contractPrint');
     $router->get('prints-test', 'PrintController@test');
 
-    
+
     $router->resource('accountant-dates', "AccountantDateController");
     $router->resource('accountant-date-items', "AccountantDateItemController");
     $router->resource('purchase-order-amounts', 'PurchaseOrderAmountController');

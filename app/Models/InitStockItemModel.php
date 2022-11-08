@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -58,7 +58,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class InitStockItemModel extends BaseModel
 {
-    use SoftDeletes,HasStandard;
+    use SoftDeletes, HasStandard;
 
     protected $table = 'init_stock_item';
 
@@ -69,7 +69,7 @@ class InitStockItemModel extends BaseModel
         return $this->belongsTo(ProductSkuModel::class, 'sku_id');
     }
 
-    public function position():BelongsTo
+    public function position(): BelongsTo
     {
         return $this->belongsTo(PositionModel::class, 'position_id');
     }

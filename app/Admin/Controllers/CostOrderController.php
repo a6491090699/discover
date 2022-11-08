@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -98,7 +98,7 @@ class CostOrderController extends OrderController
         });
         $form->row(function (Form\Row $row) {
             $row->width(6)->text('category_str', '费用分类')->disable();
-//            $row->width(0)->hidden('category');
+            //            $row->width(0)->hidden('category');
             $users = Administrator::query()->latest()->pluck('name', 'id');
 
             $row->width(6)->select('apply_id', '审批人')->options($users)->default(head($users->keys()->toArray()))->required();

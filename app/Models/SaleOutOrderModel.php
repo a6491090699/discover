@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -79,7 +79,7 @@ class SaleOutOrderModel extends SaleBaseModel
     /**
      * @return BelongsTo
      */
-    public function with_order():BelongsTo
+    public function with_order(): BelongsTo
     {
         return $this->belongsTo(SaleOrderModel::class, 'with_id');
     }
@@ -132,13 +132,13 @@ class SaleOutOrderModel extends SaleBaseModel
     /**
      * @return string
      */
-    public function getStatusStrAttribute():string
+    public function getStatusStrAttribute(): string
     {
         return self::STATUS[$this->status];
     }
 
     public function storeOut()
     {
-        return $this->morphOne(StoreOut::class ,'order');
+        return $this->morphOne(StoreOut::class, 'order');
     }
 }

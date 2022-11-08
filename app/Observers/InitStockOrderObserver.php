@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -29,7 +29,8 @@ class InitStockOrderObserver
 
     public function saving(InitStockOrderModel $initStockOrderModel): void
     {
-        if ($initStockOrderModel->isDirty('review_status')
+        if (
+            $initStockOrderModel->isDirty('review_status')
             && (int)$initStockOrderModel->review_status === InitStockOrderModel::REVIEW_STATUS_OK
         ) {
             $initStockOrderModel->items->each(function (InitStockItemModel $item) use ($initStockOrderModel) {

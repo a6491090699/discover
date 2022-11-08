@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -64,19 +64,19 @@ class SkuStockBatchModel extends BaseModel
         return $this->belongsTo(ProductSkuModel::class, 'sku_id');
     }
 
-    public function position():BelongsTo
+    public function position(): BelongsTo
     {
         return $this->belongsTo(PositionModel::class, 'position_id');
     }
 
-    public function store():BelongsTo
+    public function store(): BelongsTo
     {
         return $this->belongsTo(Store::class, 'store_id');
     }
 
     public function stockHistory()
     {
-        return $this->belongsTo(StockHistoryModel::class , 'batch_no' ,'with_order_no');
+        return $this->belongsTo(StockHistoryModel::class, 'batch_no', 'with_order_no');
     }
 
     // public function storeIn()
@@ -84,5 +84,5 @@ class SkuStockBatchModel extends BaseModel
     //     return $this->belongsTo(StoreIn::class , 'batch_no' ,'sn');
     // }
 
-    
+
 }

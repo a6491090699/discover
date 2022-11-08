@@ -8,7 +8,7 @@
  * // +----------------------------------------------------------------------
  * // | Licensed ( LICENSE-1.0.0 )
  * // +----------------------------------------------------------------------
- * // | Author: yxx <1365831278@qq.com>
+ * // | Author: yy <649109069@qq.com>
  * // +----------------------------------------------------------------------
  */
 
@@ -29,7 +29,7 @@ class CostOrder extends EloquentRepository
      */
     protected $eloquentClass = Model::class;
 
-    public function getYearMonth():Collection
+    public function getYearMonth(): Collection
     {
         return AccountantDateItemModel::query()->latest()->get()
             ->filter(function (AccountantDateItemModel $itemModel) {
