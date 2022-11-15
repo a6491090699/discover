@@ -6,6 +6,7 @@ use App\Admin\Repositories\Customer;
 use App\Admin\Repositories\FeeType;
 use App\Admin\Repositories\SaleOrder;
 use App\Admin\Repositories\SellPayLog;
+use App\Models\SaleOrderModel;
 use App\Models\SellPayLog as ModelsSellPayLog;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
@@ -27,14 +28,15 @@ class SellPayLogController extends AdminController
             $grid->column('sale_order_id')->using(app(SaleOrder::class)->selectItems());
             $grid->column('fee_type_id')->using(app(FeeType::class)->selectItems());
             $grid->column('pay_at');
-            $grid->column('saleOrder.customer.name');
+            $grid->column('saleOrder.customer.name', '客户');
             // $grid->column('contract_money');
-            // $grid->column('unpay_money');
-            // $grid->column('this_time_money');
+            $grid->column('this_time_money');
+            $grid->column('saleOrder.total_money', '合同金额');
+            $grid->column('unpay_money');
             // $grid->column('pay_method');
             // $grid->column('enclosure');
             // $grid->column('other');
-            $grid->column('created_at');
+            // $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
@@ -42,7 +44,8 @@ class SellPayLogController extends AdminController
                 $filter->equal('sn');
                 $filter->equal('fee_type_id')->select(app(FeeType::class)->selectItems());
                 $filter->equal('sale_order_id')->select(app(SaleOrder::class)->selectItems());
-                $filter->equal('saleOrder.customer_id','客户')->select(app(Customer::class)->selectItems());
+                $filter->equal('saleOrder.customer_id', '客户')->select(app(Customer::class)->selectItems());
+                $filter->between('pay_at')->datetime();
             });
         });
     }
@@ -90,21 +93,30 @@ class SellPayLogController extends AdminController
             // $form->datetime('check_at','核算时间');
             // $form->select('customer_id')->options(app(Customer::class)->selectItems());
             // $form->decimal('contract_money');
-            // $form->decimal('unpay_money');
+            $form->hidden('unpay_money');
             $form->decimal('this_time_money')->required();
             $form->select('pay_method')->options(ModelsSellPayLog::PAY_METHOD_LIST)->required();
             $form->file('enclosure');
             $form->text('other');
+            if ($form->isEditing()) {
+            }
+            if ($form->isCreating()) {
+                $form->saving(function ($form) {
+                    if (empty($form->unpay_money)) {
+                        $order = SaleOrderModel::find($form->sale_order_id);
+                        //货款类型
+                        $sofar_money = $order->payLog()->where('fee_type_id', 1)->sum('this_time_money') + $form->this_time_money;
+                        $form->unpay_money = max($order->total_money - $sofar_money, 0);
+                    }
+                });
 
-            $form->display('created_at');
-            $form->display('updated_at');
-
-            $form->saved(function ($form) {
-                //计算费用
-                $updates = $form->updates();
-                increment_uniqid_sn('BPL');
-                // app(SaleOrder::class)->calculateFee($updates);
-            });
+                $form->saved(function ($form) {
+                    //计算费用
+                    $updates = $form->updates();
+                    increment_uniqid_sn('BPL');
+                    // app(SaleOrder::class)->calculateFee($updates);
+                });
+            }
         });
     }
 }

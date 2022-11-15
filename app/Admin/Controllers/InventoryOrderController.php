@@ -53,9 +53,12 @@ class InventoryOrderController extends OrderController
             $grid->actions(EditOrder::make());
 
             $grid->disableCreateButton();
-            $grid->tools(BatchOrderPrint::make());
+            // $grid->tools(BatchOrderPrint::make());
 
             $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('id');
+                $filter->equal('order_no');
+                $filter->between('created_at')->datetime();
             });
         });
     }

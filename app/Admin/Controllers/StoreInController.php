@@ -40,7 +40,7 @@ class StoreInController extends AdminController
             // $grid->column('total_money');
             $grid->column('car_number');
             // $grid->column('delivery_id');
-            $grid->column('created_at');
+            // $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
@@ -49,16 +49,7 @@ class StoreInController extends AdminController
                 $filter->equal('store_id')->select(Store::pluck('title', 'id')->toArray());
                 $filter->equal('status')->select(ModelsStoreIn::STATUS_LIST);
                 $filter->equal('review_status')->select(ModelsStoreIn::REVIEW_STATUS);
-                $filter->whereBetween('in_at', function ($q) {
-                    $start = $this->input['start'] ?? null;
-                    $end = $this->input['end'] ?? null;
-                    if ($start) {
-                        $q->where('in_at', '>=', $start);
-                    }
-                    if ($end) {
-                        $q->where('in_at', '<=', $end);
-                    }
-                })->datetime();
+                $filter->between('in_at')->datetime();
             });
         });
     }

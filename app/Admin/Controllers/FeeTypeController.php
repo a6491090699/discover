@@ -20,12 +20,17 @@ class FeeTypeController extends AdminController
         return Grid::make(new FeeType(), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('title');
-            $grid->column('has_caozuo')->using(['否','是']);
-            $grid->column('has_zhanyong')->using(['否','是']);
+            // $grid->column('has_caozuo')->using(['否','是']);
+            // $grid->column('has_zhanyong')->using(['否','是']);
+            $grid->column('has_caozuo')->switch();
+            $grid->column('has_zhanyong')->switch();
+
+
             $grid->column('created_at');
         
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->like('title');
         
             });
         });
@@ -59,7 +64,7 @@ class FeeTypeController extends AdminController
     {
         return Form::make(new FeeType(), function (Form $form) {
             $form->display('id');
-            $form->text('title');
+            $form->text('title')->required();
             $form->switch('has_caozuo');
             $form->switch('has_zhanyong');
         

@@ -30,5 +30,6 @@ class VerifyCsrfToken extends Middleware
         'api/pub/*',
         'admin/dcat-api/value',
         'admin/messages/*',
+        'admin/fee_types/*',
     ];
 }

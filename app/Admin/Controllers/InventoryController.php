@@ -40,13 +40,21 @@ class InventoryController extends AdminController
             $grid->column('user.name', "创建人");
             $grid->column('other');
             $grid->disableQuickEditButton();
-            $grid->showBatchDelete();
+            
             $grid->actions(function (\Dcat\Admin\Grid\Displayers\Actions $actions) {
                 if ($this->status !== InventoryModel::STATUS_NOT_STARTED) {
                     $actions->append(new EditInventoryOrder());
                 }
             });
-            $grid->tools(Delete::make());
+            // $grid->tools(Delete::make());
+            $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('id');
+                $filter->equal('order_no');
+                $filter->between('start_at')->datetime();
+                $filter->between('end_at')->datetime();
+                $filter->equal('status')->select(InventoryModel::STATUS);
+        
+            });
         });
     }
 

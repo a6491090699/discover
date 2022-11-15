@@ -29,6 +29,8 @@ class FlowController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->like('title');
+                $filter->equal('check_type')->select(ModelsFlow::CHECK_TYPE_LIST);
             });
         });
     }
@@ -63,7 +65,7 @@ class FlowController extends AdminController
         return Form::make(new Flow(), function (Form $form) {
             $form->display('id');
 
-            $form->text('title');
+            $form->text('title')->required();
             $form->select('check_type')->options(ModelsFlow::CHECK_TYPE_LIST)->default(ModelsFlow::CHECK_TYPE_ZHIDING)->when(ModelsFlow::CHECK_TYPE_ZHIDING, function (Form $form) {
                 // $form->listbox('flow_list', '会签人')->options(AdminUser::pluck('name', 'id')->toArray())->help('按顺序会签');
                 //todo 不能排序  用table做 
@@ -74,8 +76,8 @@ class FlowController extends AdminController
                 //     $table->text('name','字段名');
                 //     $table->text('field','字段');
                 // });
-            });
-            $form->select('template_id', '审批模板')->options(Template::where('type',Template::TYPE_SHENPI)->pluck('title', 'id')->toarray());
+            })->required();
+            $form->select('template_id', '审批模板')->options(Template::where('type',Template::TYPE_SHENPI)->pluck('title', 'id')->toarray())->required();
             $form->text('remark');
             $form->display('created_at');
             $form->display('updated_at');

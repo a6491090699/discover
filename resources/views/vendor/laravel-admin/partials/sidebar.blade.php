@@ -1,7 +1,7 @@
 <div class="main-menu">
     <div class="main-menu-content">
         <aside class="main-sidebar {{ $configData['sidebar_style'] }} shadow">
-            <div class="navbar-header">
+            <div class="navbar-header" style="height:auto">
                 <ul class="nav navbar-nav flex-row">
                     <li class="nav-item mr-auto">
                         <a href="{{ admin_url('/') }}" class="navbar-brand waves-effect waves-light">

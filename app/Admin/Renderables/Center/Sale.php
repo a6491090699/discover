@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Admin\Renderables;
+namespace App\Admin\Renderables\Center;
 
+use App\Models\SaleOrderModel;
+use App\Models\SkuStockModel;
 use Dcat\Admin\Admin;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
-class Center implements Renderable
+class Sale implements Renderable
 {
 
     public static $js = [
@@ -57,7 +61,25 @@ class Center implements Renderable
         // 需要在页面执行的JS代码
         // 通过 Admin::script 设置的JS代码会自动在所有JS脚本都加载完毕后执行
         Admin::script($this->script());
-        $d = json_encode(['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']);
-        return view('center.index' ,compact('d'))->render();
+        $saleOrder = SaleOrderModel::with('customer')->get();
+        $sale_order_num = $saleOrder->count();
+        $sale_order_money = $saleOrder->sum('total_money');
+
+        $cost = $saleOrder->groupBy('customer_id');
+        $sale_cost_title = [];
+        $sale_cost_value = [];
+        foreach ($cost as $item) {
+            $sale_cost_title[] = $item[0]->customer->name;
+            $sale_cost_value[] = $item->sum('total_money');
+        }
+
+        // dd($cost->toArray());
+
+        
+        $sale_order_list = SaleOrderModel::with('customer')->latest()->limit(10)->get();
+
+        $r = array_map('json_encode', compact('sale_order_num', 'sale_order_money', 'sale_cost_title', 'sale_cost_value'));
+        $r['sale_order_list'] = $sale_order_list;
+        return view('center.sale', $r)->render();
     }
 }

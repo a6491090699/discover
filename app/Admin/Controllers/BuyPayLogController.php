@@ -33,16 +33,16 @@ class BuyPayLogController extends AdminController
             $grid->column('purchase_order_id')->using(app(PurchaseOrder::class)->selectItems());
 
             $grid->column('pay_at');
-            $grid->column('purchaseOrder.supplier.name','供应商');
+            $grid->column('purchaseOrder.supplier.name', '供应商');
             $grid->column('this_time_money');
             $grid->column('purchaseOrder.total_money', '合同金额');
             $grid->column('unpay_money');
 
-            $grid->column('created_at');
+            // $grid->column('created_at');
             $grid->actions(function (Grid\Displayers\Actions $actions) {
                 $actions->disableDelete(false);
             });
-            
+
             $grid->showBatchDelete();
 
             $grid->filter(function (Grid\Filter $filter) {
@@ -51,7 +51,7 @@ class BuyPayLogController extends AdminController
                 $filter->equal('fee_type_id')->select(app(FeeType::class)->selectItems());
                 $filter->equal('purchase_order_id')->select(app(PurchaseOrder::class)->selectItems());
                 $filter->equal('purchaseOrder.supplier_id')->select(app(Supplier::class)->selectItems());
-
+                $filter->between('pay_at')->datetime();
             });
         });
     }
@@ -110,7 +110,7 @@ class BuyPayLogController extends AdminController
                     if (empty($form->unpay_money)) {
                         $order = PurchaseOrderModel::find($form->purchase_order_id);
                         //货款类型
-                        $sofar_money = $order->payLog()->where('fee_type_id',1)->sum('this_time_money') + $form->this_time_money;
+                        $sofar_money = $order->payLog()->where('fee_type_id', 1)->sum('this_time_money') + $form->this_time_money;
                         $form->unpay_money = max($order->total_money - $sofar_money, 0);
                     }
                 });
@@ -118,8 +118,6 @@ class BuyPayLogController extends AdminController
                     increment_uniqid_sn('BPL');
                 });
             }
-
-            
         });
     }
 }

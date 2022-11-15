@@ -40,7 +40,7 @@ class StoreOutController extends AdminController
             // $grid->column('total_money');
             // $grid->column('car_number');
             // $grid->column('delivery_id');
-            $grid->column('created_at');
+            // $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
         
             $grid->filter(function (Grid\Filter $filter) {
@@ -49,16 +49,7 @@ class StoreOutController extends AdminController
                 $filter->equal('store_id')->select(Store::pluck('title','id')->toArray());
                 $filter->equal('status')->select(ModelsStoreOut::STATUS_LIST);
                 $filter->equal('review_status')->select(ModelsStoreOut::REVIEW_STATUS);
-                $filter->whereBetween('out_at', function ($q) {
-                    $start = $this->input['start'] ?? null;
-                    $end = $this->input['end'] ?? null;
-                    if($start){
-                        $q->where('out_at' ,'>=' , $start);
-                    }
-                    if($end){
-                        $q->where('out_at' ,'<=' , $end);
-                    }
-                })->datetime(); 
+                $filter->between('out_at')->datetime();
         
             });
         });

@@ -46,10 +46,10 @@ Grid::resolving(function (Grid $grid) {
     $grid->disableViewButton();
     $grid->showQuickEditButton();
     // $grid->enableDialogCreate();
-    $grid->disableBatchDelete();
+    // $grid->disableBatchDelete();
     $grid->actions(function (\Dcat\Admin\Grid\Displayers\Actions $actions) {
         $actions->disableView();
-        // $actions->disableDelete();
+        $actions->disableDelete();
         $actions->disableEdit();
     });
     $grid->option("dialog_form_area", ["70%", "80%"]);

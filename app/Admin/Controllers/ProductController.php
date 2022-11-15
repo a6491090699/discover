@@ -34,18 +34,21 @@ class ProductController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Product(), function (Grid $grid) {
+        return Grid::make(new Product(['categories']), function (Grid $grid) {
             $grid->column('id')->sortable();
             $grid->column('item_no')->emp();
             $grid->column('name')->emp();
             // $grid->column('py_code')->emp();
-            $grid->column('type', '类型')->using(ProductModel::TYPE);
+            // $grid->column('type', '类型')->using(ProductModel::TYPE);
+            $grid->column('categories.title', '分类');
             $grid->column('unit.name', '单位')->emp();
             $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
+                $filter->equal('id');
                 $filter->like('name');
+                $filter->equal('category_id', '分类')->select(ProductCategory::pluck('title','id'));
             });
         });
     }

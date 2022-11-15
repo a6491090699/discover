@@ -5,7 +5,7 @@ return [
         'fee_types' => '费用类型',
     ],
     'fields' => [
-        'title' => '费用类型',
+        'title' => '费用名称',
         'has_caozuo' => '是否计算操作费',
         'has_zhanyong' => '是否计算占用费',
     ],

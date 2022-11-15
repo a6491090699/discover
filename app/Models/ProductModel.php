@@ -105,7 +105,7 @@ class ProductModel extends BaseModel
 
     public function categories()
     {
-        return $this->belongsTo(ProductCategory::class);
+        return $this->belongsTo(ProductCategory::class, 'category_id');
     }
 
     /**

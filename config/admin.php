@@ -22,7 +22,7 @@ return [
     | login page.
     |
     */
-    'name' => 'ERP',
+    'name' => '漳龙外贸ERP',
 
     /*
     |--------------------------------------------------------------------------
@@ -33,8 +33,8 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    // 'logo' => '<img src="/vendors/dcat-admin/images/logo.png" width="35"> &nbsp;ERP',
-    'logo' => '<img src="/static/logo.jpg" style="max-width:500px;max-height:500px;">',
+    'logo' => '<img src="/vendors/dcat-admin/images/logo.png" width="35"> &nbsp;漳龙外贸',
+    // 'logo' => '<img src="/static/logo.jpg" style="max-width:500px;max-height:500px;">',
 
     /*
     |--------------------------------------------------------------------------
@@ -336,7 +336,7 @@ return [
         'sidebar_collapsed' => false,
 
         // light, primary, dark
-        'sidebar_style' => 'light',
+        'sidebar_style' => 'dark',
 
         'dark_mode_switch' => false,
 

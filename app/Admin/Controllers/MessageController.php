@@ -27,12 +27,16 @@ class MessageController extends AdminController
             // $grid->column('is_read')->using(['未读', '已读'])->dot(['primary', 'success']);
             $grid->column('is_read')->switch();
             // $grid->column('type');
-            $grid->column('to_url')->link();
+            $grid->column('to_url')->display(function($url){
+                return '<a href="'.$url.'">点我跳转</a>';
+            });
             $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->equal('from_uid')->select(AdminUser::pluck('name','id')->toArray());
+                $filter->equal('is_read','状态')->select(['未读','已读']);
             });
             // $grid->disableCreateButton();
             $grid->disableEditButton();

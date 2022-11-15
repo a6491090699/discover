@@ -120,6 +120,11 @@ class ApprovalController extends AdminController
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
+                $filter->like('title');
+                $filter->equal('flow_id')->select(app(Flow::class)->selectItems());
+                $filter->equal('user_id')->select(AdminUser::pluck('name', 'id')->toArray());
+                $filter->equal('check_status')->select(ModelsApproval::STATUS_LIST);
+                $filter->between('created_at', '申请时间')->datetime();
             });
         });
     }
