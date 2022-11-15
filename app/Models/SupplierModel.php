@@ -70,6 +70,11 @@ class SupplierModel extends BaseModel
         self::STATUS_CLOSE    => '禁用',
     ];
 
+    const STATUS_COLOR = [
+        self::STATUS_OPEN      => 'success',
+        self::STATUS_CLOSE => 'gray',
+    ];
+
     const TYPE_LIST = [
         self::TYPE_MAOYI   => '贸易商',
         self::TYPE_FACTORY    => '工厂',

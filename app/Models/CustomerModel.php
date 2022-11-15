@@ -68,6 +68,11 @@ class CustomerModel extends BaseModel
         self::STATUS_OPEN   => '启用',
         self::STATUS_CLOSE    => '禁用',
     ];
+    
+    const STATUS_COLOR = [
+        self::STATUS_OPEN      => 'success',
+        self::STATUS_CLOSE => 'gray',
+    ];
 
     const PAY = [
         self::PAY_CASH   => '现金',

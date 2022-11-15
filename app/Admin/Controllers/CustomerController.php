@@ -36,7 +36,7 @@ class CustomerController extends AdminController
             // $grid->column('link')->emp();
             $grid->column('name')->emp();
             // $grid->column('other')->emp();
-            $grid->column('status')->using(CustomerModel::STATUS_LIST);
+            $grid->column('status')->using(CustomerModel::STATUS_LIST)->label(CustomerModel::STATUS_COLOR);
             // $grid->column('phone');
             $grid->column('created_at');
             $grid->filter(function (Grid\Filter $filter) {

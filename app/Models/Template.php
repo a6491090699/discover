@@ -26,6 +26,10 @@ class Template extends Model
         self::STATUS_CLOSE =>'禁用',
         self::STATUS_OPEN =>'启用',
     ];
+    const STATUS_COLOR = [
+        self::STATUS_OPEN      => 'success',
+        self::STATUS_CLOSE => 'gray',
+    ];
 
 
     public function getFieldsAttribute($fields)

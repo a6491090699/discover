@@ -110,7 +110,7 @@ class ApprovalController extends AdminController
             // $grid->column('check_step_sort');
             // $grid->column('check_user_ids');
             // $grid->column('flow_user_ids');
-            $grid->column('check_status')->using(ModelsApproval::STATUS_LIST);
+            $grid->column('check_status')->using(ModelsApproval::STATUS_LIST)->label(ModelsApproval::STATUS_COLOR);
             // $grid->column('remark');
             // $grid->column('last_user_id');
             $grid->column('created_at');

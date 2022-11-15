@@ -24,7 +24,7 @@ class ProviderController extends AdminController
             $grid->column('sn');
             $grid->column('type')->using(ModelsProvider::TYPE_LIST);
             $grid->column('address');
-            $grid->column('status')->using(ModelsProvider::STATUS_LIST);
+            $grid->column('status')->using(ModelsProvider::STATUS_LIST)->label(ModelsProvider::STATUS_COLOR);
             $grid->column('link');
             // $grid->column('contact_department');
             // $grid->column('contact_email');

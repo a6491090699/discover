@@ -25,6 +25,13 @@ class Approval extends Model
         self::STATUS_FAIL => '审批失败',
         self::STATUS_REVOKE => '撤回',
     ];
+    const STATUS_COLOR = [
+        self::STATUS_NO => 'gray',
+        self::STATUS_ING => 'warning',
+        self::STATUS_SUCCESS => 'success',
+        self::STATUS_FAIL => 'danger',
+        self::STATUS_REVOKE => 'primary',
+    ];
 
     public function flowSteps()
     {

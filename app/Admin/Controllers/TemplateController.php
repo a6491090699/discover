@@ -27,7 +27,7 @@ class TemplateController extends AdminController
             });
             $grid->column('type','类型')->using(ModelsTemplate::TYPE_LIST);
             // $grid->column('fields');
-            $grid->column('status')->using(ModelsTemplate::STATUS_LIST);
+            $grid->column('status')->using(ModelsTemplate::STATUS_LIST)->label(ModelsTemplate::STATUS_COLOR);
             $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
 

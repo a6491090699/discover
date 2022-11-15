@@ -28,4 +28,9 @@ class Provider extends Model
         self::TYPE_HUODAI    => '货代',
         self::TYPE_BAOGUAN    => '报关行',
     ];
+
+    const STATUS_COLOR = [
+        self::STATUS_OPEN      => 'success',
+        self::STATUS_CLOSE => 'gray',
+    ];
 }

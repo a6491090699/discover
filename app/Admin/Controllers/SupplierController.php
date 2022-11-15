@@ -36,13 +36,7 @@ class SupplierController extends AdminController
             $grid->column('name')->emp();
             $grid->column('sn')->emp();
 
-            $grid->column('status')->using(SupplierModel::STATUS_LIST)->dot(
-                [
-                    1 => 'primary',
-                    2 => 'danger',
-                    3 => 'success',
-                ],
-            );
+            $grid->column('status')->using(SupplierModel::STATUS_LIST)->label(SupplierModel::STATUS_COLOR);
             // $grid->column('phone')->emp();
             // $grid->column('other')->emp();
             $grid->column('created_at');
