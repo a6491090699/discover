@@ -14,7 +14,7 @@ class ContractSellPrint extends RowAction
     /**
      * @return string
      */
-	protected $title = '<i class="feather icon-printer"></i>';
+	protected $title = '<i class="feather icon-printer"  title="销售合同打印"></i>';
 
     /**
      * Handle the action request.
