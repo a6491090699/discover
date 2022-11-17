@@ -43,7 +43,7 @@ class SettleData extends RowAction
         parent::render();
         return <<<HTML
 <span class="grid-expand">
-   <a href="javascript:void(0)" id="{$this->id()}"><i class="feather icon-layout grid-action-icon"></i></a>
+   <a href="javascript:void(0)" id="{$this->id()}" title="结算数据"><i class="feather icon-layout grid-action-icon"></i></a>
 </span>
 HTML;
     }

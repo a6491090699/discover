@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\PreviewTemplate;
 use App\Admin\Repositories\Template;
 use App\Models\Template as ModelsTemplate;
 use Dcat\Admin\Form;
@@ -30,6 +31,7 @@ class TemplateController extends AdminController
             $grid->column('status')->using(ModelsTemplate::STATUS_LIST)->label(ModelsTemplate::STATUS_COLOR);
             $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
+            $grid->actions(new PreviewTemplate());
 
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');

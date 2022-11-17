@@ -90,6 +90,7 @@ Route::group([
     $router->get('order-prints', 'PrintController@print')->name('order.print');
     $router->get('prints-approval/{id}', 'PrintController@approvalPrint')->name('order.approvalPrint');
     $router->get('prints-contract/{id}', 'PrintController@contractPrint')->name('order.contractPrint');
+    $router->get('preview/{id}', 'PrintController@preview')->name('template.preview');
     $router->get('prints-test', 'PrintController@test');
 
 

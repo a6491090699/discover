@@ -16,6 +16,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Grid\BatchCreateSaleOutOrderSave;
 use App\Admin\Actions\Grid\BatchOrderPrint;
+use App\Admin\Actions\Grid\ContractSellPrint;
 use App\Admin\Actions\Grid\EditOrder;
 use App\Admin\Extensions\Form\Order\OrderController;
 use App\Admin\Repositories\SaleOrder;
@@ -52,7 +53,13 @@ class SaleOrderController extends OrderController
             $grid->disableQuickEditButton();
             // $grid->tools(BatchOrderPrint::make());
             $grid->actions(EditOrder::make());
-
+            $grid->actions(function (Grid\Displayers\Actions $actions) {
+                // 当前行的数据数组
+                $rowArray = $actions->row->toArray();
+                if ($rowArray['review_status'] == PurchaseOrderModel::REVIEW_STATUS_OK) {
+                    $actions->append(new ContractSellPrint());
+                }
+            });
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
                 $filter->like('customer.name', '客户名称');

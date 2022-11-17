@@ -29,7 +29,7 @@ class EditOrder extends RowAction
         parent::render();
         return <<<HTML
 <span class="grid-expand">
-   <a href="javascript:void(0)" id="{$this->id()}"><i class="feather icon-edit grid-action-icon"></i></a>
+   <a href="javascript:void(0)" id="{$this->id()}" title="快捷编辑"><i class="feather icon-edit grid-action-icon"></i></a>
 </span>
 HTML;
     }

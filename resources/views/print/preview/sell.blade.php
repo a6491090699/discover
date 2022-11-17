@@ -11,7 +11,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <meta name=Generator content="Microsoft Word 15">
 <meta name=Originator content="Microsoft Word 15">
 
-<title>销售合同</title>
+<title>销  售  合  同</title>
 
 <style>
  /* Font Definitions */
@@ -337,25 +337,32 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan;
   vertical-align:middle'><span class=17><span style='color:windowtext'>甲方（供方）</span></span><span
   class=16><b><span style='color:windowtext'>：</span></b></span><b
-  style='mso-bidi-font-weight:normal'><span style='mso-bidi-font-size:10.5pt;color:windowtext;
-  font-family:宋体'>{{config('admin.our_info.name').str_repeat('&nbsp;',(int)(21-strlen(config('admin.our_info.name'))/3))}}<span class=16><span style='color:windowtext;mso-bidi-font-weight:
-  bold'>合同编号： <span lang=EN-US><o:p>{{$info->order_no}}</o:p></span></span></span></span></b></p>
+  style='mso-bidi-font-weight:normal'><span style='mso-bidi-font-size:10.5pt;
+  font-family:宋体'>福建漳龙外贸集团有限公司<span class=16><span lang=EN-US style='color:
+  windowtext;mso-bidi-font-weight:bold'><span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span></span><span class=16><span style='color:windowtext;mso-bidi-font-weight:
+  bold'>合同编号： <span lang=EN-US><o:p></o:p></span></span></span></span></b></p>
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan;
-  vertical-align:middle'><b style='mso-bidi-font-weight:normal'><span
-  lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:宋体'><span
-  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span></span></b><b style='mso-bidi-font-weight:normal'><span
-  style='mso-bidi-font-size:10.5pt;font-family:宋体'>签订地点：<span
-  lang=EN-US><o:p>福建省漳州市芗城区</o:p></span></span></b></p>
+  vertical-align:middle'><span class=16><b><span lang=EN-US style='color:windowtext'><span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span></span></b></span><span
+  class=16><b><span style='color:windowtext'>签订地点： </span></b></span><span
+  class=16><b><span lang=EN-US style='mso-hansi-font-family:Calibri;color:windowtext'><o:p></o:p></span></b></span></p>
   <p class=MsoNormal align=left style='text-align:left;mso-pagination:widow-orphan;
   vertical-align:middle'><span class=17><span style='color:windowtext'>乙方（需方）</span></span><span
   class=16><b><span style='color:windowtext'>：</span></b></span><b
   style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-bidi-font-size:
-  10.5pt;font-family:宋体'>{{$info->customer->name.str_repeat('&nbsp;',(int)(21-strlen($info->customer->name)/3))}}</span></b><span
-  class=16><span
-  style='mso-bidi-font-size:10.5pt;font-family:宋体'>签订时间：</span></span><b><span
+  10.5pt;font-family:宋体'><span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span><span class=16><span style='color:windowtext;mso-bidi-font-weight:
+  bold'><span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span><span
+  style='mso-spacerun:yes'>&nbsp;</span></span></span></span></b><span
+  class=16><b><span style='color:windowtext'>签订时间：</span></b></span><b><span
   style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'>
-  <span lang=EN-US><o:p>{{\Carbon\Carbon::parse($info->sign_at)->format('Y年m月d日')}}</o:p></span></span></b></p>
+  <span lang=EN-US><o:p></o:p></span></span></b></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:3;height:15.0pt'>
@@ -377,7 +384,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   lang=EN-US>法规</span></span></a></span><span style='font-size:14.0pt;
   font-family:宋体'>，</span><span style='mso-bidi-font-size:10.5pt;font-family:
   宋体;mso-font-kerning:0pt'>甲乙双方在公平自愿的基础上，经平等协商，就甲方向乙方供应<span lang=EN-US><span
-  style='mso-spacerun:yes'>货物</span></span>一事，达成如下协议：</span><span
+  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>一事，达成如下协议：</span><span
   lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:
   Calibri'><o:p></o:p></span></p>
   </td>
@@ -496,17 +503,13 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   宋体;mso-font-kerning:0pt'>（人民币元）<span lang=EN-US><o:p></o:p></span></span></b></p>
   </td>
  </tr>
- @php
-     $total = 0;
- @endphp
- @foreach($info->items as $key=>$item)
  <tr style='mso-yfti-irow:7;height:15.0pt'>
   <td width="6%" style='width:6.34%;border:solid black 1.0pt;border-top:none;
   mso-border-top-alt:solid black .5pt;mso-border-alt:solid black .5pt;
   padding:.75pt .75pt .75pt .75pt;height:15.0pt'>
   <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan;
   vertical-align:middle'><span lang=EN-US style='mso-bidi-font-size:10.5pt;
-  font-family:宋体'><o:p>{{$key+1}}</o:p></span></p>
+  font-family:宋体'>1<o:p></o:p></span></p>
   </td>
   <td width="15%" style='width:15.46%;border-top:none;border-left:none;
   border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
@@ -515,7 +518,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   height:15.0pt'>
   <p class=MsoNormal style='line-height:22.0pt;mso-line-height-rule:exactly'><span
   lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:
-  Calibri'><o:p>{{$item->sku->product->name}}</o:p></span></p>
+  Calibri'><o:p>&nbsp;</o:p></span></p>
   </td>
   <td width="9%" style='width:9.64%;border-top:none;border-left:none;
   border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
@@ -524,7 +527,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   height:15.0pt'>
   <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
   line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
-  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>{{$item->should_num}}</o:p></span></p>
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
   </td>
   <td width="11%" style='width:11.02%;border-top:none;border-left:none;
   border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
@@ -533,7 +536,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   height:15.0pt'>
   <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
   line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
-  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>{{$item->sku->attr_value_ids_str}}</o:p></span></p>
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
   </td>
   <td width="13%" style='width:13.48%;border:solid black 1.0pt;border-left:
   none;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:solid black .5pt;
@@ -542,7 +545,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
   line-height:22.0pt;mso-line-height-rule:exactly;tab-stops:23.1pt'><span
   lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:
-  Calibri'><o:p>{{$item->price}}</o:p></span></p>
+  Calibri'><o:p>&nbsp;</o:p></span></p>
   </td>
   <td width="16%" style='width:16.1%;border:solid black 1.0pt;border-left:none;
   mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:solid black .5pt;
@@ -550,7 +553,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   height:15.0pt'>
   <p class=MsoNormal style='line-height:22.0pt;mso-line-height-rule:exactly;
   tab-stops:23.1pt'><span lang=EN-US style='mso-bidi-font-size:10.5pt;
-  font-family:宋体;mso-hansi-font-family:Calibri;mso-font-kerning:0pt'><o:p>{{$item->price*$item->should_num}}</o:p></span></p>
+  font-family:宋体;mso-hansi-font-family:Calibri;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
   </td>
   <td width="13%" style='width:13.66%;border:solid black 1.0pt;border-left:
   none;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:solid black .5pt;
@@ -558,7 +561,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   height:15.0pt'>
   <p class=MsoNormal style='line-height:22.0pt;mso-line-height-rule:exactly;
   tab-stops:23.1pt'><span lang=EN-US style='mso-bidi-font-size:10.5pt;
-  font-family:宋体;mso-hansi-font-family:Calibri;mso-font-kerning:0pt'><o:p>{{$item->price*(1+ $info->frameContract->year_rate)}}</o:p></span></p>
+  font-family:宋体;mso-hansi-font-family:Calibri;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
   </td>
   <td width="14%" style='width:14.22%;border:solid black 1.0pt;border-left:
   none;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:solid black .5pt;
@@ -566,14 +569,153 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   height:15.0pt'>
   <p class=MsoNormal style='line-height:22.0pt;mso-line-height-rule:exactly;
   tab-stops:23.1pt'><span lang=EN-US style='mso-bidi-font-size:10.5pt;
-  font-family:宋体;mso-hansi-font-family:Calibri;mso-font-kerning:0pt'><o:p>{{$item->price*(1+$info->frameContract->year_rate)*$item->should_num}}</o:p></span></p>
+  font-family:宋体;mso-hansi-font-family:Calibri;mso-font-kerning:0pt'><o:p>&nbsp;</o:p></span></p>
   </td>
  </tr>
- @php
-    $total+= $item->price*(1+$info->frameContract->year_rate)*$item->should_num;
-@endphp
- @endforeach
-
+ <tr style='mso-yfti-irow:8;height:15.0pt'>
+  <td width="6%" style='width:6.34%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .5pt;mso-border-alt:solid black .5pt;
+  padding:.75pt .75pt .75pt .75pt;height:15.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle'><span lang=EN-US style='mso-bidi-font-size:10.5pt;
+  font-family:宋体'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="15%" style='width:15.46%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="9%" style='width:9.64%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="11%" style='width:11.02%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="13%" style='width:13.48%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="16%" style='width:16.1%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="13%" style='width:13.66%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="14%" style='width:14.22%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:9;height:15.0pt'>
+  <td width="6%" style='width:6.34%;border:solid black 1.0pt;border-top:none;
+  mso-border-top-alt:solid black .5pt;mso-border-alt:solid black .5pt;
+  padding:.75pt .75pt .75pt .75pt;height:15.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;mso-pagination:widow-orphan;
+  vertical-align:middle'><span lang=EN-US style='mso-bidi-font-size:10.5pt;
+  font-family:宋体'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="15%" style='width:15.46%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="9%" style='width:9.64%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="11%" style='width:11.02%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="13%" style='width:13.48%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="16%" style='width:16.1%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="13%" style='width:13.66%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="14%" style='width:14.22%;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:
+  solid black .5pt;mso-border-top-alt:solid black .5pt;mso-border-bottom-alt:
+  solid black .5pt;mso-border-right-alt:solid black .5pt;padding:.75pt .75pt .75pt .75pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
+  line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
+  style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:Calibri'><o:p>&nbsp;</o:p></span></p>
+  </td>
+ </tr>
  <tr style='mso-yfti-irow:10;height:15.0pt'>
   <td width="42%" colspan=4 style='width:42.5%;border:solid black 1.0pt;
   border-top:none;mso-border-left-alt:solid black .5pt;mso-border-bottom-alt:
@@ -593,7 +735,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   padding:.75pt .75pt .75pt .75pt;height:15.0pt'>
   <p class=MsoNormal style='text-indent:26.25pt;mso-char-indent-count:2.5;
   line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
-  style='mso-bidi-font-size:10.5pt'><o:p>{{$total}}</o:p></span></p>
+  style='mso-bidi-font-size:10.5pt'><o:p>&nbsp;</o:p></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:11;height:24.95pt'>
@@ -614,7 +756,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   padding:.75pt .75pt .75pt .75pt;height:24.95pt'>
   <p class=MsoNormal style='line-height:22.0pt;mso-line-height-rule:exactly'><span
   lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:
-  Calibri'><o:p>{{up_pinyin_money($total)}}</o:p></span></p>
+  Calibri'><o:p>&nbsp;</o:p></span></p>
   </td>
  </tr>
  <tr style='mso-yfti-irow:12;height:15.75pt'>
@@ -652,7 +794,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   仿宋'>2</span><span style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-bidi-font-family:
   仿宋'>、交货地址：</span><span style='mso-bidi-font-size:10.5pt;font-family:宋体;
   mso-ascii-theme-font:minor-fareast;mso-fareast-theme-font:minor-fareast;
-  mso-hansi-theme-font:minor-fareast;color:black'> <span lang=EN-US><o:p>{{$info->store->position??''}}</o:p></span></span></p>
+  mso-hansi-theme-font:minor-fareast;color:black'> <span lang=EN-US><o:p></o:p></span></span></p>
   <p class=MsoNormal align=left style='margin-left:0cm;text-align:left;
   text-indent:0cm;line-height:22.0pt;mso-line-height-rule:exactly;mso-list:
   l0 level1 lfo1'><![if !supportLists]><b style='mso-bidi-font-weight:normal'><span
@@ -677,7 +819,10 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   仿宋'><o:p></o:p></span></b></p>
   <p class=MsoNormal style='text-indent:21.0pt;line-height:22.0pt;mso-line-height-rule:
   exactly'><span style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-bidi-font-family:
-  仿宋'>款项的支付：先款后货，乙方最迟应在{{\Carbon\Carbon::parse($info->deposit_deadline)->format('Y年m月d日')}}前（含当日）将暂定价全额货款<span lang=EN-US>{{$info->bond_rate*100}}%</span>的保证金汇入甲方指定银行，并于{{\Carbon\Carbon::parse($info->last_money_deadline)->format('Y年m月d日')}}前（含当日）将实际结算金额的尾款部分及相关款项汇入甲方指定银行。</span><span
+  仿宋'>款项的支付：先款后货，乙方最迟应在<span lang=EN-US><span style='mso-spacerun:yes'>&nbsp;
+  </span></span>年<span lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span></span>月
+  日前（含当日）将暂定价全额货款<span lang=EN-US>xx%</span>的保证金汇入甲方指定银行，并于年<span lang=EN-US><span
+  style='mso-spacerun:yes'>&nbsp; </span></span>月 日前（含当日）将实际结算金额的尾款部分及相关款项汇入甲方指定银行。</span><span
   lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:
   Calibri;mso-bidi-font-family:仿宋'><o:p></o:p></span></p>
   <p class=MsoNormal style='line-height:22.0pt;mso-line-height-rule:exactly'><b
@@ -687,7 +832,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   mso-hansi-font-family:Calibri;mso-bidi-font-family:仿宋'><o:p></o:p></span></b></p>
   <p class=MsoNormal style='text-indent:21.0pt;line-height:22.0pt;mso-line-height-rule:
   exactly'><span style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-bidi-font-family:
-  仿宋'>若乙方未按本合同第四条约定支付款项，需按未支付款项的日万分之四向甲方支付违约金。若逾期<span lang=EN-US>{{$info->objection_days}}</span>日仍未支付款项，则视为严重违约，甲方有权单方面解除本合同并没收保证金，若不足赔偿甲方损失的，甲方有权继续向乙方追偿全部直接和间接损失。</span><span
+  仿宋'>若乙方未按本合同第四条约定支付款项，需按未支付款项的日万分之四向甲方支付违约金。若逾期<span lang=EN-US>xx</span>日仍未支付款项，则视为严重违约，甲方有权单方面解除本合同并没收保证金，若不足赔偿甲方损失的，甲方有权继续向乙方追偿全部直接和间接损失。</span><span
   lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-hansi-font-family:
   Calibri;mso-bidi-font-family:仿宋'><o:p></o:p></span></p>
   <p class=MsoNormal style='line-height:22.0pt;mso-line-height-rule:exactly'><b
@@ -729,7 +874,7 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
   lang=EN-US>1-1-1</span>号<span lang=EN-US><o:p></o:p></span></span></p>
   <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
   line-height:22.0pt;mso-line-height-rule:exactly'><span style='mso-bidi-font-size:
-  10.5pt;font-family:宋体;mso-bidi-font-family:仿宋'>乙方地址：<span lang=EN-US><o:p>{{$info->customer->address}}</o:p></span></span></p>
+  10.5pt;font-family:宋体;mso-bidi-font-family:仿宋'>乙方地址：<span lang=EN-US><o:p></o:p></span></span></p>
   <p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
   line-height:22.0pt;mso-line-height-rule:exactly'><span lang=EN-US
   style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-font-kerning:0pt'>4</span><span
@@ -746,20 +891,28 @@ color:windowtext'><o:p>&nbsp;</o:p></span></span></p>
 lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:宋体'><o:p>&nbsp;</o:p></span></p>
 
 <p class=MsoNormal style='line-height:16.0pt;mso-line-height-rule:exactly'><span
-style='mso-bidi-font-size:10.5pt;font-family:宋体'>甲方：{{config('admin.our_info.name').str_repeat('&nbsp;',(int)(25-strlen(config('admin.our_info.name'))/3))}}乙方：<span lang=EN-US><span style='mso-spacerun:yes'>{{$info->customer->name}}</span><o:p></o:p></span></span></p>
+style='mso-bidi-font-size:10.5pt;font-family:宋体'>甲方：福建漳龙外贸集团有限公司<span
+lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>乙方：<span lang=EN-US><span style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='line-height:16.0pt;mso-line-height-rule:exactly'><span
 style='mso-bidi-font-size:10.5pt;font-family:宋体'>（盖章）法人代表签字：<span lang=EN-US><span
-style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span>（盖章）法人代表签字：<span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='line-height:16.0pt;mso-line-height-rule:exactly'><span
 style='mso-bidi-font-size:10.5pt;font-family:宋体;mso-ascii-theme-font:minor-fareast;
-mso-fareast-theme-font:minor-fareast;mso-hansi-theme-font:minor-fareast'>开户银行：{{config('admin.our_info.bank').str_repeat('&nbsp;',(int)(23-strlen(config('admin.our_info.bank'))/3))}}开户银行：<span style='color:black'>{{$info->customer->bank_name}}</span><span lang=EN-US><o:p></o:p></span></span></p>
+mso-fareast-theme-font:minor-fareast;mso-hansi-theme-font:minor-fareast'>开户银行：漳州工商银行龙江支行<span
+lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>开户银行：<span style='color:black'> </span><span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal><span style='mso-bidi-font-size:10.5pt;font-family:宋体;
 mso-ascii-theme-font:minor-fareast;mso-fareast-theme-font:minor-fareast;
-mso-hansi-theme-font:minor-fareast'>账号：<span lang=EN-US>{{config('admin.our_info.bank_account').str_repeat('&nbsp;',(int)(23-strlen(config('admin.our_info.bank_account'))/3))}}</span>账号：<span style='color:black'>{{$info->customer->bank_account}}</span><span lang=EN-US><o:p></o:p></span></span></p>
+mso-hansi-theme-font:minor-fareast'>账号：<span lang=EN-US>1409020109600121520<span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>账号：<span style='color:black'> </span><span lang=EN-US><o:p></o:p></span></span></p>
 
 <p class=MsoNormal style='line-height:16.0pt;mso-line-height-rule:exactly'><span
 lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:宋体'><o:p>&nbsp;</o:p></span></p>

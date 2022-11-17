@@ -19,6 +19,7 @@ use App\Models\Approval;
 use App\Models\FrameContract;
 use App\Models\PurchaseOrderModel;
 use App\Models\SaleOrderModel;
+use App\Models\Template;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -45,7 +46,7 @@ class PrintController extends Controller
     {
         $approval = Approval::find($id);
         if ($template_slug = $approval->flow->template->slug) {
-            $dir = 'print.approval';
+            $dir = 'print.template';
             $temp = $dir . '.' . $template_slug;
             $param  = json_decode($approval->content, true);
             // dd($param , $temp);
@@ -79,7 +80,7 @@ class PrintController extends Controller
     public function contractPrint($id, Request $request)
     {
         $type = $request->input('type');
-        $dir = 'print.contract';
+        $dir = 'print.template';
         switch ($type) {
             case 'buy':
                 $info = PurchaseOrderModel::find($id);
@@ -109,5 +110,14 @@ class PrintController extends Controller
             return view($temp, compact('info'));
         }
         abort(404);
+    }
+
+    public function preview($id)
+    {
+        $template = Template::find($id);
+        $dir = 'print.preview';
+        if($template){
+            return view( $dir . '.' . $template->slug );
+        }
     }
 }

@@ -767,5 +767,7 @@ lang=EN-US style='mso-bidi-font-size:10.5pt;font-family:宋体'><o:p>&nbsp;</o:p
 </div>
 
 </body>
-
+<script>
+    window.print()
+</script>
 </html>
