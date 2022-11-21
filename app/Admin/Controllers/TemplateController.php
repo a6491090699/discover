@@ -32,7 +32,7 @@ class TemplateController extends AdminController
             $grid->column('created_at');
             // $grid->column('updated_at')->sortable();
             $grid->actions(new PreviewTemplate());
-
+            $grid->disableCreateButton();
             $grid->filter(function (Grid\Filter $filter) {
                 $filter->equal('id');
                 $filter->like('title');

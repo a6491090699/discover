@@ -19,6 +19,11 @@ class Delivery extends Model
         self::STATUS_DELIVERYING => '运送中',
         self::STATUS_RECEIVE => '已收货',
     ];
+    const STATUS_COLOR  = [
+        self::STATUS_NO_SEND => 'gray',
+        self::STATUS_DELIVERYING => 'warning',
+        self::STATUS_RECEIVE => 'success',
+    ];
 
     const TYPE_DIAOBO = 'allocations';
     const TYPE_BUY = 'purchase_order';

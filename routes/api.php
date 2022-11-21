@@ -86,4 +86,5 @@ Route::prefix('pub')->group(function () {
     Route::post('message-read', 'PubController@messageRead')->name('pub.messageRead');
     Route::get('multi-orders', 'PubController@multiOrders')->name('pub.multi-orders');
     Route::get('orders', 'PubController@orders')->name('pub.orders');
+    Route::get('department-list', 'PubController@departmentList')->name('pub.department-list');
 });

@@ -213,11 +213,11 @@ class ApprovalController extends AdminController
      */
     protected function form()
     {
-        return Form::make(new Approval(), function (Form $form) {
+        return Form::make(new Approval(['flow']), function (Form $form) {
             $form->tab('基本信息', function (Form $form) {
                 $form->display('id');
-                $form->text('title');
-                $form->select('flow_id')->options(app(Flow::class)->selectItems());
+                $form->text('title')->required();
+                $form->select('flow_id')->options(app(Flow::class)->selectItems())->required();
                 $form->hidden('user_id');
                 //当前审批人
                 if ($form->isEditing()) {
@@ -258,7 +258,7 @@ class ApprovalController extends AdminController
 
 
             if ($form->isEditing()) {
-                if ($form->model()->template_id) {
+                if ($form->model()->flow['template_id']) {
                     $form->tab('审批单设置', function (Form $form) {
                         $flow = ModelsFlow::find($form->model()->flow_id);
                         foreach ($flow->template->fields as $item) {

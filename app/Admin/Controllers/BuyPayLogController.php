@@ -94,13 +94,13 @@ class BuyPayLogController extends AdminController
             $form->text('sn')->default(create_uniqid_sn('BPL'));
             $form->select('purchase_order_id')->options(app(PurchaseOrder::class)->selectItems())->required();
 
-            $form->datetime('pay_at');
+            $form->datetime('pay_at')->required();
             // $form->select('supplier_id')->options(app(Supplier::class)->selectItems());
-            $form->select('fee_type_id', '费用类型')->options(app(FeeType::class)->selectItems());
+            $form->select('fee_type_id', '费用类型')->options(app(FeeType::class)->selectItems())->required();
             // $form->text('contract_money');
             $form->text('unpay_money')->help('留空则自动计算');
-            $form->text('this_time_money');
-            $form->select('pay_method')->options(ModelsBuyPayLog::PAY_METHOD_LIST);
+            $form->text('this_time_money')->required();
+            $form->select('pay_method')->options(ModelsBuyPayLog::PAY_METHOD_LIST)->required();
 
             $form->text('other');
             if ($form->isEditing()) {

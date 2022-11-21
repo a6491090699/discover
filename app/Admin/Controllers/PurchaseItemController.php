@@ -15,6 +15,8 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\PurchaseItem;
+use App\Models\PurchaseItemModel;
+use App\Models\PurchaseOrderModel;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Controllers\AdminController;
@@ -62,6 +64,21 @@ class PurchaseItemController extends AdminController
             $form->text('sku_id');
             $form->decimal('percent');
             $form->number('standard');
+            if($form->isEditing()){
+
+                $form->saved(function($form){
+                    $id = $form->getKey();
+                    $updates = $form->updates();
+                    $item = PurchaseItemModel::with('purchaseOrder')->find($id);
+                    $items = PurchaseItemModel::where('order_id' , $item->order_id)->get();
+                    $total_money = 0;
+                    foreach($items as $i){
+                        $total_money += ($i->should_num*$i->price);
+                    }
+                    PurchaseOrderModel::where('id' , $item->order_id)->update(['total_money'=>$total_money]);
+
+                });
+            }
 
             $form->display('created_at');
             $form->display('updated_at');

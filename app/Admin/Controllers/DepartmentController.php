@@ -63,20 +63,16 @@ class DepartmentController extends AdminController
         return Form::make(new Department(), function (Form $form) {
             $form->display('id');
 
-            $form->text('title');
+            $form->text('title')->required();
 
-            $form->select('company_id')->options(Company::pluck('title','id'));
-            $form->select('parent_id')->options(function (){
-                return ModelsDepartment::selectOptions();
-            })->saving(function ($v) {
-                return (int) $v;
+            $form->select('company_id', '公司')->options(Company::pluck('title','id')->toArray())
+                    ->load('parent_id', route('pub.department-list'))->required();
+            $form->select('parent_id', '父级');
+            $form->saving(function($form){
+                if(empty($form->parent_id)){
+                    $form->parent_id = 0;
+                }
             });
-
-            // $form->select('parent_id')->options(function (){
-            //     return ModelsDepartment::selectOptions();
-            // })->saving(function ($v) {
-            //     return (int) $v;
-            // });
 
             $form->display('created_at');
             $form->display('updated_at');

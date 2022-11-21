@@ -58,4 +58,9 @@ class PurchaseItemModel extends BaseModel
     {
         return $this->belongsTo(ProductSkuModel::class, 'sku_id');
     }
+
+    public function purchaseOrder()
+    {
+        return $this->belongsTo(PurchaseOrderModel::class ,'order_id');
+    }
 }

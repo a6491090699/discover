@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin\Repositories\Department as RepositoriesDepartment;
 use App\Admin\Repositories\Message;
 use App\Services\AdminUserService;
 use App\Services\PermissionService;
 use App\Services\RoleService;
 use App\Models\Allocation;
+use App\Models\Department;
 use App\Models\PurchaseOrderBack;
 use App\Models\PurchaseOrderModel;
 use App\Models\SaleBackOrder;
@@ -130,5 +132,12 @@ class PubController extends Controller
             return response()->json(['status' => 0, 'message' => 'fail']);
         }
         return response()->json(['status' => 0, 'message' => 'error']);
+    }
+
+    public function departmentList(Request $request)
+    {
+        $val = $request->get('q');
+        return app(RepositoriesDepartment::class)->getApiList($val);
+        
     }
 }

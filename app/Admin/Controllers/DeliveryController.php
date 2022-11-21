@@ -26,7 +26,7 @@ class DeliveryController extends AdminController
             $grid->column('sn');
             $grid->column('send_at');
             // $grid->column('arrived_at');
-            $grid->column('status')->using(ModelsDelivery::STATUS_LIST);
+            $grid->column('status')->using(ModelsDelivery::STATUS_LIST)->label(ModelsDelivery::STATUS_COLOR);
             $grid->column('money');
             // $grid->column('enclosure');
             $grid->column('created_at');

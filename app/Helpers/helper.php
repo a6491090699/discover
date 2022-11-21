@@ -279,6 +279,40 @@ function list_to_tree($list, $pk = 'id', $pid = 'pid', $child = '_child', $root 
     return $tree;
 }
 
+function list_to_tree_department($list, $pk = 'id', $pid = 'pid' ,$title = 'title')
+{
+    // 创建Tree
+    $tree = array();
+    if (is_array($list)) {
+        // 创建基于主键的数组引用
+        $refer = array();
+        foreach ($list as $key => $data) {
+            $refer[$data[$pk]] = &$list[$key];
+        }
+        foreach ($list as $key => $data) {
+            // 判断是否存在parent
+            $parentId =  $data[$pid];
+            if (0 == $parentId) {
+                $tree[] = [
+                    'id'=>&$list[$key]['id'],
+                    'title'=>&$list[$key][$title],
+                ];
+            } else {
+                if (isset($refer[$parentId])) {
+                    $parent = &$refer[$parentId];
+                    // $parent[$child][] = &$list[$key];
+                    $title = &$list[$key][$title];
+                    $tree[] = [
+                        'id'=>&$list[$key]['id'],
+                        'title'=>str_repeat('---' , (int)$parentId) . $title,
+                    ];
+                }
+            }
+        }
+    }
+    return $tree;
+}
+
 function up_pinyin_money($money = '')
 {
     if (empty($money)) {
