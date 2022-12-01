@@ -105,7 +105,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         ProductModel::observe(ProductObserver::class);
-        PurchaseOrderModel::observe([PurchaseOrderObserver::class, OrderNoCreatedObserver::class]);
+        PurchaseOrderModel::observe([PurchaseOrderObserver::class]);
         PurchaseItemModel::observe(PurchaseItemObserver::class);
         PurchaseInOrderModel::observe([PurchaseInOrderObserver::class, OrderNoCreatedObserver::class]);
         SkuStockModel::observe(SkuStockObserver::class);

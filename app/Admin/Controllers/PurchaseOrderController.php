@@ -155,9 +155,13 @@ class PurchaseOrderController extends OrderController
             }
         });
         $form->saved(function ($form) {
-            $frame_contract = FrameContract::find($form->model()->frame_contract_id);
-            $frame_contract->money = $frame_contract->purchaseOrders()->sum('total_money');
-            $frame_contract->save();
+            $key = $form->getKey();
+            $updates = $form->updates();
+            if (isset($updates['frame_contract_id'])) {
+                $frame_contract = FrameContract::find($updates['frame_contract_id']);
+                $frame_contract->money = $frame_contract->purchaseOrders()->sum('total_money');
+                $frame_contract->save();
+            }
         });
     }
 
